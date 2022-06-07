@@ -1,0 +1,36 @@
+unit Delphiscal.Cofins.Base;
+
+interface
+
+type
+  TBaseCofins = class
+  private
+    FValorProduto: Currency;
+    FValorfrete: Currency;
+    FValorSeguro: Currency;
+    FDespesasAcessorias: Currency;
+    FValorDesconto: Currency;
+  public
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Currency);
+    function CalcularBaseCofins: Currency;
+  end;
+
+implementation
+
+uses acbrutil.math;
+
+constructor TBaseCofins.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Currency);
+begin
+  FValorProduto := AValorProduto;
+  FValorfrete := AValorFrete;
+  FValorSeguro := AValorSeguro;
+  FDespesasAcessorias := ADespesasAcessorias;
+  FValorDesconto := AValorDesconto;
+end;
+
+function TBaseCofins.CalcularBaseCofins: Currency;
+begin
+  Result := RoundABNT(FValorProduto + FValorfrete + FValorSeguro + FDespesasAcessorias - FValorDesconto, 2);
+end;
+
+end.

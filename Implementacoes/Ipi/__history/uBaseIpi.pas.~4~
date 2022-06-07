@@ -1,0 +1,40 @@
+unit uBaseIpi;
+
+interface
+
+type
+  TBaseIpi = class
+  private
+    FValorProduto: currency;
+    FValorfrete: currency;
+    FValorSeguro: currency;
+    FDespesasAcessorias: currency;
+
+  public
+    Constructor Create(_valorProduto,
+                       _valorFrete,
+                       _valorSeguro,
+                       _despesasAcessorias);
+    function CalcularBaseIpi: currency;
+  end;
+
+implementation
+
+{ TBaseIpi }
+
+constructor TBaseIpi.Create(_valorProduto,
+                            _valorFrete,
+                            _valorSeguro,
+                            _despesasAcessorias);
+begin
+
+ FValorProduto := _valorProduto;
+
+end;
+
+function TBaseIpi.CalcularBaseIpi: currency;
+begin
+
+end;
+
+end.

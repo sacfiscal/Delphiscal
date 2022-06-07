@@ -1,0 +1,67 @@
+unit uIcms00;
+
+interface
+
+uses uBaseIcmsProprio, uValorIcms, uIIcms00;
+
+type
+  TIcms00 = class(TInterfacedObject, IIcms00)
+  private
+    FBaseIcmsProprio: TBaseIcmsProprio;
+    FValorIcms: TValorIcms;
+  public
+    function BaseIcmsProprio: currency;
+    function ValorIcmsProprio: currency;
+    constructor Create(_valorProduto,
+                       _valorFrete,
+                       _valorSeguro,
+                       _despesasAcessorias,
+                       _valorDesconto: currency;
+                       _ALiquotaICMS: currency;
+                       _valorIpi: currency = 0);
+    destructor Destroy; override;
+
+  end;
+
+implementation
+
+uses
+  acbrutil.Math;
+
+{ TIcms00 }
+
+function TIcms00.BaseIcmsProprio: currency;
+begin
+  Result := RoundABNT(FBaseIcmsProprio.CalcularBaseIcmsProprio, 2);
+end;
+
+constructor TIcms00.Create(_valorProduto,
+                           _valorFrete,
+                           _valorSeguro,
+                           _despesasAcessorias,
+                           _valorDesconto: currency;
+                           _ALiquotaICMS: currency;
+                           _valorIpi: currency);
+begin
+  FBaseIcmsProprio := TBaseIcmsProprio.Create(_valorProduto,
+                                              _valorFrete,
+                                              _valorSeguro,
+                                              _despesasAcessorias,
+                                              _valorDesconto,
+                                              _valorIpi);
+  FValorIcms := TValorIcms.Create(FBaseIcmsProprio, _ALiquotaICMS);
+end;
+
+destructor TIcms00.Destroy;
+begin
+  FValorIcms.Free;
+  FBaseIcmsProprio.Free;
+  inherited;
+end;
+
+function TIcms00.ValorIcmsProprio: currency;
+begin
+  Result := RoundABNT(FValorIcms.ValorIcmsProprio,2);
+end;
+
+end.

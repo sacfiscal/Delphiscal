@@ -1,0 +1,20 @@
+unit uIIcms00;
+
+interface
+
+uses
+  uBaseIcmsProprio, uValorIcms;
+
+type
+  IIcms00 = interface
+    //function GetBaseIcms: TBaseIcmsProprio;
+    function BaseIcmsProprio: currency;
+    //property BaseIcmsProprio: TBaseIcmsProprio read GetBaseIcms;
+    //function GetValorIcms: TValorIcms;
+    function ValorIcmsProprio: currency;
+    //property ValorIcms: TValorIcms read GetValorIcms;
+  end;
+
+implementation
+
+end.

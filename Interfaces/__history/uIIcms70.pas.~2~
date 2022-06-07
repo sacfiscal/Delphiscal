@@ -1,0 +1,12 @@
+unit uIIcms70;
+
+interface
+type
+  IIcms70 = interface
+    function BaseReduzidaIcmsProprio: currency;
+
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,18 @@
+unit uIIcms00;
+
+interface
+
+uses
+  uBaseIcmsProprio, uValorIcms;
+
+type
+  IIcms00 = interface
+    function GetBaseIcms: TBaseIcmsProprio;
+    property BaseIcmsProprio: TBaseIcmsProprio read GetBaseIcms;
+    function GetValorIcms: TValorIcms;
+    property ValorIcms: TValorIcms read GetValorIcms;
+  end;
+
+implementation
+
+end.

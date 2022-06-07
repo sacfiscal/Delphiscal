@@ -1,0 +1,160 @@
+unit uIcms70;
+
+interface
+
+uses uIIcms70, uBaseIcmsProprio, uValorIcms, uBaseIcmsST, uValorIcmsST, uIIcms10, uIcms10;
+
+type
+  TIcms70 = class(TInterfacedObject, IIcms70)
+  private
+    FBaseIcmsProprio: TBaseIcmsProprio;
+    FIcmsProprio: TValorIcms;
+    FBaseIcmsST: TBaseIcmsST;
+    FIcmsST: TValorIcmsST;
+    strict private FBaseIcmsProprioNormal: TBaseIcmsProprio;
+    strict private FIcmsProprioNormal: TValorIcms;
+    strict private FBaseIcmsSTNormal: TValorIcms;
+    strict private FIcmsSTNormal: TValorIcmsST;
+    strict private FValorProduto, FValorFrete, FValorSeguro,
+                   FDespesasAcessorias, FValorIpi, FValorDesconto, FAliquotaIcmsProprio,
+                   FAliquotaIcmsST, FMva : currency;
+  public
+    constructor Create(_valorProduto,
+                           _valorFrete,
+                           _valorSeguro,
+                           _despesasAcessorias,
+                           _valorDesconto,
+                           _aliquotaIcms,
+                           _percentualReducao,
+                           _aliquotaIcmsST,
+                           _mva: currency;
+                           _percentualReducaoST: currency = 0;
+                           _valorIpi: currency = 0);
+    function ValorBaseReduzidaIcmsProprio: currency;
+    function ValorIcmsProprio: currency;
+    function ValorBaseIcmsST: currency;
+    function ValorIcmsST: currency;
+    function ValorIcmsDesonerado: currency;
+    function ValorIcmsSTDesonerado: currency;
+    destructor Destroy; override;
+  end;
+
+implementation
+uses
+ acbrutil.Math;
+
+{ TIcms70 }
+
+constructor TIcms70.Create(_valorProduto,
+                           _valorFrete,
+                           _valorSeguro,
+                           _despesasAcessorias,
+                           _valorDesconto,
+                           _aliquotaIcms,
+                           _percentualReducao,
+                           _aliquotaIcmsST,
+                           _mva,
+                           _percentualReducaoST,
+                           _valorIpi: currency);
+begin
+ FBaseIcmsProprio := TBaseIcmsProprio.Create(_valorProduto,
+                           _valorFrete,
+                           _valorSeguro,
+                           _despesasAcessorias,
+                           _valorDesconto,
+                           _percentualReducao);
+
+ FIcmsProprio := TValorIcms.Create(FBaseIcmsProprio, _aliquotaIcms);
+
+ FBaseIcmsST := TBaseIcmsST.Create(FBaseIcmsProprio, _mva, _percentualReducaoST);
+
+ FIcmsST := TValorIcmsST.Create(FBaseIcmsST, _aliquotaIcmsST, FIcmsProprio);
+
+ FBaseIcmsProprioNormal := TBaseIcmsProprio.Create(_valorProduto,
+                           _valorFrete,
+                           _valorSeguro,
+                           _despesasAcessorias,
+                           _valorDesconto);
+
+ FIcmsProprioNormal := TValorIcms.Create(FBaseIcmsProprioNormal, _aliquotaIcms);
+
+ FBaseIcmsSTNormal := TBaseIcmsST.Create(FBaseIcmsProprioNormal, _mva);
+
+ FIcmsSTNormal := TValorIcmsST.Create(FBaseIcmsST, _aliquotaIcmsST, FIcmsProprio);
+
+
+ FValorProduto        := _valorProduto;
+ FValorFrete          := _valorFrete;
+ FValorSeguro         := _valorSeguro;
+ FDespesasAcessorias  := _despesasAcessorias;
+ FValorIpi            := _valorIpi;
+ FValorDesconto       := _valorDesconto;
+ FAliquotaIcmsProprio := _aliquotaIcms;
+ FAliquotaIcmsST      := _aliquotaIcmsST;
+ FMva                 := _mva;
+
+end;
+
+destructor TIcms70.Destroy;
+begin
+  FIcmsST.Free;
+  FBaseIcmsST.Free;
+  FIcmsProprio.Free;
+  FBaseIcmsProprio.Free;
+  inherited;
+end;
+
+function TIcms70.ValorBaseIcmsST: currency;
+begin
+   result := FBaseIcmsST.CalcularBaseIcmsST;
+end;
+
+function TIcms70.ValorBaseReduzidaIcmsProprio: currency;
+begin
+  result := FBaseIcmsProprio.CalcularBaseReduzida;
+end;
+
+function TIcms70.ValorIcmsDesonerado: currency;
+var
+ valorICMSNormal: currency;
+begin
+  valorICMSNormal :=  FIcmsProprio.CalcularValorNormalIcms;
+
+  result := RoundABNT(valorICMSNormal - FIcmsProprio.CalcularValorReduzidoIcms,2);
+
+end;
+
+function TIcms70.ValorIcmsProprio: currency;
+begin
+  result := RoundABNT(FIcmsProprio.GetValorIcms, 2);
+end;
+
+function TIcms70.ValorIcmsST: currency;
+begin
+   result := RoundABNT(FIcmsST.CalcularValorIcmsST,2);
+end;
+
+function TIcms70.ValorIcmsSTDesonerado: currency;
+var
+ //OIcms10 : IIcms10;
+ valorICMSSTNormal: currency;
+begin
+  {OIcms10 := TIcms10.Create(FValorProduto,
+                            FValorFrete,
+                            FValorSeguro,
+                            FDespesasAcessorias,
+                            FValorDesconto,
+                            FAliquotaIcmsProprio,
+                            FAliquotaIcmsST,
+                            FMva,0,
+                            FValorIpi);}
+
+  //valorICMSSTNormal :=  OIcms10.ValorIcmsST;
+
+  valorICMSSTNormal := FIcmsSTNormal.CalcularValorNormalIcmsST;
+
+  result := RoundABNT(valorICMSSTNormal - FIcmsST.CalcularValorIcmsST,2);
+
+end;
+
+end.

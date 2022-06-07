@@ -1,0 +1,14 @@
+unit uIIcms00;
+
+interface
+
+type
+  IIcms00 = interface
+  ['{6469517A-F9B6-4C5E-905A-9EA406C888A5}']
+    function BaseIcmsProprio: currency;
+    function ValorIcmsProprio: currency;
+  end;
+
+implementation
+
+end.

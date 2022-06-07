@@ -1,0 +1,58 @@
+unit uIcms20;
+
+interface
+
+uses uBaseIcmsProprio, uValorIcms, uIIcms20;
+
+type
+  TIcms20 = class(TInterfacedObject, IIcms20)
+  private
+    FBaseReduzidaIcmsProprio: TBaseIcmsProprio;
+    FValorIcms: TValorIcms;
+    function BaseReduzidaIcmsProprio: currency;
+    function ValorIcmsProprio: currency;
+    function ValorIcmsDesonerado(_valorIcmsNormal: currency): currency;
+  public
+    constructor Create(_valorProduto, _valorFrete, _valorSeguro,
+      _despesasAcessorias, _valorDesconto: currency; _ALiquotaICMS, _PercentualReducao: currency; _valorIpi: currency = 0);
+    destructor Destroy; override;
+
+  end;
+
+implementation
+
+{ TIcms20 }
+
+
+function TIcms20.BaseReduzidaIcmsProprio: currency;
+begin
+  Result := FBaseReduzidaIcmsProprio.CalcularBaseIcmsProprio;
+end;
+
+constructor TIcms20.Create(_valorProduto, _valorFrete, _valorSeguro,
+  _despesasAcessorias, _valorDesconto, _ALiquotaICMS, _PercentualReducao,
+  _valorIpi: currency);
+begin
+  FBaseReduzidaIcmsProprio := TBaseIcmsProprio.Create(_valorProduto, _valorFrete, _valorSeguro,
+    _despesasAcessorias, _valorDesconto, _percentualReducao, _valorIpi);
+  FValorIcms := TValorIcms.Create(FBaseReduzidaIcmsProprio, _ALiquotaICMS);
+end;
+
+destructor TIcms20.Destroy;
+begin
+  FValorIcms.Free;
+  FBaseReduzidaIcmsProprio.Free;
+  inherited;
+end;
+
+function TIcms20.ValorIcmsDesonerado(_valorIcmsNormal: currency): currency;
+begin
+   result := _valorIcmsNormal - FValorIcms.ValorIcmsProprio;
+end;
+
+function TIcms20.ValorIcmsProprio: currency;
+begin
+  result := FValorIcms.ValorIcmsProprio;
+end;
+
+end.

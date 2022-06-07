@@ -1,0 +1,51 @@
+unit uIcms10;
+
+interface
+
+uses uBaseIcmsST, uValorIcmsST, uIIcms10;
+
+type
+  TIcms10 = class(TInterfacedObject, IIcms10)
+  private
+    FBaseIcmsST: TBaseIcmsST;
+    FValorIcmsST: TValorIcmsST;
+    function BaseIcmsProprio: currency;
+    function ValorIcmsProprio: currency;
+    function BaseIcmsST: currency;
+    function ValorIcmsST: currency;
+    function ValorIcmsSTDesonerado: currency;
+
+  public
+
+    end;
+
+implementation
+
+{ TIcms10 }
+
+function TIcms10.BaseIcmsProprio: currency;
+begin
+
+end;
+
+function TIcms10.BaseIcmsST: currency;
+begin
+
+end;
+
+function TIcms10.ValorIcmsProprio: currency;
+begin
+
+end;
+
+function TIcms10.ValorIcmsST: currency;
+begin
+
+end;
+
+function TIcms10.ValorIcmsSTDesonerado: currency;
+begin
+
+end;
+
+end.

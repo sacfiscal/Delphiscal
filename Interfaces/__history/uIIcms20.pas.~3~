@@ -1,0 +1,14 @@
+unit uIIcms20;
+
+interface
+
+type
+  IIcms20 = interface
+    function BaseIcmsProprio: currency;
+    function BaseReduzidaIcmsProprio: currency;
+    function ValorIcmsProprio: currency;
+  end;
+
+implementation
+
+end.

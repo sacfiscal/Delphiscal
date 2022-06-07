@@ -1,0 +1,13 @@
+unit uIIcms51;
+
+interface
+type
+  IIcms51 = interface
+    function BaseIcmsProprio: currency;
+    function ValorIcmsOperacao: currency;
+    function ValorIcmsProprio: currency;
+    function ValorIcmsDiferido: currency;
+  end;
+implementation
+
+end.

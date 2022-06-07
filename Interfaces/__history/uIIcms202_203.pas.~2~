@@ -1,0 +1,15 @@
+unit uIIcms202_203;
+
+interface
+type
+  IIcms201 = interface
+    function ValorBaseIcmsProprio: currency;
+    function ValorIcmsProprio: currency;
+    function ValorBaseIcmsST: currency;
+    function ValorIcmsST: currency;
+
+  end;
+
+implementation
+
+end.

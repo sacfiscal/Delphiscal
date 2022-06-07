@@ -1,0 +1,64 @@
+unit uIpi50AdValorem;
+
+interface
+
+uses uBaseIpi, uIIpi50AdValorem;
+
+type
+  TIpi50AdValorem = class(TInterfacedObject, IIpi50AdValorem)
+  private
+    FBaseIpi: TBaseIpi;
+    FValorIpi: currency;
+  public
+
+    constructor Create(_valorProduto,
+                       _valorFrete,
+                       _valorSeguro,
+                       _despesasAcessorias,
+                       _aliquotaIpi: currency);
+    destructor Destroy; override;
+    function BaseIpi: currency;
+    function ValorIpi: currency;
+
+
+  end;
+
+implementation
+
+{ TIpi50AdValorem }
+
+constructor TIpi50AdValorem.Create(_valorProduto,
+                                   _valorFrete,
+                                   _valorSeguro,
+                                   _despesasAcessorias,
+                                   _aliquotaIpi: currency);
+begin
+
+ FBaseIpi := TBaseIpi.Create(_valorProduto,
+                             _valorFrete,
+                             _valorSeguro,
+                             _despesasAcessorias);
+
+
+
+end;
+
+
+function TIpi50AdValorem.BaseIpi: currency;
+begin
+
+end;
+
+
+destructor TIpi50AdValorem.Destroy;
+begin
+  FBaseIpi.Free;
+  inherited;
+end;
+
+function TIpi50AdValorem.ValorIpi: currency;
+begin
+
+end;
+
+end.

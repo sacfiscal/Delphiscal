@@ -24,7 +24,7 @@ uses acbrutil.math;
 constructor TIcms20.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao: Currency; const AValorIpi: Currency = 0);
 begin
   FBaseReduzidaIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, APercentualReducao, AValorIpi);
-  FValorIcms := TValorIcms.Create(FBaseReduzidaIcmsProprio, _aliquotaIcms);
+  FValorIcms := TValorIcms.Create(FBaseReduzidaIcmsProprio, AAliquotaIcms);
 end;
 
 function TIcms20.BaseReduzidaIcmsProprio: Currency;

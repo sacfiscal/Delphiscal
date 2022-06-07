@@ -27,7 +27,7 @@ end;
 
 constructor TIcms00.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS: Currency; const AValorIpi: Currency = 0);
 begin
-  FBaseIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AValorIpi);
+  FBaseIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, 0, AValorIpi);
   FValorIcms := TValorIcms.Create(FBaseIcmsProprio, AALiquotaICMS);
 end;
 

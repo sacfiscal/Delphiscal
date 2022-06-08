@@ -61,3 +61,6 @@ ARQUITETURA FISCAL EM SOFTWARE <https://arquiteturafiscal.online>
 ## Licença
 
 GPL
+
+## Revisão Técnica
+Juliomar Marchetti e Vinícius Sanchez

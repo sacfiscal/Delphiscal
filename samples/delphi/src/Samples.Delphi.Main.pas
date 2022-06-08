@@ -257,14 +257,11 @@ begin
 end;
 
 procedure TFrmMain.btCofins03Click(Sender: TObject);
-var
-  LCofins03: ICofins03;
 begin
-  LCofins03 := TCofins03.Create({}
-    StrToFloatDef(edQtdeCofinsUn.Text, 0), {}
-    StrToFloatDef(edValorCofinsUn.Text, 0));
-
-  lbVCOFINS03.Caption := LCofins03.ValorCofins.ToString;
+  lbVCOFINS03.Caption := TCofins03.New
+    .QuantidadeTributada(StrToFloatDef(edQtdeCofinsUn.Text, 0))
+    .ValorPorUnidadeTributada(StrToFloatDef(edValorCofinsUn.Text, 0))
+    .ValorCofins.ToString;
 end;
 
 procedure TFrmMain.btIcms00Click(Sender: TObject);
@@ -401,14 +398,11 @@ begin
 end;
 
 procedure TFrmMain.btIpi50AliqEspecificaClick(Sender: TObject);
-var
-  LIpi50Especifico: IIpi50Especifico;
 begin
-  LIpi50Especifico := TIpi50Especifico.Create({}
-    StrToFloatDef(edQtdeIpiTributada.Text, 0), {}
-    StrToFloatDef(edValorIpiUn.Text, 0));
-
-  lbVipi50Especifico.Caption := LIpi50Especifico.ValorIpi.ToString;
+  lbVipi50Especifico.Caption := TIpi50Especifico.New
+    .QuantidadeTributada(StrToFloatDef(edQtdeIpiTributada.Text, 0))
+    .ValorPorUnidadeTributada(StrToFloatDef(edValorIpiUn.Text, 0))
+    .ValorIpi.ToString;
 end;
 
 procedure TFrmMain.btPis0102Click(Sender: TObject);

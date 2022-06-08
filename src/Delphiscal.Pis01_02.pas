@@ -2,32 +2,40 @@ unit Delphiscal.Pis01_02;
 
 interface
 
-uses Delphiscal.Pis.Base, Delphiscal.Pis01_02.Intf;
+uses
+  Delphiscal.Pis.Base,
+  Delphiscal.Pis01_02.Intf;
 
 type
-  TPis01_02 = class(TInterfacedObject, IPis01_02)
+  TPis01_02 = class(TInterfacedObject,
+                    IPis01_02)
   private
-    FBasePis: TBasePis;
+    FBasePis    : TBasePis;
     FAliquotaPis: Currency;
+    function GetBasePis: Currency;
+    function GetValorPis: Currency;
+
   public
     constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis: Currency);
-    function BasePis: Currency;
-    function ValorPis: Currency;
+    property BasePis: Currency read GetBasePis;
+    property ValorPis: Currency read GetValorPis;
+
     destructor Destroy; override;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses
+  ACBrUtil.Math;
 
-function TPis01_02.BasePis: Currency;
+function TPis01_02.GetBasePis: Currency;
 begin
   Result := FBasePis.CalcularBasePis;
 end;
 
 constructor TPis01_02.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis: Currency);
 begin
-  FBasePis := TBasePis.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto);
+  FBasePis     := TBasePis.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto);
   FAliquotaPis := AAliquotaPis;
 end;
 
@@ -37,7 +45,7 @@ begin
   inherited;
 end;
 
-function TPis01_02.ValorPis: Currency;
+function TPis01_02.GetValorPis: Currency;
 begin
   Result := RoundABNT(BasePis * (FAliquotaPis / 100), 2);
 end;

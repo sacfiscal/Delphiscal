@@ -2,29 +2,34 @@ unit Delphiscal.Ipi50Especifico;
 
 interface
 
-uses Delphiscal.Ipi50Especifico.Intf;
+uses
+  Delphiscal.Ipi50Especifico.Intf;
 
 type
-  TIpi50Especifico = class(TInterfacedObject, IIpi50Especifico)
+  TIpi50Especifico = class(TInterfacedObject,
+                           IIpi50Especifico)
   private
-    FQuantidadeTributada: Currency;
+    FQuantidadeTributada  : Currency;
     FValorUnidadeTributada: Currency;
+    function GetValorIpi: Currency;
   public
     constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency);
-    function ValorIpi: Currency;
+
+    property ValorIpi: Currency read GetValorIpi;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses
+  ACBrUtil.Math;
 
 constructor TIpi50Especifico.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency);
 begin
-  FQuantidadeTributada := AQuantidadeTributada;
+  FQuantidadeTributada   := AQuantidadeTributada;
   FValorUnidadeTributada := AValorPorUnidadeTributada;
 end;
 
-function TIpi50Especifico.ValorIpi: Currency;
+function TIpi50Especifico.GetValorIpi: Currency;
 begin
   Result := RoundABNT((FQuantidadeTributada * FValorUnidadeTributada), 2);
 end;

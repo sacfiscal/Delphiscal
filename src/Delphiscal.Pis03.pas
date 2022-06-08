@@ -11,21 +11,21 @@ type
     FValorUnidadeTributada: Double;
     function ValorPis: Double;
   public
-    constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency);
-    class function New(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency): IPis03;
+    constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double);
+    class function New(const AQuantidadeTributada, AValorPorUnidadeTributada: Double): IPis03;
   end;
 
 implementation
 
 uses Delphiscal.Utils;
 
-constructor TPis03.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency);
+constructor TPis03.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double);
 begin
   FQuantidadeTributada := AQuantidadeTributada;
   FValorUnidadeTributada := AValorPorUnidadeTributada;
 end;
 
-class function TPis03.New(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency): IPis03;
+class function TPis03.New(const AQuantidadeTributada, AValorPorUnidadeTributada: Double): IPis03;
 begin
   Result := TPis03.Create(AQuantidadeTributada, AValorPorUnidadeTributada);
 end;

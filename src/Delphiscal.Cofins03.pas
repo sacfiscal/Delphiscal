@@ -2,29 +2,33 @@ unit Delphiscal.Cofins03;
 
 interface
 
-uses Delphiscal.Cofins03.Intf;
+uses
+  Delphiscal.Cofins03.Intf;
 
 type
-  TCofins03 = class(TInterfacedObject, ICofins03)
+  TCofins03 = class(TInterfacedObject,
+                    ICofins03)
   private
-    FQuantidadeTributada: Currency;
+    FQuantidadeTributada  : Currency;
     FValorUnidadeTributada: Currency;
+    function GetValorCofins: Currency;
   public
     constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency);
-    function ValorCofins: Currency;
+    property ValorCofins: Currency read GetValorCofins;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses
+  ACBrUtil.Math;
 
 constructor TCofins03.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency);
 begin
-  FQuantidadeTributada := AQuantidadeTributada;
+  FQuantidadeTributada   := AQuantidadeTributada;
   FValorUnidadeTributada := AValorPorUnidadeTributada;
 end;
 
-function TCofins03.ValorCofins: Currency;
+function TCofins03.GetValorCofins: Currency;
 begin
   Result := RoundABNT((FQuantidadeTributada * FValorUnidadeTributada), 2);
 end;

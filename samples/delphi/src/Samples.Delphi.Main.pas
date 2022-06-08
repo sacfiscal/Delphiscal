@@ -236,7 +236,7 @@ uses
   Delphiscal.Cofins01_02,
   Delphiscal.Cofins03.Intf,
   Delphiscal.Cofins03,
-  ACBrUtil.Base;
+  System.Math;
 
 {$R *.dfm}
 
@@ -246,12 +246,12 @@ var
 begin
   LCofins01_02 := {}
     TCofins01_02.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqCofins.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqCofins.Text, 0));
 
   lbVBCCOFINS01_02.Caption := LCofins01_02.BaseCofins.ToString;
   lbVCOFINS01_02.Caption   := LCofins01_02.ValorCofins.ToString;
@@ -262,8 +262,9 @@ var
   LCofins03: ICofins03;
 begin
   LCofins03 := TCofins03.Create({}
-    StringToFloatDef(edQtdeCofinsUn.Text, 0), {}
-    StringToFloatDef(edValorCofinsUn.Text, 0));
+    StrToFloatDef(edQtdeCofinsUn.Text, 0), {}
+    StrToFloatDef(edValorCofinsUn.Text, 0));
+
   lbVCOFINS03.Caption := LCofins03.ValorCofins.ToString;
 end;
 
@@ -272,13 +273,13 @@ var
   LIcms00: IIcms00;
 begin
   LIcms00 := TIcms00.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqIcms.Text, 0), {}
-    StringToFloatDef(edValorIpi.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqIcms.Text, 0), {}
+    StrToFloatDef(edValorIpi.Text, 0));
 
   lbVBC00.Caption   := LIcms00.BaseIcmsProprio.ToString;
   lbVICMS00.Caption := LIcms00.ValorIcmsProprio.ToString;
@@ -289,16 +290,16 @@ var
   LIcms10: IIcms10;
 begin
   LIcms10 := TIcms10.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqIcms.Text, 0), {}
-    StringToFloatDef(edAliqST.Text, 0), {}
-    StringToFloatDef(edMVA.Text, 0), {}
-    StringToFloatDef(edPercRedST.Text, 0), {}
-    StringToFloatDef(edValorIpi.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqIcms.Text, 0), {}
+    StrToFloatDef(edAliqST.Text, 0), {}
+    StrToFloatDef(edMVA.Text, 0), {}
+    StrToFloatDef(edPercRedST.Text, 0), {}
+    StrToFloatDef(edValorIpi.Text, 0));
 
   lbVBC10.Caption          := LIcms10.ValorBaseIcmsProprio.ToString;
   lbVICMS10.Caption        := LIcms10.ValorIcmsProprio.ToString;
@@ -312,14 +313,14 @@ var
   LIcms20: IIcms20;
 begin
   LIcms20 := TIcms20.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqIcms.Text, 0), {}
-    StringToFloatDef(edReducao.Text, 0), {}
-    StringToFloatDef(edValorIpi.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqIcms.Text, 0), {}
+    StrToFloatDef(edReducao.Text, 0), {}
+    StrToFloatDef(edValorIpi.Text, 0));
 
   lbVBC20.Caption        := LIcms20.BaseReduzidaIcmsProprio.ToString;
   lbVICMS20.Caption      := LIcms20.ValorIcmsProprio.ToString;
@@ -331,16 +332,16 @@ var
   LIcms30: IIcms30;
 begin
   LIcms30 := TIcms30.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqIcms.Text, 0), {}
-    StringToFloatDef(edAliqST.Text, 0), {}
-    StringToFloatDef(edMVA.Text, 0), {}
-    StringToFloatDef(edPercRedST.Text, 0), {}
-    StringToFloatDef(edValorIpi.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqIcms.Text, 0), {}
+    StrToFloatDef(edAliqST.Text, 0), {}
+    StrToFloatDef(edMVA.Text, 0), {}
+    StrToFloatDef(edPercRedST.Text, 0), {}
+    StrToFloatDef(edValorIpi.Text, 0));
 
   lbVBCST30.Caption        := LIcms30.ValorBaseIcmsST.ToString;
   lbVICMSST30.Caption      := LIcms30.ValorIcmsST.ToString;
@@ -353,17 +354,17 @@ var
   LIcms70: IIcms70;
 begin
   LIcms70 := TIcms70.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqIcms.Text, 0), {}
-    StringToFloatDef(edReducao.Text, 0), {}
-    StringToFloatDef(edAliqST.Text, 0), {}
-    StringToFloatDef(edMVA.Text, 0), {}
-    StringToFloatDef(edPercRedST.Text, 0), {}
-    StringToFloatDef(edValorIpi.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqIcms.Text, 0), {}
+    StrToFloatDef(edReducao.Text, 0), {}
+    StrToFloatDef(edAliqST.Text, 0), {}
+    StrToFloatDef(edMVA.Text, 0), {}
+    StrToFloatDef(edPercRedST.Text, 0), {}
+    StrToFloatDef(edValorIpi.Text, 0));
 
   lbVBC70.Caption        := LIcms70.ValorBaseReduzidaIcmsProprio.ToString;
   lbVICMS70.Caption      := LIcms70.ValorIcmsProprio.ToString;
@@ -372,15 +373,15 @@ begin
   lbVICMSST70.Caption    := LIcms70.ValorIcmsST.ToString;
 
   LIcms10 := TIcms10.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqIcms.Text, 0), {}
-    StringToFloatDef(edAliqST.Text, 0), {}
-    StringToFloatDef(edMVA.Text, 0), {}
-    StringToFloatDef(edValorIpi.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqIcms.Text, 0), {}
+    StrToFloatDef(edAliqST.Text, 0), {}
+    StrToFloatDef(edMVA.Text, 0), {}
+    StrToFloatDef(edValorIpi.Text, 0));
 
   lbVICMSSTDeson70.Caption := LIcms70.ValorIcmsSTDesonerado(LIcms10.ValorIcmsST).ToString;
 end;
@@ -390,11 +391,11 @@ var
   LIpi50Av: IIpi50AdValorem;
 begin
   LIpi50Av := TIpi50AdValorem.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edAliqIpi.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edAliqIpi.Text, 0));
 
   lbvBCIpi50av.Caption := LIpi50Av.BaseIpi.ToString;
   lbVIPI50av.Caption   := LIpi50Av.ValorIpi.ToString;
@@ -405,8 +406,8 @@ var
   LIpi50Especifico: IIpi50Especifico;
 begin
   LIpi50Especifico := TIpi50Especifico.Create({}
-    StringToFloatDef(edQtdeIpiTributada.Text, 0), {}
-    StringToFloatDef(edValorIpiUn.Text, 0));
+    StrToFloatDef(edQtdeIpiTributada.Text, 0), {}
+    StrToFloatDef(edValorIpiUn.Text, 0));
 
   lbVipi50Especifico.Caption := LIpi50Especifico.ValorIpi.ToString;
 end;
@@ -416,12 +417,12 @@ var
   LPis01_02: IPIs01_02;
 begin
   LPis01_02 := TPis01_02.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqPis.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqPis.Text, 0));
 
   lbVBCPIS01_02.Caption := LPis01_02.BasePis.ToString;
   lbVPIS01_02.Caption   := LPis01_02.ValorPis.ToString;
@@ -432,8 +433,8 @@ var
   LPis03: IPis03;
 begin
   LPis03 := TPis03.Create({}
-    StringToFloatDef(edQtdePisUn.Text, 0), {}
-    StringToFloatDef(edValorPisUn.Text, 0));
+    StrToFloatDef(edQtdePisUn.Text, 0), {}
+    StrToFloatDef(edValorPisUn.Text, 0));
   lbVPIS03.Caption := LPis03.ValorPis.ToString;
 end;
 
@@ -442,13 +443,13 @@ var
   LIcms101: IIcms101;
 begin
   LIcms101 := TIcms101.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edPercentualCreditoSN.Text, 0), {}
-    StringToFloatDef(edReducao.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edPercentualCreditoSN.Text, 0), {}
+    StrToFloatDef(edReducao.Text, 0));
 
   lbPCredSN101.Caption := edPercentualCreditoSN.Text;
   lbVcredSN101.Caption := LIcms101.ValorCreditoSN.ToString;
@@ -459,17 +460,17 @@ var
   LIcms201: IIcms201;
 begin
   LIcms201 := TIcms201.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqIcms.Text, 0), {}
-    StringToFloatDef(edReducao.Text, 0), {}
-    StringToFloatDef(edPercentualCreditoSN.Text, 0), {}
-    StringToFloatDef(edAliqST.Text, 0), {}
-    StringToFloatDef(edMVA.Text, 0), {}
-    StringToFloatDef(edPercRedST.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqIcms.Text, 0), {}
+    StrToFloatDef(edReducao.Text, 0), {}
+    StrToFloatDef(edPercentualCreditoSN.Text, 0), {}
+    StrToFloatDef(edAliqST.Text, 0), {}
+    StrToFloatDef(edMVA.Text, 0), {}
+    StrToFloatDef(edPercRedST.Text, 0));
 
   lbPCredSN201.Caption := edPercentualCreditoSN.Text;
   lbVCredSN201.Caption := LIcms201.ValorCreditoSN.ToString;
@@ -482,15 +483,15 @@ var
   LIcms51: IIcms51;
 begin
   LIcms51 := TIcms51.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqIcms.Text, 0), {}
-    StringToFloatDef(edDiferimento.Text, 0), {}
-    StringToFloatDef(edReducao.Text, 0), {}
-    StringToFloatDef(edValorIpi.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqIcms.Text, 0), {}
+    StrToFloatDef(edDiferimento.Text, 0), {}
+    StrToFloatDef(edReducao.Text, 0), {}
+    StrToFloatDef(edValorIpi.Text, 0));
 
   lbVBC51.Caption    := LIcms51.BaseIcmsProprio.ToString;
   lbVICMSOP.Caption  := LIcms51.ValorIcmsOperacao.ToString;
@@ -503,16 +504,16 @@ var
   LIcms202_203: IIcms202_203;
 begin
   LIcms202_203 := TIcms202_203.Create({}
-    StringToFloatDef(edValorProduto.Text, 0), {}
-    StringToFloatDef(edValorFrete.Text, 0), {}
-    StringToFloatDef(edValorSeguro.Text, 0), {}
-    StringToFloatDef(edValorDespesas.Text, 0), {}
-    StringToFloatDef(edValorDesconto.Text, 0), {}
-    StringToFloatDef(edAliqIcms.Text, 0), {}
-    StringToFloatDef(edReducao.Text, 0), {}
-    StringToFloatDef(edAliqST.Text, 0), {}
-    StringToFloatDef(edMVA.Text, 0), {}
-    StringToFloatDef(edPercRedST.Text, 0));
+    StrToFloatDef(edValorProduto.Text, 0), {}
+    StrToFloatDef(edValorFrete.Text, 0), {}
+    StrToFloatDef(edValorSeguro.Text, 0), {}
+    StrToFloatDef(edValorDespesas.Text, 0), {}
+    StrToFloatDef(edValorDesconto.Text, 0), {}
+    StrToFloatDef(edAliqIcms.Text, 0), {}
+    StrToFloatDef(edReducao.Text, 0), {}
+    StrToFloatDef(edAliqST.Text, 0), {}
+    StrToFloatDef(edMVA.Text, 0), {}
+    StrToFloatDef(edPercRedST.Text, 0));
 
   lbVBCST202.Caption   := LIcms202_203.ValorBaseIcmsST.ToString;
   lbVICMSST202.Caption := LIcms202_203.ValorIcmsST.ToString;

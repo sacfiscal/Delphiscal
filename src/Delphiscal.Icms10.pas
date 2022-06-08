@@ -33,7 +33,7 @@ constructor TIcms10.Create(const AValorProduto, AValorFrete, AValorSeguro, ADesp
 begin
   FBaseIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto);
   FIcmsProprio := TValorIcms.Create(FBaseIcmsProprio, AAliquotaIcms);
-  FBaseIcmsST := TBaseIcmsST.Create(FBaseIcmsProprio, AMva, APercentualReducaoST);
+  FBaseIcmsST := TBaseIcmsST.Create(FBaseIcmsProprio, AMva, APercentualReducaoST, AValorIpi);
   FIcmsST := TValorIcmsST.Create(FBaseIcmsST, AAliquotaIcmsST, FIcmsProprio);
 end;
 

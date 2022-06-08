@@ -55,7 +55,7 @@ var
   LBaseIcms: Double;
 begin
   LBaseIcms := CalcularBaseNormal;
-  Result := RoundABNT((LBaseIcms - (LBaseIcms * (FpercentualReducao / 100)) + FvalorIpi), 2);
+  Result := RoundABNT((LBaseIcms - (LBaseIcms * (FpercentualReducao / 100))), 2);
 end;
 
 function TBaseIcmsProprio.ContemReducao: Boolean;

@@ -428,13 +428,11 @@ begin
 end;
 
 procedure TFrmMain.btPis03Click(Sender: TObject);
-var
-  LPis03: IPis03;
 begin
-  LPis03 := TPis03.Create({}
-    StrToFloatDef(edQtdePisUn.Text, 0), {}
-    StrToFloatDef(edValorPisUn.Text, 0));
-  lbVPIS03.Caption := LPis03.ValorPis.ToString;
+  lbVPIS03.Caption := TPis03.New
+    .QuantidadeTributada(StrToFloatDef(edQtdePisUn.Text, 0))
+    .ValorPorUnidadeTributada(StrToFloatDef(edValorPisUn.Text, 0))
+    .ValorPis.ToString;
 end;
 
 procedure TFrmMain.btIcms101Click(Sender: TObject);

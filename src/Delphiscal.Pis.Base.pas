@@ -5,26 +5,26 @@ interface
 type
   TBasePis = class
   private
-    FValorProduto: Currency;
-    FValorfrete: Currency;
-    FValorSeguro: Currency;
-    FDespesasAcessorias: Currency;
-    FValorDesconto: Currency;
+    FValorProduto: Double;
+    FValorfrete: Double;
+    FValorSeguro: Double;
+    FDespesasAcessorias: Double;
+    FValorDesconto: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Currency);
-    function CalcularBasePis: Currency;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Double);
+    function CalcularBasePis: Double;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses Delphiscal.Utils;
 
-function TBasePis.CalcularBasePis: Currency;
+function TBasePis.CalcularBasePis: Double;
 begin
   Result := RoundABNT(FValorProduto + FValorfrete + FValorSeguro + FDespesasAcessorias - FValorDesconto, 2);
 end;
 
-constructor TBasePis.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Currency);
+constructor TBasePis.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Double);
 begin
   FValorProduto := AValorProduto;
   FValorfrete := AValorFrete;

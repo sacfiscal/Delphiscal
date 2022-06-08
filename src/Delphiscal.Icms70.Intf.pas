@@ -5,12 +5,12 @@ interface
 type
   IIcms70 = interface
     ['{D06DEF24-9FAD-4962-A059-60E0598E7804}']
-    function ValorBaseReduzidaIcmsProprio: Currency;
-    function ValorIcmsProprio: Currency;
-    function ValorBaseIcmsST: Currency;
-    function ValorIcmsST: Currency;
-    function ValorIcmsDesonerado: Currency;
-    function ValorIcmsSTDesonerado(const AValorIcmsStNormal: Currency): Currency;
+    function ValorBaseReduzidaIcmsProprio: Double;
+    function ValorIcmsProprio: Double;
+    function ValorBaseIcmsST: Double;
+    function ValorIcmsST: Double;
+    function ValorIcmsDesonerado: Double;
+    function ValorIcmsSTDesonerado(const AValorIcmsStNormal: Double): Double;
   end;
 
 implementation

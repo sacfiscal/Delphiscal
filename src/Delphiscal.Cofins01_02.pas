@@ -2,39 +2,36 @@ unit Delphiscal.Cofins01_02;
 
 interface
 
-uses
-  Delphiscal.Cofins.Base,
-  Delphiscal.Cofins01_02.Intf;
+uses Delphiscal.Cofins.Base, Delphiscal.Cofins01_02.Intf;
 
 type
-  TCofins01_02 = class(TInterfacedObject,
-                       ICofins01_02)
+  TCofins01_02 = class(TInterfacedObject, ICofins01_02)
   private
-    FBaseCofins    : TBaseCofins;
-    FAliquotaCofins: Currency;
-    function GetBaseCofins: Currency;
-    function GetValorCofins: Currency;
+    FBaseCofins: TBaseCofins;
+    FAliquotaCofins: Double;
+    function BaseCofins: Double;
+    function ValorCofins: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaCofins: Currency);
-
-    property BaseCofins: Currency read GetBaseCofins;
-    property ValorCofins: Currency read GetValorCofins;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+      AAliquotaCofins: Double);
+    class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+      AAliquotaCofins: Double): ICofins01_02;
     destructor Destroy; override;
   end;
 
 implementation
 
-uses
-  acbrutil.math;
+uses Delphiscal.Utils;
 
-function TCofins01_02.GetBaseCofins: Currency;
+function TCofins01_02.BaseCofins: Double;
 begin
   Result := FBaseCofins.CalcularBaseCofins;
 end;
 
-constructor TCofins01_02.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaCofins: Currency);
+constructor TCofins01_02.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+  AAliquotaCofins: Double);
 begin
-  FBaseCofins     := TBaseCofins.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto);
+  FBaseCofins := TBaseCofins.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto);
   FAliquotaCofins := AAliquotaCofins;
 end;
 
@@ -44,7 +41,13 @@ begin
   inherited;
 end;
 
-function TCofins01_02.GetValorCofins: Currency;
+class function TCofins01_02.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+  AAliquotaCofins: Double): ICofins01_02;
+begin
+  Result := TCofins01_02.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaCofins);
+end;
+
+function TCofins01_02.ValorCofins: Double;
 begin
   Result := RoundABNT(BaseCofins * (FAliquotaCofins / 100), 2);
 end;

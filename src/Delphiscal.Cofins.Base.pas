@@ -5,21 +5,21 @@ interface
 type
   TBaseCofins = class
   private
-    FValorProduto: Currency;
-    FValorfrete: Currency;
-    FValorSeguro: Currency;
-    FDespesasAcessorias: Currency;
-    FValorDesconto: Currency;
+    FValorProduto: Double;
+    FValorfrete: Double;
+    FValorSeguro: Double;
+    FDespesasAcessorias: Double;
+    FValorDesconto: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Currency);
-    function CalcularBaseCofins: Currency;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Double);
+    function CalcularBaseCofins: Double;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses Delphiscal.Utils;
 
-constructor TBaseCofins.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Currency);
+constructor TBaseCofins.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Double);
 begin
   FValorProduto := AValorProduto;
   FValorfrete := AValorFrete;
@@ -28,7 +28,7 @@ begin
   FValorDesconto := AValorDesconto;
 end;
 
-function TBaseCofins.CalcularBaseCofins: Currency;
+function TBaseCofins.CalcularBaseCofins: Double;
 begin
   Result := RoundABNT(FValorProduto + FValorfrete + FValorSeguro + FDespesasAcessorias - FValorDesconto, 2);
 end;

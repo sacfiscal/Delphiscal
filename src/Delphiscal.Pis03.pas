@@ -2,34 +2,35 @@ unit Delphiscal.Pis03;
 
 interface
 
-uses
-  Delphiscal.Pis03.Intf;
+uses Delphiscal.Pis03.Intf;
 
 type
-  TPis03 = class(TInterfacedObject,
-                 IPis03)
+  TPis03 = class(TInterfacedObject, IPis03)
   private
-    FQuantidadeTributada  : Currency;
-    FValorUnidadeTributada: Currency;
-    function GetValorPis: Currency;
+    FQuantidadeTributada: Double;
+    FValorUnidadeTributada: Double;
+    function ValorPis: Double;
   public
     constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency);
-
-    property ValorPis: Currency read GetValorPis;
+    class function New(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency): IPis03;
   end;
 
 implementation
 
-uses
-  acbrutil.math;
+uses Delphiscal.Utils;
 
 constructor TPis03.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency);
 begin
-  FQuantidadeTributada   := AQuantidadeTributada;
+  FQuantidadeTributada := AQuantidadeTributada;
   FValorUnidadeTributada := AValorPorUnidadeTributada;
 end;
 
-function TPis03.GetValorPis: Currency;
+class function TPis03.New(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency): IPis03;
+begin
+  Result := TPis03.Create(AQuantidadeTributada, AValorPorUnidadeTributada);
+end;
+
+function TPis03.ValorPis: Double;
 begin
   Result := RoundABNT((FQuantidadeTributada * FValorUnidadeTributada), 2);
 end;

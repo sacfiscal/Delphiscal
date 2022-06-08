@@ -235,8 +235,7 @@ uses
   Delphiscal.Cofins01_02.Intf,
   Delphiscal.Cofins01_02,
   Delphiscal.Cofins03.Intf,
-  Delphiscal.Cofins03,
-  System.Math;
+  Delphiscal.Cofins03;
 
 {$R *.dfm}
 

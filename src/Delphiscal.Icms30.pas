@@ -11,21 +11,25 @@ type
     FIcmsProprio: TValorIcms;
     FBaseIcmsST: TBaseIcmsST;
     FIcmsST: TValorIcmsST;
-    function ValorBaseIcmsProprio: Currency;
-    function ValorIcmsProprio: Currency;
-    function ValorBaseIcmsST: Currency;
-    function ValorIcmsST: Currency;
-    function ValorIcmsDesonerado: Currency;
+    function ValorBaseIcmsProprio: Double;
+    function ValorIcmsProprio: Double;
+    function ValorBaseIcmsST: Double;
+    function ValorIcmsST: Double;
+    function ValorIcmsDesonerado: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, AAliquotaIcmsST, AMva: Currency; const APercentualReducaoST: Currency = 0; const AValorIpi: Currency = 0);
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
+      AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0);
+    class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
+      AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0): IIcms30;
     destructor Destroy; override;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses Delphiscal.Utils;
 
-constructor TIcms30.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, AAliquotaIcmsST, AMva: Currency; const APercentualReducaoST: Currency = 0; const AValorIpi: Currency = 0);
+constructor TIcms30.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
+  AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0);
 begin
   FBaseIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto);
   FIcmsProprio := TValorIcms.Create(FBaseIcmsProprio, AAliquotaIcms);
@@ -42,27 +46,34 @@ begin
   inherited;
 end;
 
-function TIcms30.ValorBaseIcmsProprio: Currency;
+class function TIcms30.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
+  AAliquotaIcmsST, AMva, APercentualReducaoST, AValorIpi: Double): IIcms30;
+begin
+  Result := TIcms30.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
+    AAliquotaIcmsST, AMva, APercentualReducaoST, AValorIpi);
+end;
+
+function TIcms30.ValorBaseIcmsProprio: Double;
 begin
   Result := FBaseIcmsProprio.CalcularBaseIcmsProprio;
 end;
 
-function TIcms30.ValorIcmsProprio: Currency;
+function TIcms30.ValorIcmsProprio: Double;
 begin
   Result := RoundABNT(FIcmsProprio.GetValorIcms, 2);
 end;
 
-function TIcms30.ValorBaseIcmsST: Currency;
+function TIcms30.ValorBaseIcmsST: Double;
 begin
   Result := FBaseIcmsST.CalcularBaseIcmsST;
 end;
 
-function TIcms30.ValorIcmsST: Currency;
+function TIcms30.ValorIcmsST: Double;
 begin
   Result := RoundABNT(FIcmsST.CalcularValorIcmsST, 2);
 end;
 
-function TIcms30.ValorIcmsDesonerado: Currency;
+function TIcms30.ValorIcmsDesonerado: Double;
 begin
   Result := RoundABNT(FIcmsProprio.CalcularValorNormalIcms, 2);
 end;

@@ -30,6 +30,9 @@ type
 
     [Test]
     procedure BaseIcmsProprio;
+
+    [Test]
+    procedure BaseReduzidaIcmsProprio;
   end;
 
 implementation
@@ -49,6 +52,25 @@ begin
   FValorBC := FIcmsBaseProprio.CalcularBaseIcmsProprio;
 
   Assert.AreEqual<Double>(148.5, FValorBC);
+end;
+
+procedure TDelphiscalIcmsBaseProprioTest.BaseReduzidaIcmsProprio;
+begin
+  FValorProduto := 135;
+  FValorFrete := 7.5;
+  FValorSeguro := 3;
+  FDespesasAcessorias := 1.5;
+  FValorDesconto := 13.5;
+  FPercentualReducao := 10.0;
+  FValorIpi := 0;
+
+  FIcmsBaseProprio := TBaseIcmsProprio.Create(FValorProduto, FValorFrete, FValorSeguro,
+                                              FDespesasAcessorias, FValorDesconto, FPercentualReducao,
+                                              FValorIpi);
+
+  FValorBC := FIcmsBaseProprio.CalcularBaseReduzida;
+
+  Assert.AreEqual<Double>(120.15, FValorBC);
 end;
 
 procedure TDelphiscalIcmsBaseProprioTest.Setup;

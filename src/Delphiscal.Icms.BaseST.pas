@@ -51,7 +51,7 @@ var
   LBaseIcmsST: Double;
 begin
   LBaseIcmsST := RoundABNT((FBaseIcmsProprio.CalcularBaseIcmsProprio) * (1 + (FMva / 100)), 2);
-  Result := RoundABNT((LBaseIcmsST - (LBaseIcmsST * (FPercentualReducaoST / 100)) + FValorIpi), 2);
+  Result := RoundABNT((LBaseIcmsST - RoundABNT((LBaseIcmsST * (FPercentualReducaoST / 100)), 2) + FValorIpi), 2);
 end;
 
 function TBaseIcmsST.ContemReducaoST: Boolean;

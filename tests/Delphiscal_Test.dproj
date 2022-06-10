@@ -102,6 +102,9 @@
         </DelphiCompile>
         <DCCReference Include="src\Delphiscal.Icms.BaseProprio.Test.pas"/>
         <DCCReference Include="src\Delphiscal.Icms.BaseST.Test.pas"/>
+        <DCCReference Include="src\Delphiscal.Icms00.Test.pas"/>
+        <DCCReference Include="src\Delphiscal.Icms101.Test.pas"/>
+        <DCCReference Include="src\Delphiscal.Icms10.Test.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

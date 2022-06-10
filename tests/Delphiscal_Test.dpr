@@ -14,7 +14,10 @@ uses
   {$ENDIF }
   DUnitX.TestFramework,
   Delphiscal.Icms.BaseProprio.Test in 'src\Delphiscal.Icms.BaseProprio.Test.pas',
-  Delphiscal.Icms.BaseST.Test in 'src\Delphiscal.Icms.BaseST.Test.pas';
+  Delphiscal.Icms.BaseST.Test in 'src\Delphiscal.Icms.BaseST.Test.pas',
+  Delphiscal.Icms00.Test in 'src\Delphiscal.Icms00.Test.pas',
+  Delphiscal.Icms101.Test in 'src\Delphiscal.Icms101.Test.pas',
+  Delphiscal.Icms10.Test in 'src\Delphiscal.Icms10.Test.pas';
 
 {$IFNDEF TESTINSIGHT}
 var

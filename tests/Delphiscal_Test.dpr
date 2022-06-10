@@ -17,7 +17,10 @@ uses
   Delphiscal.Icms.BaseST.Test in 'src\Delphiscal.Icms.BaseST.Test.pas',
   Delphiscal.Icms00.Test in 'src\Delphiscal.Icms00.Test.pas',
   Delphiscal.Icms101.Test in 'src\Delphiscal.Icms101.Test.pas',
-  Delphiscal.Icms10.Test in 'src\Delphiscal.Icms10.Test.pas';
+  Delphiscal.Icms10.Test in 'src\Delphiscal.Icms10.Test.pas',
+  Delphiscal.Icms20.Test in 'src\Delphiscal.Icms20.Test.pas',
+  Delphiscal.Icms201.Test in 'src\Delphiscal.Icms201.Test.pas',
+  Delphiscal.Icms202_203.Test in 'src\Delphiscal.Icms202_203.Test.pas';
 
 {$IFNDEF TESTINSIGHT}
 var

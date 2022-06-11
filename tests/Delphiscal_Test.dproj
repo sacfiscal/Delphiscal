@@ -105,6 +105,9 @@
         <DCCReference Include="src\Delphiscal.Icms00.Test.pas"/>
         <DCCReference Include="src\Delphiscal.Icms101.Test.pas"/>
         <DCCReference Include="src\Delphiscal.Icms10.Test.pas"/>
+        <DCCReference Include="src\Delphiscal.Icms20.Test.pas"/>
+        <DCCReference Include="src\Delphiscal.Icms201.Test.pas"/>
+        <DCCReference Include="src\Delphiscal.Icms202_203.Test.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

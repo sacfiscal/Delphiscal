@@ -20,7 +20,8 @@ uses
   Delphiscal.Icms10.Test in 'src\Delphiscal.Icms10.Test.pas',
   Delphiscal.Icms20.Test in 'src\Delphiscal.Icms20.Test.pas',
   Delphiscal.Icms201.Test in 'src\Delphiscal.Icms201.Test.pas',
-  Delphiscal.Icms202_203.Test in 'src\Delphiscal.Icms202_203.Test.pas';
+  Delphiscal.Icms202_203.Test in 'src\Delphiscal.Icms202_203.Test.pas',
+  Delphiscal.Pis01_02.Test in 'src\Delphiscal.Pis01_02.Test.pas';
 
 {$IFNDEF TESTINSIGHT}
 var

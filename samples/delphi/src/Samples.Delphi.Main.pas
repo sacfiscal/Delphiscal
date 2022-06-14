@@ -409,13 +409,22 @@ procedure TFrmMain.btPis0102Click(Sender: TObject);
 var
   LPis01_02: IPIs01_02;
 begin
-  LPis01_02 := TPis01_02.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqPis.Text, 0));
+//  LPis01_02 := TPis01_02.Create({}
+//    StrToFloatDef(edValorProduto.Text, 0), {}
+//    StrToFloatDef(edValorFrete.Text, 0), {}
+//    StrToFloatDef(edValorSeguro.Text, 0), {}
+//    StrToFloatDef(edValorDespesas.Text, 0), {}
+//    StrToFloatDef(edValorDesconto.Text, 0), {}
+//    StrToFloatDef(edAliqPis.Text, 0));
+  LPis01_02 := TPis01_02.New
+                 .Attributes
+                   .ValorProduto(StrToFloatDef(edValorProduto.Text, 0))
+                   .ValorFrete(StrToFloatDef(edValorFrete.Text, 0))
+                   .ValorSeguro(StrToFloatDef(edValorSeguro.Text, 0))
+                   .ValorDespesas(StrToFloatDef(edValorDespesas.Text, 0))
+                   .ValorDesconto(StrToFloatDef(edValorDesconto.Text, 0))
+                   .AliquotaPis(StrToFloatDef(edAliqPis.Text, 0))
+                 .&End;
 
   lbVBCPIS01_02.Caption := LPis01_02.BasePis.ToString;
   lbVPIS01_02.Caption   := LPis01_02.ValorPis.ToString;

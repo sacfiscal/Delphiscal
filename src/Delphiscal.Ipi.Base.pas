@@ -5,20 +5,20 @@ interface
 type
   TBaseIpi = class
   private
-    FValorProduto: Currency;
-    FValorfrete: Currency;
-    FValorSeguro: Currency;
-    FDespesasAcessorias: Currency;
+    FValorProduto: Double;
+    FValorfrete: Double;
+    FValorSeguro: Double;
+    FDespesasAcessorias: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias: currency);
-    function CalcularBaseIpi: Currency;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias: Double);
+    function CalcularBaseIpi: Double;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses Delphiscal.Utils;
 
-constructor TBaseIpi.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias: currency);
+constructor TBaseIpi.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias: Double);
 begin
   FValorProduto := AValorProduto;
   FValorfrete := AValorFrete;
@@ -26,7 +26,7 @@ begin
   FDespesasAcessorias := ADespesasAcessorias;
 end;
 
-function TBaseIpi.CalcularBaseIpi: Currency;
+function TBaseIpi.CalcularBaseIpi: Double;
 begin
   Result := RoundABNT((FValorProduto + FValorfrete + FValorSeguro + FDespesasAcessorias), 2);
 end;

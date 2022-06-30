@@ -5,28 +5,28 @@ interface
 type
   TBaseIcmsProprio = class
   private
-    FvalorProduto: Currency;
-    Fvalorfrete: Currency;
-    FvalorSeguro: Currency;
-    FdespesasAcessorias: Currency;
-    FvalorIpi: Currency;
-    FvalorDesconto: Currency;
-    FpercentualReducao: Currency;
+    FvalorProduto: Double;
+    Fvalorfrete: Double;
+    FvalorSeguro: Double;
+    FdespesasAcessorias: Double;
+    FvalorIpi: Double;
+    FvalorDesconto: Double;
+    FpercentualReducao: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Currency;
-      const APercentualReducao: Currency = 0; const AValorIpi: Currency = 0);
-    function CalcularBaseIcmsProprio: Currency;
-    function CalcularBaseNormal: Currency;
-    function CalcularBaseReduzida: Currency;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Double;
+      const APercentualReducao: Double = 0; const AValorIpi: Double = 0);
+    function CalcularBaseIcmsProprio: Double;
+    function CalcularBaseNormal: Double;
+    function CalcularBaseReduzida: Double;
     function ContemReducao: Boolean;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses Delphiscal.Utils;
 
-constructor TBaseIcmsProprio.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Currency;
-  const APercentualReducao: Currency = 0; const AValorIpi: Currency = 0);
+constructor TBaseIcmsProprio.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Double;
+  const APercentualReducao: Double = 0; const AValorIpi: Double = 0);
 begin
   FvalorProduto := AValorProduto;
   Fvalorfrete := AValorFrete;
@@ -37,7 +37,7 @@ begin
   FpercentualReducao := APercentualReducao;
 end;
 
-function TBaseIcmsProprio.CalcularBaseIcmsProprio: Currency;
+function TBaseIcmsProprio.CalcularBaseIcmsProprio: Double;
 begin
   if ContemReducao then
     Result := CalcularBaseReduzida
@@ -45,14 +45,14 @@ begin
     Result := CalcularBaseNormal;
 end;
 
-function TBaseIcmsProprio.CalcularBaseNormal: Currency;
+function TBaseIcmsProprio.CalcularBaseNormal: Double;
 begin
   Result := RoundABNT(FvalorProduto + Fvalorfrete + FvalorSeguro + FdespesasAcessorias + FvalorIpi - FvalorDesconto, 2);
 end;
 
-function TBaseIcmsProprio.CalcularBaseReduzida: Currency;
+function TBaseIcmsProprio.CalcularBaseReduzida: Double;
 var
-  LBaseIcms: Currency;
+  LBaseIcms: Double;
 begin
   LBaseIcms := CalcularBaseNormal;
   Result := RoundABNT((LBaseIcms - (LBaseIcms * (FpercentualReducao / 100))), 2);

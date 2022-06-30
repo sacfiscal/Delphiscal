@@ -8,27 +8,27 @@ type
   TValorIcmsST = class
   private
     FBaseIcmsST: TBaseIcmsST;
-    FAliquotaST: Currency;
+    FAliquotaST: Double;
     FValorIcmsProprio: TValorIcms;
   public
-    constructor Create(const ABaseIcmsST: TBaseIcmsST; const AAliquotaST: Currency; const AValorIcmsProrpio: TValorIcms);
-    function CalcularValorIcmsST: Currency;
-    function CalcularValorReduzidoIcmsST: Currency;
-    function CalcularValorNormalIcmsST: Currency;
+    constructor Create(const ABaseIcmsST: TBaseIcmsST; const AAliquotaST: Double; const AValorIcmsProrpio: TValorIcms);
+    function CalcularValorIcmsST: Double;
+    function CalcularValorReduzidoIcmsST: Double;
+    function CalcularValorNormalIcmsST: Double;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses Delphiscal.Utils;
 
-constructor TValorIcmsST.Create(const ABaseIcmsST: TBaseIcmsST; const AAliquotaST: Currency; const AValorIcmsProrpio: TValorIcms);
+constructor TValorIcmsST.Create(const ABaseIcmsST: TBaseIcmsST; const AAliquotaST: Double; const AValorIcmsProrpio: TValorIcms);
 begin
   FBaseIcmsST := ABaseIcmsST;
   FAliquotaST := AAliquotaST;
   FValorIcmsProprio := AValorIcmsProrpio;
 end;
 
-function TValorIcmsST.CalcularValorIcmsST: Currency;
+function TValorIcmsST.CalcularValorIcmsST: Double;
 begin
   if FBaseIcmsST.ContemReducaoST then
     Result := CalcularValorReduzidoIcmsST
@@ -36,12 +36,12 @@ begin
     Result := CalcularValorNormalIcmsST;
 end;
 
-function TValorIcmsST.CalcularValorNormalIcmsST: Currency;
+function TValorIcmsST.CalcularValorNormalIcmsST: Double;
 begin
   Result := RoundABNT((FBaseIcmsST.CalcularBaseNormalST * (FAliquotaST / 100) - FValorIcmsProprio.GetValorIcms), 2);
 end;
 
-function TValorIcmsST.CalcularValorReduzidoIcmsST: Currency;
+function TValorIcmsST.CalcularValorReduzidoIcmsST: Double;
 begin
   Result := RoundABNT((FBaseIcmsST.CalcularBaseReduzidaST * (FAliquotaST / 100) - FValorIcmsProprio.GetValorIcms), 2);
 end;

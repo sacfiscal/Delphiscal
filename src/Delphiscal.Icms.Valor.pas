@@ -8,26 +8,26 @@ type
   TValorIcms = class
   private
     FBaseIcms: TBaseIcmsProprio;
-    FAliquotaIcms: Currency;
+    FAliquotaIcms: Double;
   public
-    constructor Create(const ABaseIcmsProprio: TBaseIcmsProprio; const AAliquotaIcmsProprio: Currency);
-    property AliquotaIcms: Currency read FAliquotaIcms write FAliquotaIcms;
-    function GetValorIcms: Currency;
-    function CalcularValorReduzidoIcms: Currency;
-    function CalcularValorNormalIcms: Currency;
+    constructor Create(const ABaseIcmsProprio: TBaseIcmsProprio; const AAliquotaIcmsProprio: Double);
+    property AliquotaIcms: Double read FAliquotaIcms write FAliquotaIcms;
+    function GetValorIcms: Double;
+    function CalcularValorReduzidoIcms: Double;
+    function CalcularValorNormalIcms: Double;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses Delphiscal.Utils;
 
-constructor TValorIcms.Create(const ABaseIcmsProprio: TBaseIcmsProprio; const AAliquotaIcmsProprio: Currency);
+constructor TValorIcms.Create(const ABaseIcmsProprio: TBaseIcmsProprio; const AAliquotaIcmsProprio: Double);
 begin
   FBaseIcms := ABaseIcmsProprio;
   AliquotaIcms := AAliquotaIcmsProprio;
 end;
 
-function TValorIcms.GetValorIcms: Currency;
+function TValorIcms.GetValorIcms: Double;
 begin
   if FBaseIcms.ContemReducao then
     Result := CalcularValorReduzidoIcms
@@ -35,12 +35,12 @@ begin
     Result := CalcularValorNormalIcms;
 end;
 
-function TValorIcms.CalcularValorNormalIcms: Currency;
+function TValorIcms.CalcularValorNormalIcms: Double;
 begin
   Result := RoundABNT((FBaseIcms.CalcularBaseNormal * (AliquotaIcms / 100)), 2);
 end;
 
-function TValorIcms.CalcularValorReduzidoIcms: Currency;
+function TValorIcms.CalcularValorReduzidoIcms: Double;
 begin
   Result := RoundABNT((FBaseIcms.CalcularBaseReduzida * (AliquotaIcms / 100)), 2);
 end;

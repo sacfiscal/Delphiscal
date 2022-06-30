@@ -12,6 +12,7 @@ object FrmMain: TFrmMain
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OldCreateOrder = True
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 15
@@ -6995,6 +6996,10 @@ object FrmMain: TFrmMain
     object TabSheet2: TTabSheet
       Caption = 'Icms-ST'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label37: TLabel
         Left = 4
         Top = 37
@@ -7297,6 +7302,10 @@ object FrmMain: TFrmMain
     object TabSheet4: TTabSheet
       Caption = 'CSOSN'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label16: TLabel
         Left = 4
         Top = 37
@@ -7481,6 +7490,10 @@ object FrmMain: TFrmMain
     object TabSheet5: TTabSheet
       Caption = 'IPI'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label28: TLabel
         Left = 0
         Top = 37
@@ -7612,6 +7625,10 @@ object FrmMain: TFrmMain
     object TabSheet6: TTabSheet
       Caption = 'PIS'
       ImageIndex = 5
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label50: TLabel
         Left = 8
         Top = 37
@@ -7743,6 +7760,10 @@ object FrmMain: TFrmMain
     object TabSheet7: TTabSheet
       Caption = 'COFINS'
       ImageIndex = 6
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label55: TLabel
         Left = 3
         Top = 41

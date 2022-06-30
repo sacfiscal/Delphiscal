@@ -2,7 +2,8 @@ program Delphiscal;
 
 uses
   Vcl.Forms,
-  Samples.Delphi.Main in 'src\Samples.Delphi.Main.pas' {FrmMain};
+  Samples.Delphi.Main in 'src\Samples.Delphi.Main.pas' {FrmMain},
+  Delphiscal.Utils in '..\..\src\Delphiscal.Utils.pas';
 
 {$R *.res}
 

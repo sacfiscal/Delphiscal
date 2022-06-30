@@ -2,40 +2,34 @@ unit Delphiscal.Pis01_02;
 
 interface
 
-uses
-  Delphiscal.Pis.Base,
-  Delphiscal.Pis01_02.Intf;
+uses Delphiscal.Pis.Base, Delphiscal.Pis01_02.Intf;
 
 type
-  TPis01_02 = class(TInterfacedObject,
-                    IPis01_02)
+  TPis01_02 = class(TInterfacedObject, IPis01_02)
   private
-    FBasePis    : TBasePis;
-    FAliquotaPis: Currency;
-    function GetBasePis: Currency;
-    function GetValorPis: Currency;
-
+    FBasePis: TBasePis;
+    FAliquotaPis: Double;
+    function BasePis: Double;
+    function ValorPis: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis: Currency);
-    property BasePis: Currency read GetBasePis;
-    property ValorPis: Currency read GetValorPis;
-
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis: Double);
+    class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis: Double): IPis01_02;
     destructor Destroy; override;
   end;
 
 implementation
 
-uses
-  ACBrUtil.Math;
+uses Delphiscal.Utils;
 
-function TPis01_02.GetBasePis: Currency;
+function TPis01_02.BasePis: Double;
 begin
   Result := FBasePis.CalcularBasePis;
 end;
 
-constructor TPis01_02.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis: Currency);
+constructor TPis01_02.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+  AAliquotaPis: Double);
 begin
-  FBasePis     := TBasePis.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto);
+  FBasePis := TBasePis.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto);
   FAliquotaPis := AAliquotaPis;
 end;
 
@@ -45,7 +39,13 @@ begin
   inherited;
 end;
 
-function TPis01_02.GetValorPis: Currency;
+class function TPis01_02.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+  AAliquotaPis: Double): IPis01_02;
+begin
+  Result := TPis01_02.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis);
+end;
+
+function TPis01_02.ValorPis: Double;
 begin
   Result := RoundABNT(BasePis * (FAliquotaPis / 100), 2);
 end;

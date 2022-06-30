@@ -8,24 +8,24 @@ type
   TBaseIcmsST = class
   private
     FBaseIcmsProprio: TBaseIcmsProprio;
-    FPercentualReducaoST: Currency;
-    FMva: Currency;
-    FValorIpi: Currency;
+    FPercentualReducaoST: Double;
+    FMva: Double;
+    FValorIpi: Double;
   public
-    constructor Create(const ABaseIcmsProprio: TBaseIcmsProprio; const AMva: currency; const APercentualReducaoST: Currency = 0;
-      const AValorIpi: Currency = 0);
-    function CalcularBaseIcmsST: Currency;
-    function CalcularBaseNormalST: Currency;
-    function CalcularBaseReduzidaST: Currency;
+    constructor Create(const ABaseIcmsProprio: TBaseIcmsProprio; const AMva: Double; const APercentualReducaoST: Double = 0;
+      const AValorIpi: Double = 0);
+    function CalcularBaseIcmsST: Double;
+    function CalcularBaseNormalST: Double;
+    function CalcularBaseReduzidaST: Double;
     function ContemReducaoST: Boolean;
   end;
 
 implementation
 
-uses acbrutil.math;
+uses Delphiscal.Utils;
 
-constructor TBaseIcmsST.Create(const ABaseIcmsProprio: TBaseIcmsProprio; const AMva: currency; const APercentualReducaoST: Currency = 0;
-  const AValorIpi: Currency = 0);
+constructor TBaseIcmsST.Create(const ABaseIcmsProprio: TBaseIcmsProprio; const AMva: Double;
+  const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0);
 begin
   FBaseIcmsProprio := ABaseIcmsProprio;
   FMva := AMva;
@@ -33,7 +33,7 @@ begin
   FValorIpi := AValorIpi;
 end;
 
-function TBaseIcmsST.CalcularBaseIcmsST: Currency;
+function TBaseIcmsST.CalcularBaseIcmsST: Double;
 begin
   if FPercentualReducaoST > 0 then
     Result := CalcularBaseReduzidaST
@@ -41,17 +41,17 @@ begin
     Result := CalcularBaseNormalST;
 end;
 
-function TBaseIcmsST.CalcularBaseNormalST: Currency;
+function TBaseIcmsST.CalcularBaseNormalST: Double;
 begin
   Result := RoundABNT((FBaseIcmsProprio.CalcularBaseIcmsProprio + FValorIpi) * (1 + (FMva / 100)), 2);
 end;
 
-function TBaseIcmsST.CalcularBaseReduzidaST: Currency;
+function TBaseIcmsST.CalcularBaseReduzidaST: Double;
 var
-  LBaseIcmsST: Currency;
+  LBaseIcmsST: Double;
 begin
   LBaseIcmsST := RoundABNT((FBaseIcmsProprio.CalcularBaseIcmsProprio) * (1 + (FMva / 100)), 2);
-  Result := RoundABNT((LBaseIcmsST - (LBaseIcmsST * (FPercentualReducaoST / 100)) + FValorIpi), 2);
+  Result := RoundABNT((LBaseIcmsST - RoundABNT((LBaseIcmsST * (FPercentualReducaoST / 100)), 2) + FValorIpi), 2);
 end;
 
 function TBaseIcmsST.ContemReducaoST: Boolean;

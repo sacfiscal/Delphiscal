@@ -2,35 +2,57 @@ unit Delphiscal.Cofins03;
 
 interface
 
-uses
-  Delphiscal.Cofins03.Intf;
+uses Delphiscal.Cofins03.Intf;
 
 type
-  TCofins03 = class(TInterfacedObject,
-                    ICofins03)
+  TCofins03 = class(TInterfacedObject, ICofins03)
   private
-    FQuantidadeTributada  : Currency;
-    FValorUnidadeTributada: Currency;
-    function GetValorCofins: Currency;
+    FQuantidadeTributada: Double;
+    FValorUnidadeTributada: Double;
+    function ValorCofins: Double;
+    function QuantidadeTributada(const AValue: Double): ICofins03;
+    function ValorPorUnidadeTributada(const AValue: Double): ICofins03;
   public
-    constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency);
-    property ValorCofins: Currency read GetValorCofins;
+    constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double); overload;
+    class function New(const AQuantidadeTributada, AValorPorUnidadeTributada: Double): ICofins03; overload;
+    class function New: ICofins03; overload;
   end;
 
 implementation
 
-uses
-  ACBrUtil.Math;
+uses Delphiscal.Utils;
 
-constructor TCofins03.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Currency);
+constructor TCofins03.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double);
 begin
-  FQuantidadeTributada   := AQuantidadeTributada;
+  FQuantidadeTributada := AQuantidadeTributada;
   FValorUnidadeTributada := AValorPorUnidadeTributada;
 end;
 
-function TCofins03.GetValorCofins: Currency;
+class function TCofins03.New(const AQuantidadeTributada, AValorPorUnidadeTributada: Double): ICofins03;
+begin
+  Result := TCofins03.Create(AQuantidadeTributada, AValorPorUnidadeTributada);
+end;
+
+class function TCofins03.New: ICofins03;
+begin
+  Result := TCofins03.Create;
+end;
+
+function TCofins03.ValorCofins: Double;
 begin
   Result := RoundABNT((FQuantidadeTributada * FValorUnidadeTributada), 2);
+end;
+
+function TCofins03.QuantidadeTributada(const AValue: Double): ICofins03;
+begin
+  FQuantidadeTributada := AValue;
+  Result := Self;
+end;
+
+function TCofins03.ValorPorUnidadeTributada(const AValue: Double): ICofins03;
+begin
+  FValorUnidadeTributada := AValue;
+  Result := Self;
 end;
 
 end.

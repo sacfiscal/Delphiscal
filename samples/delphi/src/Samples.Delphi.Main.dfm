@@ -4,23 +4,23 @@ object FrmMain: TFrmMain
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Delphiscal - Biblioteca de c'#225'lculos fiscais em Delphi'
-  ClientHeight = 673
-  ClientWidth = 1031
+  ClientHeight = 586
+  ClientWidth = 1037
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  OldCreateOrder = True
   Position = poScreenCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1031
-    Height = 233
+    Width = 1037
+    Height = 153
     Align = alTop
     Color = clWhite
     ParentBackground = False
@@ -28,8 +28,8 @@ object FrmMain: TFrmMain
     object Image1: TImage
       Left = 0
       Top = 0
-      Width = 454
-      Height = 227
+      Width = 297
+      Height = 147
       Picture.Data = {
         0954506E67496D61676589504E470D0A1A0A0000000D49484452000005000000
         02800806000000C3F3D5A10000FFFF4944415478DAECBD09705CD975257832F3
@@ -6651,13 +6651,22 @@ object FrmMain: TFrmMain
         0228488AE8FF010268E62BD73812670000000049454E44AE426082}
       Stretch = True
     end
+    object Button1: TButton
+      Left = 920
+      Top = 108
+      Width = 113
+      Height = 39
+      Caption = 'Calcular'
+      TabOrder = 0
+      OnClick = Button1Click
+    end
   end
   object PageControl1: TPageControl
     Left = 0
-    Top = 233
-    Width = 1031
-    Height = 440
-    ActivePage = TabSheet5
+    Top = 153
+    Width = 1037
+    Height = 433
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
@@ -6799,16 +6808,16 @@ object FrmMain: TFrmMain
         object lbVBC00: TLabel
           Left = 168
           Top = 61
-          Width = 37
+          Width = 21
           Height = 15
-          Caption = 'R$ 0,00'
+          Caption = '0,00'
         end
         object lbVICMS00: TLabel
           Left = 168
           Top = 116
-          Width = 37
+          Width = 21
           Height = 15
-          Caption = 'R$ 0,00'
+          Caption = '0,00'
         end
       end
       object GroupBox2: TGroupBox
@@ -6996,10 +7005,6 @@ object FrmMain: TFrmMain
     object TabSheet2: TTabSheet
       Caption = 'Icms-ST'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label37: TLabel
         Left = 4
         Top = 37
@@ -7302,10 +7307,6 @@ object FrmMain: TFrmMain
     object TabSheet4: TTabSheet
       Caption = 'CSOSN'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label16: TLabel
         Left = 4
         Top = 37
@@ -7490,10 +7491,6 @@ object FrmMain: TFrmMain
     object TabSheet5: TTabSheet
       Caption = 'IPI'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label28: TLabel
         Left = 0
         Top = 37
@@ -7625,10 +7622,6 @@ object FrmMain: TFrmMain
     object TabSheet6: TTabSheet
       Caption = 'PIS'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label50: TLabel
         Left = 8
         Top = 37
@@ -7760,10 +7753,6 @@ object FrmMain: TFrmMain
     object TabSheet7: TTabSheet
       Caption = 'COFINS'
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label55: TLabel
         Left = 3
         Top = 41

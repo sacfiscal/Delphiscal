@@ -111,16 +111,52 @@
             <Form>FrmMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\..\src\Delphiscal.Cofins.Base.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Cofins01_02.Intf.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Cofins01_02.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Cofins03.Intf.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Cofins03.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Icms.BaseProprio.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Icms.BaseST.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Icms.Valor.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Icms.Valor.ST.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Icms101.Intf.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Icms101.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Icms201.Intf.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Icms201.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Icms202_203.Intf.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Icms202_203.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Ipi.Base.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Ipi50AdValorem.Intf.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Ipi50AdValorem.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Ipi50Especifico.Intf.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Ipi50Especifico.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Pis.Base.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Pis01_02.Intf.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Pis01_02.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Pis03.Intf.pas"/>
+        <DCCReference Include="..\..\src\Delphiscal.Pis03.pas"/>
         <DCCReference Include="..\..\src\Delphiscal.Utils.pas"/>
-        <BuildConfiguration Include="Release">
-            <Key>Cfg_2</Key>
-            <CfgParent>Base</CfgParent>
-        </BuildConfiguration>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS00.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS20.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS51.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS10.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS30.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS70.pas"/>
+        <DCCReference Include="..\..\src\Calculos\ST\DelphiFiscal.Calculos.ST.pas"/>
+        <DCCReference Include="..\..\src\Calculos\ICMS\DelphiFiscal.Calculos.ICMS.pas"/>
+        <DCCReference Include="..\..\src\Calculos\DelphiFiscal.Calculos.Interfaces.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.CST.pas"/>
+        <DCCReference Include="..\..\src\Calculos\DelphiFiscal.Calculos.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
     </ItemGroup>
@@ -464,6 +500,11 @@
                         <Operation>1</Operation>
                         <Extensions>.framework</Extensions>
                     </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.framework</Extensions>
+                    </Platform>
                     <Platform Name="Win32">
                         <Operation>0</Operation>
                     </Platform>
@@ -487,6 +528,11 @@
                         <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSXARM64">
                         <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
@@ -519,6 +565,11 @@
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
                     <Platform Name="Win32">
                         <Operation>0</Operation>
                         <Extensions>.bpl</Extensions>
@@ -545,6 +596,10 @@
                         <Operation>0</Operation>
                     </Platform>
                     <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
                         <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
                         <Operation>0</Operation>
                     </Platform>
@@ -1085,6 +1140,10 @@
                         <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectOSXEntitlements">
                     <Platform Name="OSX32">
@@ -1092,6 +1151,10 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX64">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
                         <RemoteDir>..\</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -1105,6 +1168,10 @@
                         <RemoteDir>Contents</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectOSXResource">
                     <Platform Name="OSX32">
@@ -1112,6 +1179,10 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
                         <RemoteDir>Contents\Resources</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -1142,6 +1213,10 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
                         <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -1183,17 +1258,17 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
                 <Platform value="Win32">True</Platform>

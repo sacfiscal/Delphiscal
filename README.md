@@ -55,7 +55,7 @@ Acesse: https://www.sacfiscal.com.br
 
 
 ## Curso de Arquitetura Fiscal em Software
-ARQUITETURA FISCAL EM SOFTWARE <https://arquiteturafiscal.online>
+ARQUITETURA FISCAL EM SOFTWARE <https://www.arquiteturafiscal.com.br>
 <br>O mais completo treinamento de tributação e regras fiscais para programadores e software houses
 
 ## Licença

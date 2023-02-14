@@ -7,6 +7,8 @@ type
   iICMS = interface;
   iCST = interface;
   iIPI = interface;
+  iPIS = interface;
+  iCOFINS = interface;
   iICMS00 = interface;
   iICMS10 = interface;
   iICMS20 = interface;
@@ -18,6 +20,12 @@ type
   iICMS202 = interface;
   iICMS203 = interface;
   iIPI50 = interface;
+  iPIS01 = interface;
+  iPIS02 = interface;
+  iPIS03 = interface;
+  iCOFINS01 = interface;
+  iCOFINS02 = interface;
+  iCOFINS03 = interface;
 
   iCalculo = interface
     ['{15AE0E74-C00A-41BC-8D42-ED45CE6D957B}']
@@ -29,9 +37,13 @@ type
     function ValorSeguro : double; overload;
     function ValorDespesasAcessorias(aValue : double) : iCalculo; overload;
     function ValorDespesasAcessorias : double; overload;
+    function ValorDescontos(aValue : double) : iCalculo; overload;
+    function ValorDescontos : double; overload;
     function ST : iST;
     function ICMS : iICMS;
     function IPI : iIPI;
+    function PIS : iPIS;
+    function COFINS : iCOFINS;
   end;
 
   iIPI = interface
@@ -42,6 +54,28 @@ type
     function ValorIPIPorUnidade : double; overload;
     function QtdeIPITributada(aValue : double) : iIPI; overload;
     function QtdeIPITributada : double; overload;
+    function &End : iCalculo;
+  end;
+
+  iPIS = interface
+    ['{8FC6C2EA-4A1D-43AB-A55D-631E05C39145}']
+    function AliquotaPIS(aValue : double) : iPIS; overload;
+    function AliquotaPIS : double; overload;
+    function ValorPISPorUnidade(aValue : double) : iPIS; overload;
+    function ValorPISPorUnidade : double; overload;
+    function QtdePISTributada(aValue : double) : iPIS; overload;
+    function QtdePISTributada : double; overload;
+    function &End : iCalculo;
+  end;
+
+  iCOFINS = interface
+    ['{8FC6C2EA-4A1D-43AB-A55D-631E05C39145}']
+    function AliquotaCOFINS(aValue : double) : iCOFINS; overload;
+    function AliquotaCOFINS : double; overload;
+    function ValorCOFINSPorUnidade(aValue : double) : iCOFINS; overload;
+    function ValorCOFINSPorUnidade : double; overload;
+    function QtdeCOFINSTributada(aValue : double) : iCOFINS; overload;
+    function QtdeCOFINSTributada : double; overload;
     function &End : iCalculo;
   end;
 
@@ -63,7 +97,6 @@ type
     function CST : iCST;
     function ValorIPI(aValue : double) : iICMS; overload;
     function ValorIPI : double; overload;
-    function ValorDescontos(aValue : double) : iICMS;
     function PercentualReducao(aValue : double) : iICMS;
     function PercentualDiferimento(aValue : double) : iICMS; overload;
     function PercentualDiferimento : double; overload;
@@ -94,6 +127,12 @@ type
     function ICMS202 : iICMS202;
     function ICMS203 : iICMS203;
     function IPI50 : iIPI50;
+    function PIS01 : iPIS01;
+    function PIS02 : iPIS02;
+    function PIS03 : iPIS03;
+    function COFINS01 : iCOFINS01;
+    function COFINS02 : iCOFINS02;
+    function COFINS03 : iCOFINS03;
     function &End : iCalculo;
   end;
 
@@ -190,11 +229,54 @@ type
   end;
 
   iIPI50 = interface
-    ['{24BB6486-20AB-4AE1-B932-C753CEF023FB}']
+    ['{97A056A1-1778-48C8-85D3-BC5F6205FD3F}']
     function BaseIpi: Double;
     function ValorIpi: Double;
     function ValorIpiEspecifico: Double;
   end;
+
+  iPIS01 = interface
+    ['{9214FC95-C7D5-49E2-9218-AA55C237B9F5}']
+    function BasePis: Double;
+    function ValorPis: Double;
+    function ValorPisEspecifico: Double;
+  end;
+
+  iPIS02 = interface
+    ['{75A2EBF0-EFE9-4070-B6F7-D39617241D88}']
+    function BasePis: Double;
+    function ValorPis: Double;
+    function ValorPisEspecifico: Double;
+  end;
+
+  iPIS03 = interface
+    ['{3E365284-F553-47ED-817D-E15799CFDC02}']
+    function BasePis: Double;
+    function ValorPis: Double;
+    function ValorPisEspecifico: Double;
+  end;
+
+  iCOFINS01 = interface
+    ['{1902D2F2-2A8F-442D-9127-8294C96D89CD}']
+    function BaseCofins: Double;
+    function ValorCofins: Double;
+    function ValorCofinsEspecifico: Double;
+  end;
+
+  iCOFINS02 = interface
+    ['{4A8EF1EA-C2AB-449E-BEFC-F95BDA10DC95}']
+    function BaseCofins: Double;
+    function ValorCofins: Double;
+    function ValorCofinsEspecifico: Double;
+  end;
+
+  iCOFINS03 = interface
+    ['{C85A50D8-A8D6-4DC4-B120-9A7483AC95ED}']
+    function BaseCofins: Double;
+    function ValorCofins: Double;
+    function ValorCofinsEspecifico: Double;
+  end;
+
 
 implementation
 

@@ -13,7 +13,6 @@ type
       FCST : iCST;
 
       FValorIpi: Double;
-      FValorDesconto: Double;
       FPercentualReducao: Double;
       FBaseICMSNormal : Double;
       FContemReducao : boolean;
@@ -34,7 +33,6 @@ type
       function CST : iCST;
       function ValorIPI(aValue : double) : iICMS; overload;
       function ValorIPI : double; overload;
-      function ValorDescontos(aValue : double) : iICMS;
       function PercentualReducao(aValue : double) : iICMS;
       function PercentualDiferimento(aValue : double) : iICMS; overload;
       function PercentualDiferimento : double; overload;
@@ -110,7 +108,7 @@ end;
 
 function TDelphiFiscalICMS.BaseICMSNormal : double;
 begin
-  Result:= RoundABNT(FParent.ValorProduto + FParent.Valorfrete + FParent.ValorSeguro + FParent.ValorDespesasAcessorias + FValorIpi - FValorDesconto, 2);
+  Result:= RoundABNT(FParent.ValorProduto + FParent.Valorfrete + FParent.ValorSeguro + FParent.ValorDespesasAcessorias + FValorIpi - FParent.ValorDescontos, 2);
 end;
 
 function TDelphiFiscalICMS.BaseICMSProprio : double;
@@ -138,12 +136,6 @@ function TDelphiFiscalICMS.ContemReducao(aValue: boolean): iICMS;
 begin
   Result:= self;
   FContemReducao:= aValue;
-end;
-
-function TDelphiFiscalICMS.ValorDescontos(aValue: double): iICMS;
-begin
-  Result:= self;
-  FValorDesconto:= aValue;
 end;
 
 function TDelphiFiscalICMS.ValorICMS: Double;

@@ -12,9 +12,12 @@ type
       FValorFrete : double;
       FValorSeguro : double;
       FValorDespesasAcessorias : double;
+      FValorDesconto : double;
       FICSM : iICMS;
       FST : iST;
       FIPI : iIPI;
+      FPIS : iPIS;
+      FCOFINS : iCOFINS;
     public
       constructor create;
       destructor destroy; override;
@@ -27,9 +30,13 @@ type
       function ValorSeguro : double; overload;
       function ValorDespesasAcessorias(aValue : double) : iCalculo; overload;
       function ValorDespesasAcessorias : double; overload;
+      function ValorDescontos(aValue : double) : iCalculo; overload;
+      function ValorDescontos : double; overload;
       function ST : iST;
       function IPI : iIPI;
+      function PIS : iPIS;
       function ICMS : iICMS;
+      function COFINS : iCOFINS;
   end;
 
 implementation
@@ -37,9 +44,18 @@ implementation
 uses
   DelphiFiscal.Calculos.ICMS,
   DelphiFiscal.Calculos.ST,
-  DelphiFiscal.Calculos.IPI;
+  DelphiFiscal.Calculos.IPI,
+  DelphiFiscal.Calculos.PIS, DelphiFiscal.Calculos.COFINS;
 
 { TDelphiFiscalCalculos }
+
+function TDelphiFiscalCalculos.COFINS: iCOFINS;
+begin
+  if not Assigned(FCOFINS) then
+    FCOFINS:= TDelphiFiscalCOFINS.New(self);
+
+  Result:= FCOFINS;
+end;
 
 constructor TDelphiFiscalCalculos.create;
 begin
@@ -73,12 +89,31 @@ begin
   Result:= Self.create
 end;
 
+function TDelphiFiscalCalculos.PIS: iPIS;
+begin
+  if not Assigned(FPIS) then
+    FPIS:= TDelphiFiscalPIS.New(self);
+
+  Result:= FPIS;
+end;
+
 function TDelphiFiscalCalculos.ST: iST;
 begin
   if not Assigned(FST) then
     FST:= TDelphiFiscalST.New(self);
 
   Result:= FST;
+end;
+
+function TDelphiFiscalCalculos.ValorDescontos: double;
+begin
+  Result:= FValorDesconto;
+end;
+
+function TDelphiFiscalCalculos.ValorDescontos(aValue: double): iCalculo;
+begin
+  Result:= Self;
+  FValorDesconto:= aValue;
 end;
 
 function TDelphiFiscalCalculos.ValorDespesasAcessorias: double;

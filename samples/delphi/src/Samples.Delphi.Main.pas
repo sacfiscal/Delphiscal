@@ -181,21 +181,6 @@ type
     btCofins0102: TButton;
     btCofins03: TButton;
     Button1: TButton;
-    procedure btIcms00Click(Sender: TObject);
-    procedure btIcms20Click(Sender: TObject);
-    procedure btIcms51Click(Sender: TObject);
-    procedure btIcms10Click(Sender: TObject);
-    procedure btIcms30Click(Sender: TObject);
-    procedure btIcms70Click(Sender: TObject);
-    procedure btIcms101Click(Sender: TObject);
-    procedure btIcms201Click(Sender: TObject);
-    procedure btIcms202_203Click(Sender: TObject);
-    procedure btIpi50AdValoremClick(Sender: TObject);
-    procedure btIpi50AliqEspecificaClick(Sender: TObject);
-    procedure btPis0102Click(Sender: TObject);
-    procedure btCofins0102Click(Sender: TObject);
-    procedure btPis03Click(Sender: TObject);
-    procedure btCofins03Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
@@ -204,207 +189,12 @@ type
 var
   FrmMain: TFrmMain;
 implementation
+
 uses
-  Delphiscal.Icms00,
-  Delphiscal.Icms00.Intf,
-  Delphiscal.Icms20,
-  Delphiscal.Icms20.Intf,
-  Delphiscal.Icms51,
-  Delphiscal.Icms51.Intf,
-  Delphiscal.Icms10.Intf,
-  Delphiscal.Icms10,
-  Delphiscal.Icms30.Intf,
-  Delphiscal.Icms30,
-  Delphiscal.Icms70,
-  Delphiscal.Icms70.Intf,
-  Delphiscal.Icms101.Intf,
-  Delphiscal.Icms101,
-  Delphiscal.Icms201,
-  Delphiscal.Icms201.Intf,
-  Delphiscal.Icms202_203,
-  Delphiscal.Icms202_203.Intf,
-  Delphiscal.Ipi50AdValorem,
-  Delphiscal.Ipi50AdValorem.Intf,
-  Delphiscal.Ipi50Especifico.Intf,
-  Delphiscal.Ipi50Especifico,
-  Delphiscal.Pis01_02.Intf,
-  Delphiscal.Pis01_02,
-  Delphiscal.Pis03.Intf,
-  Delphiscal.Pis03,
-  Delphiscal.Cofins01_02.Intf,
-  Delphiscal.Cofins01_02,
-  Delphiscal.Cofins03.Intf,
-  Delphiscal.Cofins03, System.SysUtils, DelphiFiscal.Calculos;
+  System.SysUtils,
+  DelphiFiscal.Calculos;
+
 {$R *.dfm}
-procedure TFrmMain.btCofins0102Click(Sender: TObject);
-var
-  LCofins01_02: ICofins01_02;
-begin
-  LCofins01_02 := {}
-    TCofins01_02.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqCofins.Text, 0));
-  lbVBCCOFINS01_02.Caption := LCofins01_02.BaseCofins.ToString;
-  lbVCOFINS01_02.Caption   := LCofins01_02.ValorCofins.ToString;
-end;
-procedure TFrmMain.btCofins03Click(Sender: TObject);
-begin
-  lbVCOFINS03.Caption := TCofins03.New
-    .QuantidadeTributada(StrToFloatDef(edQtdeCofinsUn.Text, 0))
-    .ValorPorUnidadeTributada(StrToFloatDef(edValorCofinsUn.Text, 0))
-    .ValorCofins.ToString;
-end;
-procedure TFrmMain.btIcms00Click(Sender: TObject);
-var
-  LIcms00: IIcms00;
-begin
-  LIcms00 := TIcms00.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqIcms.Text, 0), {}
-    StrToFloatDef(edValorIpi.Text, 0));
-  lbVBC00.Caption   := LIcms00.BaseIcmsProprio.ToString;
-  lbVICMS00.Caption := LIcms00.ValorIcmsProprio.ToString;
-end;
-procedure TFrmMain.btIcms10Click(Sender: TObject);
-var
-  LIcms10: IIcms10;
-begin
-  LIcms10 := TIcms10.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqIcms.Text, 0), {}
-    StrToFloatDef(edAliqST.Text, 0), {}
-    StrToFloatDef(edMVA.Text, 0), {}
-    StrToFloatDef(edPercRedST.Text, 0), {}
-    StrToFloatDef(edValorIpi.Text, 0));
-  lbVBC10.Caption          := LIcms10.ValorBaseIcmsProprio.ToString;
-  lbVICMS10.Caption        := LIcms10.ValorIcmsProprio.ToString;
-  lbVBCST10.Caption        := LIcms10.ValorBaseIcmsST.ToString;
-  lbVICMSST10.Caption      := LIcms10.ValorIcmsST.ToString;
-  lbVICMSSTDeson10.Caption := LIcms10.ValorIcmsSTDesonerado.ToString;
-end;
-procedure TFrmMain.btIcms20Click(Sender: TObject);
-var
-  LIcms20: IIcms20;
-begin
-  LIcms20 := TIcms20.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqIcms.Text, 0), {}
-    StrToFloatDef(edReducao.Text, 0), {}
-    StrToFloatDef(edValorIpi.Text, 0));
-  lbVBC20.Caption        := LIcms20.BaseReduzidaIcmsProprio.ToString;
-  lbVICMS20.Caption      := LIcms20.ValorIcmsProprio.ToString;
-  lbVICMSDESON20.Caption := LIcms20.ValorIcmsDesonerado.ToString;
-end;
-procedure TFrmMain.btIcms30Click(Sender: TObject);
-var
-  LIcms30: IIcms30;
-begin
-  LIcms30 := TIcms30.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqIcms.Text, 0), {}
-    StrToFloatDef(edAliqST.Text, 0), {}
-    StrToFloatDef(edMVA.Text, 0), {}
-    StrToFloatDef(edPercRedST.Text, 0), {}
-    StrToFloatDef(edValorIpi.Text, 0));
-  lbVBCST30.Caption        := LIcms30.ValorBaseIcmsST.ToString;
-  lbVICMSST30.Caption      := LIcms30.ValorIcmsST.ToString;
-  lbVICMSSTDeson30.Caption := LIcms30.ValorIcmsDesonerado.ToString;
-end;
-procedure TFrmMain.btIcms70Click(Sender: TObject);
-var
-  LIcms10: IIcms10;
-  LIcms70: IIcms70;
-begin
-  LIcms70 := TIcms70.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqIcms.Text, 0), {}
-    StrToFloatDef(edReducao.Text, 0), {}
-    StrToFloatDef(edAliqST.Text, 0), {}
-    StrToFloatDef(edMVA.Text, 0), {}
-    StrToFloatDef(edPercRedST.Text, 0), {}
-    StrToFloatDef(edValorIpi.Text, 0));
-  lbVBC70.Caption        := LIcms70.ValorBaseReduzidaIcmsProprio.ToString;
-  lbVICMS70.Caption      := LIcms70.ValorIcmsProprio.ToString;
-  lbVICMSDeson70.Caption := LIcms70.ValorIcmsDesonerado.ToString;
-  lbVBCST70.Caption      := LIcms70.ValorBaseIcmsST.ToString;
-  lbVICMSST70.Caption    := LIcms70.ValorIcmsST.ToString;
-  LIcms10 := TIcms10.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqIcms.Text, 0), {}
-    StrToFloatDef(edAliqST.Text, 0), {}
-    StrToFloatDef(edMVA.Text, 0), {}
-    StrToFloatDef(edValorIpi.Text, 0));
-  lbVICMSSTDeson70.Caption := LIcms70.ValorIcmsSTDesonerado(LIcms10.ValorIcmsST).ToString;
-end;
-procedure TFrmMain.btIpi50AdValoremClick(Sender: TObject);
-var
-  LIpi50Av: IIpi50AdValorem;
-begin
-  LIpi50Av := TIpi50AdValorem.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edAliqIpi.Text, 0));
-  lbvBCIpi50av.Caption := LIpi50Av.BaseIpi.ToString;
-  lbVIPI50av.Caption   := LIpi50Av.ValorIpi.ToString;
-end;
-procedure TFrmMain.btIpi50AliqEspecificaClick(Sender: TObject);
-begin
-  lbVipi50Especifico.Caption := TIpi50Especifico.New
-    .QuantidadeTributada(StrToFloatDef(edQtdeIpiTributada.Text, 0))
-    .ValorPorUnidadeTributada(StrToFloatDef(edValorIpiUn.Text, 0))
-    .ValorIpi.ToString;
-end;
-procedure TFrmMain.btPis0102Click(Sender: TObject);
-var
-  LPis01_02: IPIs01_02;
-begin
-  LPis01_02 := TPis01_02.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqPis.Text, 0));
-  lbVBCPIS01_02.Caption := LPis01_02.BasePis.ToString;
-  lbVPIS01_02.Caption   := LPis01_02.ValorPis.ToString;
-end;
-procedure TFrmMain.btPis03Click(Sender: TObject);
-begin
-  lbVPIS03.Caption := TPis03.New
-    .QuantidadeTributada(StrToFloatDef(edQtdePisUn.Text, 0))
-    .ValorPorUnidadeTributada(StrToFloatDef(edValorPisUn.Text, 0))
-    .ValorPis.ToString;
-end;
 procedure TFrmMain.Button1Click(Sender: TObject);
 begin
   FImpostos
@@ -412,9 +202,9 @@ begin
    .ValorFrete(strtofloatdef(edValorFrete.Text,0))
    .ValorSeguro(strtofloatdef(edValorSeguro.Text,0))
    .ValorDespesasAcessorias(strtofloatdef(edValorDespesas.Text,0))
+   .ValorDescontos(strtofloatdef(edValorDesconto.Text,0))
    .ICMS
      .ValorIPI(strtofloatdef(edValorIpi.Text,0))
-     .ValorDescontos(strtofloatdef(edValorDesconto.Text,0))
      .PercentualReducao(strtofloatdef(edReducao.Text,0))
      .PercentualDiferimento(strtofloatdef(edDiferimento.Text,0))
      .AliquotaICMS(strtofloatdef(edAliqIcms.Text,0))
@@ -427,9 +217,20 @@ begin
      .PercentualReducaoBaseICMSST(strtofloatdef(edPercRedST.Text,0))
    .&End
    .IPI
-    .AliquotaIPI(strtofloatdef(edAliqIpi.Text,0))
-    .ValorIPIPorUnidade(strtofloatdef(edValorIpiUn.Text,0))
-    .QtdeIPITributada(strtofloatdef(edQtdeIpiTributada.Text,0));
+     .AliquotaIPI(strtofloatdef(edAliqIpi.Text,0))
+     .ValorIPIPorUnidade(strtofloatdef(edValorIpiUn.Text,0))
+     .QtdeIPITributada(strtofloatdef(edQtdeIpiTributada.Text,0))
+   .&End
+   .PIS
+     .AliquotaPIS(strtofloatdef(edAliqPis.Text,0))
+     .ValorPISPorUnidade(strtofloatdef(edValorPisUn.Text,0))
+     .QtdePISTributada(strtofloatdef(edQtdePisUn.Text,0))
+   .&End
+   .COFINS
+     .AliquotaCOFINS(strtofloatdef(edAliqCofins.Text,0))
+     .ValorCOFINSPorUnidade(strtofloatdef(edValorCofinsUn.Text,0))
+     .QtdeCOFINSTributada(strtofloatdef(edQtdeCofinsUn.Text,0))
+   .&End;
 
   lbVICMS00.Caption:= FImpostos.ICMS.ValorICMS.ToString;
   lbVBC00.Caption  := FImpostos.ICMS.CST.ICMS00.BaseICMSProprio.ToString;
@@ -475,6 +276,14 @@ begin
   lbvBCIpi50av.Caption:= FImpostos.ICMS.CST.IPI50.BaseIpi.ToString;
   lbVIPI50av.Caption:= FImpostos.ICMS.CST.IPI50.ValorIpi.ToString;
   lbVipi50Especifico.Caption:= FImpostos.ICMS.CST.IPI50.ValorIpiEspecifico.ToString;
+
+  lbVBCPIS01_02.Caption:= FImpostos.ICMS.CST.PIS01.BasePis.ToString;
+  lbVPIS01_02.Caption:= FImpostos.ICMS.CST.PIS01.ValorPis.ToString;
+  lbVPIS03.Caption:= FImpostos.ICMS.CST.PIS01.ValorPisEspecifico.ToString;
+
+  lbVBCCOFINS01_02.Caption:= FImpostos.ICMS.CST.COFINS01.BaseCofins.ToString;
+  lbVCOFINS01_02.Caption := FImpostos.ICMS.CST.COFINS01.ValorCofins.ToString;
+  lbVCOFINS03.Caption:= FImpostos.ICMS.CST.COFINS01.ValorCofinsEspecifico.ToString;
 end;
 
 procedure TFrmMain.FormCreate(Sender: TObject);
@@ -482,77 +291,4 @@ begin
   FImpostos:= TDelphiFiscalCalculos.New;
 end;
 
-procedure TFrmMain.btIcms101Click(Sender: TObject);
-var
-  LIcms101: IIcms101;
-begin
-  LIcms101 := TIcms101.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edPercentualCreditoSN.Text, 0), {}
-    StrToFloatDef(edReducao.Text, 0));
-  lbPCredSN101.Caption := edPercentualCreditoSN.Text;
-  lbVcredSN101.Caption := LIcms101.ValorCreditoSN.ToString;
-end;
-procedure TFrmMain.btIcms201Click(Sender: TObject);
-var
-  LIcms201: IIcms201;
-begin
-  LIcms201 := TIcms201.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqIcms.Text, 0), {}
-    StrToFloatDef(edReducao.Text, 0), {}
-    StrToFloatDef(edPercentualCreditoSN.Text, 0), {}
-    StrToFloatDef(edAliqST.Text, 0), {}
-    StrToFloatDef(edMVA.Text, 0), {}
-    StrToFloatDef(edPercRedST.Text, 0));
-  lbPCredSN201.Caption := edPercentualCreditoSN.Text;
-  lbVCredSN201.Caption := LIcms201.ValorCreditoSN.ToString;
-  lbVBCST201.Caption   := LIcms201.ValorBaseIcmsST.ToString;
-  lbVICMSST201.Caption := LIcms201.ValorIcmsST.ToString;
-end;
-procedure TFrmMain.btIcms51Click(Sender: TObject);
-var
-  LIcms51: IIcms51;
-begin
-  LIcms51 := TIcms51.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqIcms.Text, 0), {}
-    StrToFloatDef(edDiferimento.Text, 0), {}
-    StrToFloatDef(edReducao.Text, 0), {}
-    StrToFloatDef(edValorIpi.Text, 0));
-  lbVBC51.Caption    := LIcms51.BaseIcmsProprio.ToString;
-  lbVICMSOP.Caption  := LIcms51.ValorIcmsOperacao.ToString;
-  lbVICMSDIF.Caption := LIcms51.ValorIcmsDiferido.ToString;
-  lbVICMS51.Caption  := LIcms51.ValorIcmsProprio.ToString;
-end;
-procedure TFrmMain.btIcms202_203Click(Sender: TObject);
-var
-  LIcms202_203: IIcms202_203;
-begin
-  LIcms202_203 := TIcms202_203.Create({}
-    StrToFloatDef(edValorProduto.Text, 0), {}
-    StrToFloatDef(edValorFrete.Text, 0), {}
-    StrToFloatDef(edValorSeguro.Text, 0), {}
-    StrToFloatDef(edValorDespesas.Text, 0), {}
-    StrToFloatDef(edValorDesconto.Text, 0), {}
-    StrToFloatDef(edAliqIcms.Text, 0), {}
-    StrToFloatDef(edReducao.Text, 0), {}
-    StrToFloatDef(edAliqST.Text, 0), {}
-    StrToFloatDef(edMVA.Text, 0), {}
-    StrToFloatDef(edPercRedST.Text, 0));
-  lbVBCST202.Caption   := LIcms202_203.ValorBaseIcmsST.ToString;
-  lbVICMSST202.Caption := LIcms202_203.ValorIcmsST.ToString;
-end;
 end.

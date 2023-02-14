@@ -111,26 +111,7 @@
             <Form>FrmMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\src\Delphiscal.Cofins.Base.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Cofins01_02.Intf.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Cofins01_02.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Cofins03.Intf.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Cofins03.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Icms.BaseProprio.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Icms.BaseST.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Icms.Valor.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Icms.Valor.ST.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Ipi.Base.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Ipi50AdValorem.Intf.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Ipi50AdValorem.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Ipi50Especifico.Intf.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Ipi50Especifico.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Pis.Base.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Pis01_02.Intf.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Pis01_02.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Pis03.Intf.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Pis03.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Utils.pas"/>
+        <DCCReference Include="..\..\src\Calculos\Util\Delphiscal.Utils.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS00.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS20.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS51.pas"/>
@@ -148,6 +129,14 @@
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS203.pas"/>
         <DCCReference Include="..\..\src\Calculos\IPI\DelphiFiscal.Calculos.IPI.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.IPI50.pas"/>
+        <DCCReference Include="..\..\src\Calculos\PIS\DelphiFiscal.Calculos.PIS.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.PIS01.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.PIS02.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.PIS03.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.COFINS01.pas"/>
+        <DCCReference Include="..\..\src\Calculos\COFINS\DelphiFiscal.Calculos.COFINS.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.COFINS02.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.COFINS03.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -6666,7 +6666,7 @@ object FrmMain: TFrmMain
     Top = 153
     Width = 1037
     Height = 433
-    ActivePage = TabSheet5
+    ActivePage = TabSheet7
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
@@ -6941,7 +6941,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular ICMS 00'
         TabOrder = 8
-        OnClick = btIcms00Click
       end
       object btIcms20: TButton
         Left = 503
@@ -6950,7 +6949,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular ICMS 20'
         TabOrder = 9
-        OnClick = btIcms20Click
       end
       object btIcms51: TButton
         Left = 750
@@ -6959,7 +6957,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular ICMS 51'
         TabOrder = 10
-        OnClick = btIcms51Click
       end
       object edAliqIcms: TEdit
         Left = 145
@@ -7125,7 +7122,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular ICMS 70'
         TabOrder = 1
-        OnClick = btIcms70Click
       end
       object GroupBox5: TGroupBox
         Left = 511
@@ -7184,7 +7180,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular ICMS 30'
         TabOrder = 3
-        OnClick = btIcms30Click
       end
       object GroupBox6: TGroupBox
         Left = 264
@@ -7271,7 +7266,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular ICMS 10'
         TabOrder = 5
-        OnClick = btIcms10Click
       end
       object edAliqST: TEdit
         Left = 145
@@ -7367,7 +7361,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular CSOSN 101'
         TabOrder = 2
-        OnClick = btIcms101Click
       end
       object GroupBox8: TGroupBox
         Left = 455
@@ -7440,7 +7433,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular ICMS 201'
         TabOrder = 4
-        OnClick = btIcms201Click
       end
       object GroupBox9: TGroupBox
         Left = 711
@@ -7485,7 +7477,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular ICMS 202 e 203'
         TabOrder = 6
-        OnClick = btIcms202_203Click
       end
     end
     object TabSheet5: TTabSheet
@@ -7587,7 +7578,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular IPI 50 AdValorem'
         TabOrder = 3
-        OnClick = btIpi50AdValoremClick
       end
       object btIpi50AliqEspecifica: TButton
         Left = 451
@@ -7596,7 +7586,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular IPI 50 Aliq. Espec'#237'fica'
         TabOrder = 4
-        OnClick = btIpi50AliqEspecificaClick
       end
       object edValorIpiUn: TEdit
         Left = 141
@@ -7738,7 +7727,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular PIS 01 ou 02'
         TabOrder = 5
-        OnClick = btPis0102Click
       end
       object btPis03: TButton
         Left = 459
@@ -7747,7 +7735,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular PIS 03'
         TabOrder = 6
-        OnClick = btPis03Click
       end
     end
     object TabSheet7: TTabSheet
@@ -7869,7 +7856,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular COFINS 01 ou 02'
         TabOrder = 5
-        OnClick = btCofins0102Click
       end
       object btCofins03: TButton
         Left = 467
@@ -7878,7 +7864,6 @@ object FrmMain: TFrmMain
         Height = 39
         Caption = 'Calcular COFINS 03'
         TabOrder = 6
-        OnClick = btCofins03Click
       end
     end
   end

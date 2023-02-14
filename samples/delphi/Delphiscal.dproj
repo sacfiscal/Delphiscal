@@ -120,12 +120,6 @@
         <DCCReference Include="..\..\src\Delphiscal.Icms.BaseST.pas"/>
         <DCCReference Include="..\..\src\Delphiscal.Icms.Valor.pas"/>
         <DCCReference Include="..\..\src\Delphiscal.Icms.Valor.ST.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Icms101.Intf.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Icms101.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Icms201.Intf.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Icms201.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Icms202_203.Intf.pas"/>
-        <DCCReference Include="..\..\src\Delphiscal.Icms202_203.pas"/>
         <DCCReference Include="..\..\src\Delphiscal.Ipi.Base.pas"/>
         <DCCReference Include="..\..\src\Delphiscal.Ipi50AdValorem.Intf.pas"/>
         <DCCReference Include="..\..\src\Delphiscal.Ipi50AdValorem.pas"/>
@@ -148,6 +142,12 @@
         <DCCReference Include="..\..\src\Calculos\DelphiFiscal.Calculos.Interfaces.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.CST.pas"/>
         <DCCReference Include="..\..\src\Calculos\DelphiFiscal.Calculos.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS101.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS201.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS202.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS203.pas"/>
+        <DCCReference Include="..\..\src\Calculos\IPI\DelphiFiscal.Calculos.IPI.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.IPI50.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

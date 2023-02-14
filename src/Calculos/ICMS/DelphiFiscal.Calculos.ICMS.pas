@@ -12,10 +12,6 @@ type
       FParent : iCalculo;
       FCST : iCST;
 
-      FValorProduto: Double;
-      FValorfrete: Double;
-      FValorSeguro: Double;
-      FDespesasAcessorias: Double;
       FValorIpi: Double;
       FValorDesconto: Double;
       FPercentualReducao: Double;
@@ -27,6 +23,8 @@ type
       FAliquotaICMSST : double;
       FPercentualReducaoBaseICMSST : double;
       FPercentualMVA : double;
+
+      FPercentualCreditoICMSSN : double;
     public
       constructor create(Parent : iCalculo);
       destructor destroy; override;
@@ -34,10 +32,6 @@ type
       function &End : iCalculo;
 
       function CST : iCST;
-      function ValorProduto(aValue : double) : iICMS;
-      function ValorFrete(aValue : double) : iICMS;
-      function ValorSeguro(aValue : double) : iICMS;
-      function ValorDespesasAcessorias(aValue : double) : iICMS;
       function ValorIPI(aValue : double) : iICMS; overload;
       function ValorIPI : double; overload;
       function ValorDescontos(aValue : double) : iICMS;
@@ -46,6 +40,8 @@ type
       function PercentualDiferimento : double; overload;
       function AliquotaICMS(aValue : double) : iICMS; overload;
       function AliquotaICMS : Double; overload;
+      function PercentualCreditoICMSSN(aValue : double) : iICMS; overload;
+      function PercentualCreditoICMSSN : double; overload;
       function BaseICMSProprio : double;
       function BaseICMSNormal : double;
       function BaseICMSReduzido : double;
@@ -101,9 +97,20 @@ begin
   Result:= FAliquotaICMS;
 end;
 
+function TDelphiFiscalICMS.PercentualCreditoICMSSN: double;
+begin
+  Result:= FPercentualCreditoICMSSN;
+end;
+
+function TDelphiFiscalICMS.PercentualCreditoICMSSN(aValue: double): iICMS;
+begin
+  Result:= Self;
+  FPercentualCreditoICMSSN:= aValue;
+end;
+
 function TDelphiFiscalICMS.BaseICMSNormal : double;
 begin
-  Result:= RoundABNT(FValorProduto + FValorfrete + FValorSeguro + FDespesasAcessorias + FValorIpi - FValorDesconto, 2);
+  Result:= RoundABNT(FParent.ValorProduto + FParent.Valorfrete + FParent.ValorSeguro + FParent.ValorDespesasAcessorias + FValorIpi - FValorDesconto, 2);
 end;
 
 function TDelphiFiscalICMS.BaseICMSProprio : double;
@@ -137,19 +144,6 @@ function TDelphiFiscalICMS.ValorDescontos(aValue: double): iICMS;
 begin
   Result:= self;
   FValorDesconto:= aValue;
-end;
-
-function TDelphiFiscalICMS.ValorDespesasAcessorias(
-  aValue: double): iICMS;
-begin
-  Result:= self;
-  FDespesasAcessorias:= aValue;
-end;
-
-function TDelphiFiscalICMS.ValorFrete(aValue: double): iICMS;
-begin
-  Result:= self;
-  FValorfrete:= aValue;
 end;
 
 function TDelphiFiscalICMS.ValorICMS: Double;
@@ -190,17 +184,17 @@ begin
   FPercentualReducao:= aValue;
 end;
 
-function TDelphiFiscalICMS.ValorProduto(aValue: double): iICMS;
-begin
-  Result:= self;
-  FValorProduto:= aValue;
-end;
-
-function TDelphiFiscalICMS.ValorSeguro(aValue: double): iICMS;
-begin
-  Result:= self;
-  FValorSeguro:= aValue;
-end;
+//function TDelphiFiscalICMS.ValorProduto(aValue: double): iICMS;
+//begin
+//  Result:= self;
+//  FValorProduto:= aValue;
+//end;
+//
+//function TDelphiFiscalICMS.ValorSeguro(aValue: double): iICMS;
+//begin
+//  Result:= self;
+//  FValorSeguro:= aValue;
+//end;
 
 end.
 

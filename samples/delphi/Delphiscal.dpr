@@ -11,12 +11,6 @@ uses
   Delphiscal.Icms.BaseST in '..\..\src\Delphiscal.Icms.BaseST.pas',
   Delphiscal.Icms.Valor in '..\..\src\Delphiscal.Icms.Valor.pas',
   Delphiscal.Icms.Valor.ST in '..\..\src\Delphiscal.Icms.Valor.ST.pas',
-  Delphiscal.Icms101.Intf in '..\..\src\Delphiscal.Icms101.Intf.pas',
-  Delphiscal.Icms101 in '..\..\src\Delphiscal.Icms101.pas',
-  Delphiscal.Icms201.Intf in '..\..\src\Delphiscal.Icms201.Intf.pas',
-  Delphiscal.Icms201 in '..\..\src\Delphiscal.Icms201.pas',
-  Delphiscal.Icms202_203.Intf in '..\..\src\Delphiscal.Icms202_203.Intf.pas',
-  Delphiscal.Icms202_203 in '..\..\src\Delphiscal.Icms202_203.pas',
   Delphiscal.Ipi.Base in '..\..\src\Delphiscal.Ipi.Base.pas',
   Delphiscal.Ipi50AdValorem.Intf in '..\..\src\Delphiscal.Ipi50AdValorem.Intf.pas',
   Delphiscal.Ipi50AdValorem in '..\..\src\Delphiscal.Ipi50AdValorem.pas',
@@ -38,7 +32,13 @@ uses
   DelphiFiscal.Calculos.ICMS in '..\..\src\Calculos\ICMS\DelphiFiscal.Calculos.ICMS.pas',
   DelphiFiscal.Calculos.Interfaces in '..\..\src\Calculos\DelphiFiscal.Calculos.Interfaces.pas',
   DelphiFiscal.CST in '..\..\src\Calculos\CST\DelphiFiscal.CST.pas',
-  DelphiFiscal.Calculos in '..\..\src\Calculos\DelphiFiscal.Calculos.pas';
+  DelphiFiscal.Calculos in '..\..\src\Calculos\DelphiFiscal.Calculos.pas',
+  DelphiFiscal.Impostos.CST.ICMS101 in '..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS101.pas',
+  DelphiFiscal.Impostos.CST.ICMS201 in '..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS201.pas',
+  DelphiFiscal.Impostos.CST.ICMS202 in '..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS202.pas',
+  DelphiFiscal.Impostos.CST.ICMS203 in '..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS203.pas',
+  DelphiFiscal.Calculos.IPI in '..\..\src\Calculos\IPI\DelphiFiscal.Calculos.IPI.pas',
+  DelphiFiscal.Impostos.CST.IPI50 in '..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.IPI50.pas';
 
 {$R *.res}
 begin

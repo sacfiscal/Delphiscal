@@ -6,17 +6,43 @@ type
   iST = interface;
   iICMS = interface;
   iCST = interface;
+  iIPI = interface;
   iICMS00 = interface;
   iICMS10 = interface;
   iICMS20 = interface;
   iICMS51 = interface;
   iICMS30 = interface;
   iICMS70 = interface;
+  iICMS101 = interface;
+  iICMS201 = interface;
+  iICMS202 = interface;
+  iICMS203 = interface;
+  iIPI50 = interface;
 
   iCalculo = interface
     ['{15AE0E74-C00A-41BC-8D42-ED45CE6D957B}']
+    function ValorProduto(aValue : double) : iCalculo; overload;
+    function ValorProduto : double; overload;
+    function ValorFrete(aValue : double) : iCalculo; overload;
+    function ValorFrete : double; overload;
+    function ValorSeguro(aValue : double) : iCalculo; overload;
+    function ValorSeguro : double; overload;
+    function ValorDespesasAcessorias(aValue : double) : iCalculo; overload;
+    function ValorDespesasAcessorias : double; overload;
     function ST : iST;
     function ICMS : iICMS;
+    function IPI : iIPI;
+  end;
+
+  iIPI = interface
+    ['{CDDA0893-A68C-47D7-B843-07645B56D36D}']
+    function AliquotaIPI(aValue : double) : iIPI; overload;
+    function AliquotaIPI : double; overload;
+    function ValorIPIPorUnidade(aValue : double) : iIPI; overload;
+    function ValorIPIPorUnidade : double; overload;
+    function QtdeIPITributada(aValue : double) : iIPI; overload;
+    function QtdeIPITributada : double; overload;
+    function &End : iCalculo;
   end;
 
   iST = interface
@@ -35,10 +61,6 @@ type
   iICMS = interface
     ['{3995FD99-145B-4F99-8E95-2172ED50248A}']
     function CST : iCST;
-    function ValorProduto(aValue : double) : iICMS;
-    function ValorFrete(aValue : double) : iICMS;
-    function ValorSeguro(aValue : double) : iICMS;
-    function ValorDespesasAcessorias(aValue : double) : iICMS;
     function ValorIPI(aValue : double) : iICMS; overload;
     function ValorIPI : double; overload;
     function ValorDescontos(aValue : double) : iICMS;
@@ -47,6 +69,8 @@ type
     function PercentualDiferimento : double; overload;
     function AliquotaICMS(aValue : double) : iICMS; overload;
     function AliquotaICMS : Double; overload;
+    function PercentualCreditoICMSSN(aValue : double) : iICMS; overload;
+    function PercentualCreditoICMSSN : double; overload;
     function ContemReducao(aValue : boolean) : iICMS; overload;
     function ContemReducao : boolean; overload;
     function BaseICMSProprio : double;
@@ -65,6 +89,11 @@ type
     function ICMS30 : iICMS30;
     function ICMS51 : iICMS51;
     function ICMS70 : iICMS70;
+    function ICMS101 : iICMS101;
+    function ICMS201 : iICMS201;
+    function ICMS202 : iICMS202;
+    function ICMS203 : iICMS203;
+    function IPI50 : iIPI50;
     function &End : iCalculo;
   end;
 
@@ -122,6 +151,49 @@ type
     function ValorIcmsDesonerado: Double;
     function ValorIcmsSTDesonerado : Double;
     Function &End : iCST;
+  end;
+
+  iICMS101 = interface
+    ['{E94DE381-C6C3-4387-AAE8-F0B48B40CB46}']
+    function BaseCreditoSN: Double;
+    function ValorCreditoSN: Double;
+    Function &End : iCST;
+  end;
+
+  iICMS201 = interface
+    ['{BAD353D6-EF40-489D-B9C0-D95F3C4B701B}']
+    function BaseCreditoSN: Double;
+    function ValorCreditoSN: Double;
+    function ValorBaseIcmsProprio: Double;
+    function ValorIcmsProprio: Double;
+    function ValorBaseIcmsST: Double;
+    function ValorIcmsST: Double;
+    Function &End : iCST;
+  end;
+
+  iICMS202 = interface
+    ['{C54D7F22-F573-4E6E-A80F-71344F49FC29}']
+    function ValorBaseIcmsProprio: Double;
+    function ValorIcmsProprio: Double;
+    function ValorBaseIcmsST: Double;
+    function ValorIcmsST: Double;
+    Function &End : iCST;
+  end;
+
+  iICMS203 = interface
+    ['{1D0F2F00-E93D-40CF-A0B9-E45744E65486}']
+    function ValorBaseIcmsProprio: Double;
+    function ValorIcmsProprio: Double;
+    function ValorBaseIcmsST: Double;
+    function ValorIcmsST: Double;
+    Function &End : iCST;
+  end;
+
+  iIPI50 = interface
+    ['{24BB6486-20AB-4AE1-B932-C753CEF023FB}']
+    function BaseIpi: Double;
+    function ValorIpi: Double;
+    function ValorIpiEspecifico: Double;
   end;
 
 implementation

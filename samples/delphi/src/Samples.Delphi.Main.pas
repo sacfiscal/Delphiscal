@@ -408,22 +408,28 @@ end;
 procedure TFrmMain.Button1Click(Sender: TObject);
 begin
   FImpostos
+   .ValorProduto(strtofloatdef(edValorProduto.Text,0))
+   .ValorFrete(strtofloatdef(edValorFrete.Text,0))
+   .ValorSeguro(strtofloatdef(edValorSeguro.Text,0))
+   .ValorDespesasAcessorias(strtofloatdef(edValorDespesas.Text,0))
    .ICMS
-     .ValorProduto(strtofloatdef(edValorProduto.Text,0))
-     .ValorFrete(strtofloatdef(edValorFrete.Text,0))
-     .ValorSeguro(strtofloatdef(edValorSeguro.Text,0))
-     .ValorDespesasAcessorias(strtofloatdef(edValorDespesas.Text,0))
      .ValorIPI(strtofloatdef(edValorIpi.Text,0))
      .ValorDescontos(strtofloatdef(edValorDesconto.Text,0))
      .PercentualReducao(strtofloatdef(edReducao.Text,0))
      .PercentualDiferimento(strtofloatdef(edDiferimento.Text,0))
      .AliquotaICMS(strtofloatdef(edAliqIcms.Text,0))
+     .PercentualCreditoICMSSN(strtofloatdef(edPercentualCreditoSN.Text,0))
      .ContemReducao(strtofloatdef(edReducao.Text,0) > 0)
    .&End
    .ST
      .AliquotaICMSST(strtofloatdef(edAliqST.Text,0))
      .PercentualMVA(strtofloatdef(edMVA.Text,0))
-     .PercentualReducaoBaseICMSST(strtofloatdef(edPercRedST.Text,0));
+     .PercentualReducaoBaseICMSST(strtofloatdef(edPercRedST.Text,0))
+   .&End
+   .IPI
+    .AliquotaIPI(strtofloatdef(edAliqIpi.Text,0))
+    .ValorIPIPorUnidade(strtofloatdef(edValorIpiUn.Text,0))
+    .QtdeIPITributada(strtofloatdef(edQtdeIpiTributada.Text,0));
 
   lbVICMS00.Caption:= FImpostos.ICMS.ValorICMS.ToString;
   lbVBC00.Caption  := FImpostos.ICMS.CST.ICMS00.BaseICMSProprio.ToString;
@@ -454,6 +460,21 @@ begin
   lbVBCST70.Caption:= FImpostos.ICMS.CST.ICMS70.ValorBaseIcmsST.ToString;
   lbVICMSST70.Caption:= FImpostos.ICMS.CST.ICMS70.ValorIcmsST.ToString;
   lbVICMSSTDeson70.Caption:= FImpostos.ICMS.CST.ICMS70.ValorIcmsSTDesonerado.ToString;
+
+  lbPCredSN101.Caption:= FImpostos.ICMS.PercentualCreditoICMSSN.ToString;
+  lbVcredSN101.Caption:= FImpostos.ICMS.CST.ICMS101.ValorCreditoSN.ToString;
+
+  lbPCredSN201.Caption:= FImpostos.ICMS.PercentualCreditoICMSSN.ToString;
+  lbVCredSN201.Caption:= FImpostos.ICMS.CST.ICMS201.ValorCreditoSN.ToString;
+  lbVBCST201.Caption  := FImpostos.ICMS.CST.ICMS201.ValorBaseIcmsST.ToString;
+  lbVICMSST201.Caption:= FImpostos.ICMS.CST.ICMS201.ValorIcmsST.ToString;
+
+  lbVBCST202.Caption  := FImpostos.ICMS.CST.ICMS202.ValorBaseIcmsST.ToString;
+  lbVICMSST202.Caption:= FImpostos.ICMS.CST.ICMS202.ValorIcmsST.ToString;
+
+  lbvBCIpi50av.Caption:= FImpostos.ICMS.CST.IPI50.BaseIpi.ToString;
+  lbVIPI50av.Caption:= FImpostos.ICMS.CST.IPI50.ValorIpi.ToString;
+  lbVipi50Especifico.Caption:= FImpostos.ICMS.CST.IPI50.ValorIpiEspecifico.ToString;
 end;
 
 procedure TFrmMain.FormCreate(Sender: TObject);

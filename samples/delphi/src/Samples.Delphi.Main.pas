@@ -56,9 +56,6 @@ type
     lbVICMSDIF: TLabel;
     Label19: TLabel;
     lbVICMS51: TLabel;
-    btIcms00: TButton;
-    btIcms20: TButton;
-    btIcms51: TButton;
     edAliqIcms: TEdit;
     edReducao: TEdit;
     edDiferimento: TEdit;
@@ -80,7 +77,6 @@ type
     Label25: TLabel;
     Label46: TLabel;
     Label48: TLabel;
-    btIcms70: TButton;
     GroupBox5: TGroupBox;
     Label27: TLabel;
     lbVBCST30: TLabel;
@@ -88,7 +84,6 @@ type
     lbVICMSST30: TLabel;
     Label31: TLabel;
     lbVICMSSTDeson30: TLabel;
-    btIcms30: TButton;
     GroupBox6: TGroupBox;
     Label33: TLabel;
     Label34: TLabel;
@@ -100,7 +95,6 @@ type
     lbVICMSST10: TLabel;
     Label44: TLabel;
     lbVICMSSTDeson10: TLabel;
-    btIcms10: TButton;
     edAliqST: TEdit;
     edPercRedST: TEdit;
     edMVA: TEdit;
@@ -115,13 +109,11 @@ type
     lbPCredSN101: TLabel;
     Label26: TLabel;
     lbVcredSN101: TLabel;
-    btIcms101: TButton;
     GroupBox8: TGroupBox;
     lbVBCST201: TLabel;
     lbVICMSST201: TLabel;
     Label45: TLabel;
     Label47: TLabel;
-    btIcms201: TButton;
     Label24: TLabel;
     lbPCredSN201: TLabel;
     Label30: TLabel;
@@ -131,7 +123,6 @@ type
     lbVICMSST202: TLabel;
     Label35: TLabel;
     Label36: TLabel;
-    btIcms202_203: TButton;
     Label28: TLabel;
     edAliqIpi: TEdit;
     GroupBox10: TGroupBox;
@@ -142,8 +133,6 @@ type
     GroupBox11: TGroupBox;
     Label54: TLabel;
     lbVipi50Especifico: TLabel;
-    btIpi50AdValorem: TButton;
-    btIpi50AliqEspecifica: TButton;
     Label42: TLabel;
     edValorIpiUn: TEdit;
     Label49: TLabel;
@@ -162,8 +151,6 @@ type
     GroupBox13: TGroupBox;
     Label58: TLabel;
     lbVPIS03: TLabel;
-    btPis0102: TButton;
-    btPis03: TButton;
     Label55: TLabel;
     edAliqCofins: TEdit;
     Label57: TLabel;
@@ -178,8 +165,6 @@ type
     GroupBox15: TGroupBox;
     Label64: TLabel;
     lbVCOFINS03: TLabel;
-    btCofins0102: TButton;
-    btCofins03: TButton;
     Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);

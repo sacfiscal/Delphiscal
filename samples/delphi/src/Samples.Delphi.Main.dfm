@@ -6666,7 +6666,7 @@ object FrmMain: TFrmMain
     Top = 153
     Width = 1037
     Height = 433
-    ActivePage = TabSheet7
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
@@ -6790,7 +6790,7 @@ object FrmMain: TFrmMain
         Width = 241
         Height = 289
         Caption = 'Icms00'
-        TabOrder = 11
+        TabOrder = 8
         object Label7: TLabel
           Left = 16
           Top = 37
@@ -6826,7 +6826,7 @@ object FrmMain: TFrmMain
         Width = 241
         Height = 289
         Caption = 'Icms20'
-        TabOrder = 12
+        TabOrder = 9
         object lbVICMS20: TLabel
           Left = 168
           Top = 125
@@ -6876,7 +6876,7 @@ object FrmMain: TFrmMain
         Width = 241
         Height = 286
         Caption = 'Icms51'
-        TabOrder = 13
+        TabOrder = 10
         object Label10: TLabel
           Left = 16
           Top = 34
@@ -6934,30 +6934,6 @@ object FrmMain: TFrmMain
           Caption = 'R$ 0,00'
         end
       end
-      object btIcms00: TButton
-        Left = 256
-        Top = 324
-        Width = 241
-        Height = 39
-        Caption = 'Calcular ICMS 00'
-        TabOrder = 8
-      end
-      object btIcms20: TButton
-        Left = 503
-        Top = 324
-        Width = 241
-        Height = 39
-        Caption = 'Calcular ICMS 20'
-        TabOrder = 9
-      end
-      object btIcms51: TButton
-        Left = 750
-        Top = 324
-        Width = 241
-        Height = 39
-        Caption = 'Calcular ICMS 51'
-        TabOrder = 10
-      end
       object edAliqIcms: TEdit
         Left = 145
         Top = 226
@@ -6995,7 +6971,7 @@ object FrmMain: TFrmMain
         Height = 23
         BiDiMode = bdRightToLeft
         ParentBiDiMode = False
-        TabOrder = 14
+        TabOrder = 11
         Text = '135,00'
       end
     end
@@ -7115,21 +7091,13 @@ object FrmMain: TFrmMain
           Caption = 'Valor Icms Desonerado (vICMSDeson):'
         end
       end
-      object btIcms70: TButton
-        Left = 758
-        Top = 364
-        Width = 241
-        Height = 39
-        Caption = 'Calcular ICMS 70'
-        TabOrder = 1
-      end
       object GroupBox5: TGroupBox
         Left = 511
         Top = 31
         Width = 241
         Height = 327
         Caption = 'Icms30'
-        TabOrder = 2
+        TabOrder = 1
         object Label27: TLabel
           Left = 9
           Top = 32
@@ -7173,21 +7141,13 @@ object FrmMain: TFrmMain
           Caption = 'R$ 0,00'
         end
       end
-      object btIcms30: TButton
-        Left = 511
-        Top = 364
-        Width = 241
-        Height = 39
-        Caption = 'Calcular ICMS 30'
-        TabOrder = 3
-      end
       object GroupBox6: TGroupBox
         Left = 264
         Top = 31
         Width = 241
         Height = 327
         Caption = 'Icms10'
-        TabOrder = 4
+        TabOrder = 2
         object Label33: TLabel
           Left = 9
           Top = 32
@@ -7259,14 +7219,6 @@ object FrmMain: TFrmMain
           Caption = 'R$ 0,00'
         end
       end
-      object btIcms10: TButton
-        Left = 264
-        Top = 364
-        Width = 241
-        Height = 39
-        Caption = 'Calcular ICMS 10'
-        TabOrder = 5
-      end
       object edAliqST: TEdit
         Left = 145
         Top = 34
@@ -7274,7 +7226,7 @@ object FrmMain: TFrmMain
         Height = 23
         BiDiMode = bdRightToLeft
         ParentBiDiMode = False
-        TabOrder = 6
+        TabOrder = 3
         Text = '18,00'
       end
       object edPercRedST: TEdit
@@ -7284,7 +7236,7 @@ object FrmMain: TFrmMain
         Height = 23
         BiDiMode = bdRightToLeft
         ParentBiDiMode = False
-        TabOrder = 7
+        TabOrder = 4
         Text = '10,00'
       end
       object edMVA: TEdit
@@ -7294,7 +7246,7 @@ object FrmMain: TFrmMain
         Height = 23
         BiDiMode = bdRightToLeft
         ParentBiDiMode = False
-        TabOrder = 8
+        TabOrder = 5
         Text = '40,65'
       end
     end
@@ -7354,21 +7306,13 @@ object FrmMain: TFrmMain
           Caption = 'R$ 0,00'
         end
       end
-      object btIcms101: TButton
-        Left = 240
-        Top = 364
-        Width = 185
-        Height = 39
-        Caption = 'Calcular CSOSN 101'
-        TabOrder = 2
-      end
       object GroupBox8: TGroupBox
         Left = 455
         Top = 33
         Width = 241
         Height = 324
         Caption = 'Csosn201'
-        TabOrder = 3
+        TabOrder = 2
         object lbVBCST201: TLabel
           Left = 169
           Top = 167
@@ -7426,21 +7370,13 @@ object FrmMain: TFrmMain
           Caption = 'R$ 0,00'
         end
       end
-      object btIcms201: TButton
-        Left = 455
-        Top = 363
-        Width = 241
-        Height = 39
-        Caption = 'Calcular ICMS 201'
-        TabOrder = 4
-      end
       object GroupBox9: TGroupBox
         Left = 711
         Top = 33
         Width = 241
         Height = 324
         Caption = 'Csosn 202 e 203'
-        TabOrder = 5
+        TabOrder = 3
         object lbVBCST202: TLabel
           Left = 177
           Top = 48
@@ -7469,14 +7405,6 @@ object FrmMain: TFrmMain
           Height = 15
           Caption = 'Valor Icms ST (vICMSST):'
         end
-      end
-      object btIcms202_203: TButton
-        Left = 711
-        Top = 363
-        Width = 241
-        Height = 39
-        Caption = 'Calcular ICMS 202 e 203'
-        TabOrder = 6
       end
     end
     object TabSheet5: TTabSheet
@@ -7571,22 +7499,6 @@ object FrmMain: TFrmMain
           Caption = 'R$ 0,00'
         end
       end
-      object btIpi50AdValorem: TButton
-        Left = 236
-        Top = 363
-        Width = 185
-        Height = 39
-        Caption = 'Calcular IPI 50 AdValorem'
-        TabOrder = 3
-      end
-      object btIpi50AliqEspecifica: TButton
-        Left = 451
-        Top = 363
-        Width = 241
-        Height = 39
-        Caption = 'Calcular IPI 50 Aliq. Espec'#237'fica'
-        TabOrder = 4
-      end
       object edValorIpiUn: TEdit
         Left = 141
         Top = 63
@@ -7594,7 +7506,7 @@ object FrmMain: TFrmMain
         Height = 23
         BiDiMode = bdRightToLeft
         ParentBiDiMode = False
-        TabOrder = 5
+        TabOrder = 3
         Text = '0,764'
       end
       object edQtdeIpiTributada: TEdit
@@ -7604,7 +7516,7 @@ object FrmMain: TFrmMain
         Height = 23
         BiDiMode = bdRightToLeft
         ParentBiDiMode = False
-        TabOrder = 6
+        TabOrder = 4
         Text = '15,00'
       end
     end
@@ -7720,22 +7632,6 @@ object FrmMain: TFrmMain
           Caption = 'R$ 0,00'
         end
       end
-      object btPis0102: TButton
-        Left = 244
-        Top = 361
-        Width = 185
-        Height = 39
-        Caption = 'Calcular PIS 01 ou 02'
-        TabOrder = 5
-      end
-      object btPis03: TButton
-        Left = 459
-        Top = 361
-        Width = 241
-        Height = 39
-        Caption = 'Calcular PIS 03'
-        TabOrder = 6
-      end
     end
     object TabSheet7: TTabSheet
       Caption = 'COFINS'
@@ -7848,22 +7744,6 @@ object FrmMain: TFrmMain
           Height = 15
           Caption = 'R$ 0,00'
         end
-      end
-      object btCofins0102: TButton
-        Left = 252
-        Top = 365
-        Width = 185
-        Height = 39
-        Caption = 'Calcular COFINS 01 ou 02'
-        TabOrder = 5
-      end
-      object btCofins03: TButton
-        Left = 467
-        Top = 365
-        Width = 241
-        Height = 39
-        Caption = 'Calcular COFINS 03'
-        TabOrder = 6
       end
     end
   end

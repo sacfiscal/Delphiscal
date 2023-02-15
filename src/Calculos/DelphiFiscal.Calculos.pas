@@ -13,6 +13,7 @@ type
       FValorSeguro : double;
       FValorDespesasAcessorias : double;
       FValorDesconto : double;
+      FQuantidade : double;
       FICSM : iICMS;
       FST : iST;
       FIPI : iIPI;
@@ -32,6 +33,8 @@ type
       function ValorDespesasAcessorias : double; overload;
       function ValorDescontos(aValue : double) : iCalculo; overload;
       function ValorDescontos : double; overload;
+      function Quantidade(aValue : double) : iCalculo; overload;
+      function Quantidade : double; overload;
       function ST : iST;
       function IPI : iIPI;
       function PIS : iPIS;
@@ -97,6 +100,17 @@ begin
   Result:= FPIS;
 end;
 
+function TDelphiFiscalCalculos.Quantidade: double;
+begin
+  Result:= FQuantidade;
+end;
+
+function TDelphiFiscalCalculos.Quantidade(aValue: double): iCalculo;
+begin
+  Result:= Self;
+  FQuantidade:= aValue;
+end;
+
 function TDelphiFiscalCalculos.ST: iST;
 begin
   if not Assigned(FST) then
@@ -141,7 +155,7 @@ end;
 
 function TDelphiFiscalCalculos.ValorProduto: double;
 begin
-  Result:= FValorProduto;
+  Result:= FValorProduto * FQuantidade;
 end;
 
 function TDelphiFiscalCalculos.ValorProduto(aValue: double): iCalculo;

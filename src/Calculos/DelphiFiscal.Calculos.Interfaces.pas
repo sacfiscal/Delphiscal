@@ -39,6 +39,8 @@ type
     function ValorDespesasAcessorias : double; overload;
     function ValorDescontos(aValue : double) : iCalculo; overload;
     function ValorDescontos : double; overload;
+    function Quantidade(aValue : double) : iCalculo; overload;
+    function Quantidade : double; overload;
     function ST : iST;
     function ICMS : iICMS;
     function IPI : iIPI;

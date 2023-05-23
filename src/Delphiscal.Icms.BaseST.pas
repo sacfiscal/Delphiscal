@@ -35,7 +35,7 @@ end;
 
 function TBaseIcmsST.CalcularBaseIcmsST: Double;
 begin
-  if FPercentualReducaoST > 0 then
+  if ContemReducaoST then
     Result := CalcularBaseReduzidaST
   else
     Result := CalcularBaseNormalST;

@@ -12,10 +12,10 @@ type
     function BaseCofins: Double;
     function ValorCofins: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
-      AAliquotaCofins: Double);
     class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
       AAliquotaCofins: Double): ICofins01_02;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+      AAliquotaCofins: Double);
     destructor Destroy; override;
   end;
 
@@ -23,9 +23,10 @@ implementation
 
 uses Delphiscal.Utils;
 
-function TCofins01_02.BaseCofins: Double;
+class function TCofins01_02.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+  AAliquotaCofins: Double): ICofins01_02;
 begin
-  Result := FBaseCofins.CalcularBaseCofins;
+  Result := TCofins01_02.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaCofins);
 end;
 
 constructor TCofins01_02.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
@@ -41,10 +42,9 @@ begin
   inherited;
 end;
 
-class function TCofins01_02.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
-  AAliquotaCofins: Double): ICofins01_02;
+function TCofins01_02.BaseCofins: Double;
 begin
-  Result := TCofins01_02.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaCofins);
+  Result := FBaseCofins.CalcularBaseCofins;
 end;
 
 function TCofins01_02.ValorCofins: Double;

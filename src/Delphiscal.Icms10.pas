@@ -17,16 +17,23 @@ type
     function ValorIcmsST: Double;
     function ValorIcmsSTDesonerado: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-      AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0);
     class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
       AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0): IIcms10;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
+      AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0);
     destructor Destroy; override;
   end;
 
 implementation
 
 uses Delphiscal.Utils;
+
+class function TIcms10.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
+  AAliquotaIcmsST, AMva, APercentualReducaoST, AValorIpi: Double): IIcms10;
+begin
+  Result := TIcms10.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
+                           AAliquotaIcmsST, AMva, APercentualReducaoST, AValorIpi);
+end;
 
 constructor TIcms10.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
   AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0);
@@ -44,13 +51,6 @@ begin
   FBaseIcmsST.Free;
   FIcmsST.Free;
   inherited;
-end;
-
-class function TIcms10.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-  AAliquotaIcmsST, AMva, APercentualReducaoST, AValorIpi: Double): IIcms10;
-begin
-  Result := TIcms10.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-    AAliquotaIcmsST, AMva, APercentualReducaoST, AValorIpi);
 end;
 
 function TIcms10.ValorBaseIcmsProprio: Double;

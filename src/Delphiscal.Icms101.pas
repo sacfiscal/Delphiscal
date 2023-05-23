@@ -12,10 +12,10 @@ type
     function BaseCreditoSN: Double;
     function ValorCreditoSN: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
-      APercentualCreditoSN: Double; const APercentualReducao: Double = 0);
     class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
       APercentualCreditoSN: Double; const APercentualReducao: Double = 0): IIcms101;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+      APercentualCreditoSN: Double; const APercentualReducao: Double = 0);
     destructor Destroy; override;
   end;
 
@@ -23,16 +23,18 @@ implementation
 
 uses Delphiscal.Utils;
 
-function TIcms101.BaseCreditoSN: Double;
+class function TIcms101.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+  APercentualCreditoSN, APercentualReducao: Double): IIcms101;
 begin
-  Result := RoundABNT(FBaseCreditoSN.CalcularBaseIcmsProprio, 2);
+  Result := TIcms101.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, APercentualCreditoSN,
+                            APercentualReducao);
 end;
 
 constructor TIcms101.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
   APercentualCreditoSN: Double; const APercentualReducao: Double = 0);
 begin
   FBaseCreditoSN := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
-    APercentualReducao);
+                                            APercentualReducao);
   FPercentualCreditoSN := APercentualCreditoSN;
 end;
 
@@ -42,11 +44,9 @@ begin
   inherited;
 end;
 
-class function TIcms101.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
-  APercentualCreditoSN, APercentualReducao: Double): IIcms101;
+function TIcms101.BaseCreditoSN: Double;
 begin
-  Result := TIcms101.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, APercentualCreditoSN,
-    APercentualReducao);
+  Result := RoundABNT(FBaseCreditoSN.CalcularBaseIcmsProprio, 2);
 end;
 
 function TIcms101.ValorCreditoSN: Double;

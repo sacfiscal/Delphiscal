@@ -17,10 +17,10 @@ type
     function ValorBaseIcmsST: Double;
     function ValorIcmsST: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-      APercentualReducao, AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0);
     class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
       APercentualReducao, AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0): IIcms202_203;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
+      APercentualReducao, AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0);
     destructor Destroy; override;
   end;
 
@@ -28,11 +28,18 @@ implementation
 
 uses Delphiscal.Utils;
 
+class function TIcms202_203.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+  AAliquotaIcms, APercentualReducao, AAliquotaIcmsST, AMva, APercentualReducaoST: Double): IIcms202_203;
+begin
+  Result := TIcms202_203.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
+                                APercentualReducao, AAliquotaIcmsST, AMva, APercentualReducaoST);
+end;
+
 constructor TIcms202_203.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
   AAliquotaIcms, APercentualReducao, AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0);
 begin
   FBaseIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
-    APercentualReducao);
+                                              APercentualReducao);
   FIcmsProprio := TValorIcms.Create(FBaseIcmsProprio, AAliquotaIcms);
   FBaseIcmsST := TBaseIcmsST.Create(FBaseIcmsProprio, AMva, APercentualReducaoST);
   FIcmsST := TValorIcmsST.Create(FBaseIcmsST, AAliquotaIcmsST, FIcmsProprio);
@@ -47,26 +54,19 @@ begin
   inherited;
 end;
 
-class function TIcms202_203.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
-  AAliquotaIcms, APercentualReducao, AAliquotaIcmsST, AMva, APercentualReducaoST: Double): IIcms202_203;
-begin
-  Result := TIcms202_203.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-    APercentualReducao, AAliquotaIcmsST, AMva, APercentualReducaoST);
-end;
-
 function TIcms202_203.ValorBaseIcmsProprio: Double;
 begin
   Result := FBaseIcmsProprio.CalcularBaseIcmsProprio;
 end;
 
-function TIcms202_203.ValorBaseIcmsST: Double;
-begin
-  Result := FBaseIcmsST.CalcularBaseIcmsST;
-end;
-
 function TIcms202_203.ValorIcmsProprio: Double;
 begin
   Result := RoundABNT(FIcmsProprio.GetValorIcms, 2);
+end;
+
+function TIcms202_203.ValorBaseIcmsST: Double;
+begin
+  Result := FBaseIcmsST.CalcularBaseIcmsST;
 end;
 
 function TIcms202_203.ValorIcmsST: Double;

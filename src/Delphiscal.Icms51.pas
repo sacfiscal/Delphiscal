@@ -15,10 +15,10 @@ type
     function ValorIcmsDiferido: Double;
     function ValorIcmsProprio: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
-      APercentualDiferimento: Double; const APercentualReducao: Double = 0; const AValorIpi: Double = 0);
     class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
       APercentualDiferimento: Double; const APercentualReducao: Double = 0; const AValorIpi: Double = 0): IIcms51;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
+      APercentualDiferimento: Double; const APercentualReducao: Double = 0; const AValorIpi: Double = 0);
     destructor Destroy; override;
   end;
 
@@ -26,16 +26,18 @@ implementation
 
 uses Delphiscal.Utils;
 
-function TIcms51.BaseIcmsProprio: Double;
+class function TIcms51.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
+  APercentualDiferimento, APercentualReducao, AValorIpi: Double): IIcms51;
 begin
-  Result := FBaseIcmsProprio.CalcularBaseIcmsProprio;
+  Result := TIcms51.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
+                           APercentualDiferimento, APercentualReducao, AValorIpi);
 end;
 
 constructor TIcms51.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
   APercentualDiferimento: Double; const APercentualReducao: Double = 0; const AValorIpi: Double = 0);
 begin
   FBaseIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
-    APercentualReducao, AValorIpi);
+                                              APercentualReducao, AValorIpi);
   FValorIcmsOperacao := TValorIcms.Create(FBaseIcmsProprio, AALiquotaICMS);
   FPercentualDiferimento := APercentualDiferimento;
 end;
@@ -47,21 +49,19 @@ begin
   inherited;
 end;
 
-class function TIcms51.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
-  APercentualDiferimento, APercentualReducao, AValorIpi: Double): IIcms51;
+function TIcms51.BaseIcmsProprio: Double;
 begin
-  Result := TIcms51.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
-    APercentualDiferimento, APercentualReducao, AValorIpi);
-end;
-
-function TIcms51.ValorIcmsDiferido: Double;
-begin
-  Result := RoundABNT(FValorIcmsOperacao.GetValorIcms * (FPercentualDiferimento / 100), 2);
+  Result := FBaseIcmsProprio.CalcularBaseIcmsProprio;
 end;
 
 function TIcms51.ValorIcmsOperacao: Double;
 begin
   Result := RoundABNT(FValorIcmsOperacao.GetValorIcms, 2);
+end;
+
+function TIcms51.ValorIcmsDiferido: Double;
+begin
+  Result := RoundABNT(FValorIcmsOperacao.GetValorIcms * (FPercentualDiferimento / 100), 2);
 end;
 
 function TIcms51.ValorIcmsProprio: Double;

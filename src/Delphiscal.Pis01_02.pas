@@ -12,8 +12,8 @@ type
     function BasePis: Double;
     function ValorPis: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis: Double);
     class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis: Double): IPis01_02;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis: Double);
     destructor Destroy; override;
   end;
 
@@ -21,9 +21,10 @@ implementation
 
 uses Delphiscal.Utils;
 
-function TPis01_02.BasePis: Double;
+class function TPis01_02.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
+  AAliquotaPis: Double): IPis01_02;
 begin
-  Result := FBasePis.CalcularBasePis;
+  Result := TPis01_02.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis);
 end;
 
 constructor TPis01_02.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
@@ -39,10 +40,9 @@ begin
   inherited;
 end;
 
-class function TPis01_02.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
-  AAliquotaPis: Double): IPis01_02;
+function TPis01_02.BasePis: Double;
 begin
-  Result := TPis01_02.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaPis);
+  Result := FBasePis.CalcularBasePis;
 end;
 
 function TPis01_02.ValorPis: Double;

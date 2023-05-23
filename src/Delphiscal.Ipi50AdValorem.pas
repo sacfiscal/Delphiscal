@@ -12,8 +12,8 @@ type
     function BaseIpi: Double;
     function ValorIpi: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AAliquotaIpi: Double);
     class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AAliquotaIpi: Double): IIpi50AdValorem;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AAliquotaIpi: Double);
     destructor Destroy; override;
   end;
 
@@ -21,15 +21,15 @@ implementation
 
 uses Delphiscal.Utils;
 
+class function TIpi50AdValorem.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AAliquotaIpi: Double): IIpi50AdValorem;
+begin
+  Result := TIpi50AdValorem.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AAliquotaIpi);
+end;
+
 constructor TIpi50AdValorem.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AAliquotaIpi: Double);
 begin
   FBaseIpi := TBaseIpi.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias);
   FAliquotaIpi := AAliquotaIpi;
-end;
-
-function TIpi50AdValorem.BaseIpi: Double;
-begin
-  Result := FBaseIpi.CalcularBaseIpi;
 end;
 
 destructor TIpi50AdValorem.Destroy;
@@ -38,9 +38,9 @@ begin
   inherited;
 end;
 
-class function TIpi50AdValorem.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AAliquotaIpi: Double): IIpi50AdValorem;
+function TIpi50AdValorem.BaseIpi: Double;
 begin
-  Result := TIpi50AdValorem.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AAliquotaIpi);
+  Result := FBaseIpi.CalcularBaseIpi;
 end;
 
 function TIpi50AdValorem.ValorIpi: Double;

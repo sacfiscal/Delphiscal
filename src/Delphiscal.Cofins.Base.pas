@@ -18,7 +18,7 @@ type
 
 implementation
 
-uses acbrutil.math;
+uses Delphiscal.Utils;
 
 constructor TBaseCofins.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto: Currency; const AValorIcmsProprio: Currency = 0);
 begin

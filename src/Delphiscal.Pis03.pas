@@ -2,12 +2,14 @@ unit Delphiscal.Pis03;
 
 interface
 
-uses Delphiscal.Pis03.Intf;
+uses
+  Delphiscal.Pis03.Intf;
 
 type
-  TPis03 = class(TInterfacedObject, IPis03)
+  TPis03 = class(TInterfacedObject,
+                 IPis03)
   private
-    FQuantidadeTributada: Double;
+    FQuantidadeTributada  : Double;
     FValorUnidadeTributada: Double;
     function ValorPis: Double;
     function QuantidadeTributada(const AValue: Double): IPis03;
@@ -20,7 +22,8 @@ type
 
 implementation
 
-uses Delphiscal.Utils;
+uses
+  Delphiscal.Utils;
 
 class function TPis03.New: IPis03;
 begin
@@ -34,7 +37,7 @@ end;
 
 constructor TPis03.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double);
 begin
-  FQuantidadeTributada := AQuantidadeTributada;
+  FQuantidadeTributada   := AQuantidadeTributada;
   FValorUnidadeTributada := AValorPorUnidadeTributada;
 end;
 
@@ -46,13 +49,13 @@ end;
 function TPis03.QuantidadeTributada(const AValue: Double): IPis03;
 begin
   FQuantidadeTributada := AValue;
-  Result := Self;
+  Result               := Self;
 end;
 
 function TPis03.ValorPorUnidadeTributada(const AValue: Double): IPis03;
 begin
   FValorUnidadeTributada := AValue;
-  Result := Self;
+  Result                 := Self;
 end;
 
 end.

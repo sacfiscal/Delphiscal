@@ -4,7 +4,7 @@ interface
 
 type
   IIcms70 = interface
-    ['{D06DEF24-9FAD-4962-A059-60E0598E7804}']
+    [ '{D06DEF24-9FAD-4962-A059-60E0598E7804}' ]
     function ValorBaseReduzidaIcmsProprio: Double;
     function ValorIcmsProprio: Double;
     function ValorBaseIcmsST: Double;

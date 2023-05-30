@@ -258,17 +258,18 @@ end;
 
 procedure TFrmMain.btCofins03Click(Sender: TObject);
 begin
-  lbVCOFINS03.Caption := TCofins03.New
-    .QuantidadeTributada(StrToFloatDef(edQtdeCofinsUn.Text, 0))
-    .ValorPorUnidadeTributada(StrToFloatDef(edValorCofinsUn.Text, 0))
-    .ValorCofins.ToString;
+  lbVCOFINS03.Caption := TCofins03{}
+    .New{}
+    .QuantidadeTributada(StrToFloatDef(edQtdeCofinsUn.Text, 0)){}
+    .ValorPorUnidadeTributada(StrToFloatDef(edValorCofinsUn.Text, 0)).ValorCofins.ToString;
 end;
 
 procedure TFrmMain.btIcms00Click(Sender: TObject);
 var
   LIcms00: IIcms00;
 begin
-  LIcms00 := TIcms00.Create({}
+  LIcms00 := TIcms00{}
+    .New({}
     StrToFloatDef(edValorProduto.Text, 0), {}
     StrToFloatDef(edValorFrete.Text, 0), {}
     StrToFloatDef(edValorSeguro.Text, 0), {}
@@ -285,7 +286,7 @@ procedure TFrmMain.btIcms10Click(Sender: TObject);
 var
   LIcms10: IIcms10;
 begin
-  LIcms10 := TIcms10.Create({}
+  LIcms10 := TIcms10.new.Create({}
     StrToFloatDef(edValorProduto.Text, 0), {}
     StrToFloatDef(edValorFrete.Text, 0), {}
     StrToFloatDef(edValorSeguro.Text, 0), {}
@@ -399,9 +400,7 @@ end;
 
 procedure TFrmMain.btIpi50AliqEspecificaClick(Sender: TObject);
 begin
-  lbVipi50Especifico.Caption := TIpi50Especifico.New
-    .QuantidadeTributada(StrToFloatDef(edQtdeIpiTributada.Text, 0))
-    .ValorPorUnidadeTributada(StrToFloatDef(edValorIpiUn.Text, 0))
+  lbVipi50Especifico.Caption := TIpi50Especifico.New.QuantidadeTributada(StrToFloatDef(edQtdeIpiTributada.Text, 0)).ValorPorUnidadeTributada(StrToFloatDef(edValorIpiUn.Text, 0))
     .ValorIpi.ToString;
 end;
 
@@ -423,10 +422,7 @@ end;
 
 procedure TFrmMain.btPis03Click(Sender: TObject);
 begin
-  lbVPIS03.Caption := TPis03.New
-    .QuantidadeTributada(StrToFloatDef(edQtdePisUn.Text, 0))
-    .ValorPorUnidadeTributada(StrToFloatDef(edValorPisUn.Text, 0))
-    .ValorPis.ToString;
+  lbVPIS03.Caption := TPis03.New.QuantidadeTributada(StrToFloatDef(edQtdePisUn.Text, 0)).ValorPorUnidadeTributada(StrToFloatDef(edValorPisUn.Text, 0)).ValorPis.ToString;
 end;
 
 procedure TFrmMain.btIcms101Click(Sender: TObject);

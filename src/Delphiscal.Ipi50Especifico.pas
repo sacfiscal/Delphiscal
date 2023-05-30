@@ -2,12 +2,14 @@ unit Delphiscal.Ipi50Especifico;
 
 interface
 
-uses Delphiscal.Ipi50Especifico.Intf;
+uses
+  Delphiscal.Ipi50Especifico.Intf;
 
 type
-  TIpi50Especifico = class(TInterfacedObject, IIpi50Especifico)
+  TIpi50Especifico = class(TInterfacedObject,
+                           IIpi50Especifico)
   private
-    FQuantidadeTributada: Double;
+    FQuantidadeTributada  : Double;
     FValorUnidadeTributada: Double;
     function ValorIpi: Double;
     function QuantidadeTributada(const AValue: Double): IIpi50Especifico;
@@ -20,7 +22,8 @@ type
 
 implementation
 
-uses Delphiscal.Utils;
+uses
+  Delphiscal.Utils;
 
 class function TIpi50Especifico.New: IIpi50Especifico;
 begin
@@ -34,7 +37,7 @@ end;
 
 constructor TIpi50Especifico.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double);
 begin
-  FQuantidadeTributada := AQuantidadeTributada;
+  FQuantidadeTributada   := AQuantidadeTributada;
   FValorUnidadeTributada := AValorPorUnidadeTributada;
 end;
 
@@ -46,13 +49,13 @@ end;
 function TIpi50Especifico.QuantidadeTributada(const AValue: Double): IIpi50Especifico;
 begin
   FQuantidadeTributada := AValue;
-  Result := Self;
+  Result               := Self;
 end;
 
 function TIpi50Especifico.ValorPorUnidadeTributada(const AValue: Double): IIpi50Especifico;
 begin
   FValorUnidadeTributada := AValue;
-  Result := Self;
+  Result                 := Self;
 end;
 
 end.

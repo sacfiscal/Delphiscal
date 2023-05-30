@@ -2,41 +2,42 @@ unit Delphiscal.Icms20;
 
 interface
 
-uses Delphiscal.Icms.BaseProprio, Delphiscal.Icms.Valor, Delphiscal.Icms20.Intf;
+uses
+  Delphiscal.Icms.BaseProprio,
+  Delphiscal.Icms.Valor,
+  Delphiscal.Icms20.Intf;
 
 type
-  TIcms20 = class(TInterfacedObject, IIcms20)
+  TIcms20 = class(TInterfacedObject,
+                  IIcms20)
   private
     FBaseReduzidaIcmsProprio: TBaseIcmsProprio;
-    FValorIcms: TValorIcms;
+    FValorIcms              : TValorIcms;
     function BaseReduzidaIcmsProprio: Double;
     function ValorIcmsProprio: Double;
     function ValorIcmsDesonerado: Double;
   public
-    class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-                       APercentualReducao: Double; const AValorIpi: Double = 0): IIcms20;
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-                       APercentualReducao: Double; const AValorIpi: Double = 0);
+    class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao: Double;
+      const AValorIpi: Double = 0): IIcms20;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao: Double; const AValorIpi: Double = 0);
     destructor Destroy; override;
   end;
 
 implementation
 
-uses Delphiscal.Utils;
+uses
+  Delphiscal.Utils;
 
-class function TIcms20.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-  APercentualReducao, AValorIpi: Double): IIcms20;
+class function TIcms20.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao, AValorIpi: Double): IIcms20;
 begin
-  Result := TIcms20.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-                           APercentualReducao, AValorIpi);
+  Result := TIcms20.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao, AValorIpi);
 end;
 
-constructor TIcms20.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-  APercentualReducao: Double; const AValorIpi: Double = 0);
+constructor TIcms20.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao: Double;
+  const AValorIpi: Double = 0);
 begin
-  FBaseReduzidaIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias,
-                                                      AValorDesconto, APercentualReducao, AValorIpi);
-  FValorIcms := TValorIcms.Create(FBaseReduzidaIcmsProprio, AAliquotaIcms);
+  FBaseReduzidaIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, APercentualReducao, AValorIpi);
+  FValorIcms               := TValorIcms.Create(FBaseReduzidaIcmsProprio, AAliquotaIcms);
 end;
 
 destructor TIcms20.Destroy;
@@ -61,7 +62,7 @@ var
   LalorIcmsNormal: Double;
 begin
   LalorIcmsNormal := FValorIcms.CalcularValorNormalIcms;
-  Result := RoundABNT(LalorIcmsNormal - FValorIcms.GetValorIcms, 2);
+  Result          := RoundABNT(LalorIcmsNormal - FValorIcms.GetValorIcms, 2);
 end;
 
 end.

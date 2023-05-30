@@ -2,16 +2,21 @@ unit Delphiscal.Icms201;
 
 interface
 
-uses Delphiscal.Icms.BaseProprio, Delphiscal.Icms.Valor, Delphiscal.Icms.BaseST, Delphiscal.Icms.Valor.ST,
+uses
+  Delphiscal.Icms.BaseProprio,
+  Delphiscal.Icms.Valor,
+  Delphiscal.Icms.BaseST,
+  Delphiscal.Icms.Valor.ST,
   Delphiscal.Icms201.Intf;
 
 type
-  TIcms201 = class(TInterfacedObject, IIcms201)
+  TIcms201 = class(TInterfacedObject,
+                   IIcms201)
   private
-    FBaseIcmsProprio: TBaseIcmsProprio;
-    FIcmsProprio: TValorIcms;
-    FBaseIcmsST: TBaseIcmsST;
-    FIcmsST: TValorIcmsST;
+    FBaseIcmsProprio    : TBaseIcmsProprio;
+    FIcmsProprio        : TValorIcms;
+    FBaseIcmsST         : TBaseIcmsST;
+    FIcmsST             : TValorIcmsST;
     FPercentualCreditoSN: Double;
     function ValorBaseIcmsProprio: Double;
     function ValorIcmsProprio: Double;
@@ -19,32 +24,32 @@ type
     function ValorIcmsST: Double;
     function ValorCreditoSN: Double;
   public
-    class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-      APercentualReducao, APercentualCreditoSN, AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0): IIcms201;
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-      APercentualReducao, APercentualCreditoSN, AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0);
+    class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao, APercentualCreditoSN,
+      AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0): IIcms201;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao, APercentualCreditoSN,
+      AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0);
     destructor Destroy; override;
   end;
 
 implementation
 
-uses Delphiscal.Utils;
+uses
+  Delphiscal.Utils;
 
-class function TIcms201.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-  APercentualReducao, APercentualCreditoSN, AAliquotaIcmsST, AMva, APercentualReducaoST: Double): IIcms201;
+class function TIcms201.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao, APercentualCreditoSN,
+  AAliquotaIcmsST, AMva, APercentualReducaoST: Double): IIcms201;
 begin
-  Result := TIcms201.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-                            APercentualReducao, APercentualCreditoSN, AAliquotaIcmsST, AMva, APercentualReducaoST);
+  Result := TIcms201.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao, APercentualCreditoSN, AAliquotaIcmsST,
+    AMva, APercentualReducaoST);
 end;
 
-constructor TIcms201.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-  APercentualReducao, APercentualCreditoSN, AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0);
+constructor TIcms201.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, APercentualReducao, APercentualCreditoSN,
+  AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0);
 begin
-  FBaseIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
-                                              APercentualReducao);
-  FIcmsProprio := TValorIcms.Create(FBaseIcmsProprio, AAliquotaIcms);
-  FBaseIcmsST := TBaseIcmsST.Create(FBaseIcmsProprio, AMva, APercentualReducaoST);
-  FIcmsST := TValorIcmsST.Create(FBaseIcmsST, AAliquotaIcmsST, FIcmsProprio);
+  FBaseIcmsProprio     := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, APercentualReducao);
+  FIcmsProprio         := TValorIcms.Create(FBaseIcmsProprio, AAliquotaIcms);
+  FBaseIcmsST          := TBaseIcmsST.Create(FBaseIcmsProprio, AMva, APercentualReducaoST);
+  FIcmsST              := TValorIcmsST.Create(FBaseIcmsST, AAliquotaIcmsST, FIcmsProprio);
   FPercentualCreditoSN := APercentualCreditoSN;
 end;
 

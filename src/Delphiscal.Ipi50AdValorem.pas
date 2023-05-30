@@ -2,12 +2,15 @@ unit Delphiscal.Ipi50AdValorem;
 
 interface
 
-uses Delphiscal.Ipi.Base, Delphiscal.Ipi50AdValorem.Intf;
+uses
+  Delphiscal.Ipi.Base,
+  Delphiscal.Ipi50AdValorem.Intf;
 
 type
-  TIpi50AdValorem = class(TInterfacedObject, IIpi50AdValorem)
+  TIpi50AdValorem = class(TInterfacedObject,
+                          IIpi50AdValorem)
   private
-    FBaseIpi: TBaseIpi;
+    FBaseIpi    : TBaseIpi;
     FAliquotaIpi: Double;
     function BaseIpi: Double;
     function ValorIpi: Double;
@@ -19,7 +22,8 @@ type
 
 implementation
 
-uses Delphiscal.Utils;
+uses
+  Delphiscal.Utils;
 
 class function TIpi50AdValorem.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AAliquotaIpi: Double): IIpi50AdValorem;
 begin
@@ -28,7 +32,7 @@ end;
 
 constructor TIpi50AdValorem.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AAliquotaIpi: Double);
 begin
-  FBaseIpi := TBaseIpi.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias);
+  FBaseIpi     := TBaseIpi.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias);
   FAliquotaIpi := AAliquotaIpi;
 end;
 

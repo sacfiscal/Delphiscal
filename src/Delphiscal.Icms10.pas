@@ -2,46 +2,52 @@ unit Delphiscal.Icms10;
 
 interface
 
-uses Delphiscal.Icms.BaseProprio, Delphiscal.Icms.Valor, Delphiscal.Icms.BaseST, Delphiscal.Icms.Valor.ST, Delphiscal.Icms10.Intf;
+uses
+  Delphiscal.Icms.BaseProprio,
+  Delphiscal.Icms.Valor,
+  Delphiscal.Icms.BaseST,
+  Delphiscal.Icms.Valor.ST,
+  Delphiscal.Icms10.Intf;
 
 type
-  TIcms10 = class(TInterfacedObject, IIcms10)
+  TIcms10 = class(TInterfacedObject,
+                  IIcms10)
   private
     FBaseIcmsProprio: TBaseIcmsProprio;
-    FIcmsProprio: TValorIcms;
-    FBaseIcmsST: TBaseIcmsST;
-    FIcmsST: TValorIcmsST;
+    FIcmsProprio    : TValorIcms;
+    FBaseIcmsST     : TBaseIcmsST;
+    FIcmsST         : TValorIcmsST;
     function ValorBaseIcmsProprio: Double;
     function ValorIcmsProprio: Double;
     function ValorBaseIcmsST: Double;
     function ValorIcmsST: Double;
     function ValorIcmsSTDesonerado: Double;
   public
-    class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-      AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0): IIcms10;
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-      AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0);
+    class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, AAliquotaIcmsST, AMva: Double;
+      const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0): IIcms10;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, AAliquotaIcmsST, AMva: Double;
+      const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0);
     destructor Destroy; override;
   end;
 
 implementation
 
-uses Delphiscal.Utils;
+uses
+  Delphiscal.Utils;
 
-class function TIcms10.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-  AAliquotaIcmsST, AMva, APercentualReducaoST, AValorIpi: Double): IIcms10;
+class function TIcms10.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, AAliquotaIcmsST, AMva, APercentualReducaoST,
+  AValorIpi: Double): IIcms10;
 begin
-  Result := TIcms10.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-                           AAliquotaIcmsST, AMva, APercentualReducaoST, AValorIpi);
+  Result := TIcms10.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, AAliquotaIcmsST, AMva, APercentualReducaoST, AValorIpi);
 end;
 
-constructor TIcms10.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms,
-  AAliquotaIcmsST, AMva: Double; const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0);
+constructor TIcms10.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AAliquotaIcms, AAliquotaIcmsST, AMva: Double;
+  const APercentualReducaoST: Double = 0; const AValorIpi: Double = 0);
 begin
   FBaseIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto);
-  FIcmsProprio := TValorIcms.Create(FBaseIcmsProprio, AAliquotaIcms);
-  FBaseIcmsST := TBaseIcmsST.Create(FBaseIcmsProprio, AMva, APercentualReducaoST, AValorIpi);
-  FIcmsST := TValorIcmsST.Create(FBaseIcmsST, AAliquotaIcmsST, FIcmsProprio);
+  FIcmsProprio     := TValorIcms.Create(FBaseIcmsProprio, AAliquotaIcms);
+  FBaseIcmsST      := TBaseIcmsST.Create(FBaseIcmsProprio, AMva, APercentualReducaoST, AValorIpi);
+  FIcmsST          := TValorIcmsST.Create(FBaseIcmsST, AAliquotaIcmsST, FIcmsProprio);
 end;
 
 destructor TIcms10.Destroy;
@@ -78,7 +84,7 @@ var
   LValorIcmsStNormal: Double;
 begin
   LValorIcmsStNormal := FIcmsST.CalcularValorNormalIcmsST;
-  Result := RoundABNT(LValorIcmsStNormal - FIcmsST.CalcularValorIcmsST, 2);
+  Result             := RoundABNT(LValorIcmsStNormal - FIcmsST.CalcularValorIcmsST, 2);
 end;
 
 end.

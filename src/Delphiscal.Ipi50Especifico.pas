@@ -13,19 +13,18 @@ type
     function QuantidadeTributada(const AValue: Double): IIpi50Especifico;
     function ValorPorUnidadeTributada(const AValue: Double): IIpi50Especifico;
   public
-    constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double); overload;
-    class function New(const AQuantidadeTributada, AValorPorUnidadeTributada: Double): IIpi50Especifico; overload;
     class function New: IIpi50Especifico; overload;
+    class function New(const AQuantidadeTributada, AValorPorUnidadeTributada: Double): IIpi50Especifico; overload;
+    constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double); overload;
   end;
 
 implementation
 
 uses Delphiscal.Utils;
 
-constructor TIpi50Especifico.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double);
+class function TIpi50Especifico.New: IIpi50Especifico;
 begin
-  FQuantidadeTributada := AQuantidadeTributada;
-  FValorUnidadeTributada := AValorPorUnidadeTributada;
+  Result := TIpi50Especifico.Create;
 end;
 
 class function TIpi50Especifico.New(const AQuantidadeTributada, AValorPorUnidadeTributada: Double): IIpi50Especifico;
@@ -33,9 +32,10 @@ begin
   Result := TIpi50Especifico.Create(AQuantidadeTributada, AValorPorUnidadeTributada);
 end;
 
-class function TIpi50Especifico.New: IIpi50Especifico;
+constructor TIpi50Especifico.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double);
 begin
-  Result := TIpi50Especifico.Create;
+  FQuantidadeTributada := AQuantidadeTributada;
+  FValorUnidadeTributada := AValorPorUnidadeTributada;
 end;
 
 function TIpi50Especifico.ValorIpi: Double;

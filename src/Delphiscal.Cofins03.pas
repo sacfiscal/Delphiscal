@@ -13,19 +13,18 @@ type
     function QuantidadeTributada(const AValue: Double): ICofins03;
     function ValorPorUnidadeTributada(const AValue: Double): ICofins03;
   public
-    constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double); overload;
-    class function New(const AQuantidadeTributada, AValorPorUnidadeTributada: Double): ICofins03; overload;
     class function New: ICofins03; overload;
+    class function New(const AQuantidadeTributada, AValorPorUnidadeTributada: Double): ICofins03; overload;
+    constructor Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double); overload;
   end;
 
 implementation
 
 uses Delphiscal.Utils;
 
-constructor TCofins03.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double);
+class function TCofins03.New: ICofins03;
 begin
-  FQuantidadeTributada := AQuantidadeTributada;
-  FValorUnidadeTributada := AValorPorUnidadeTributada;
+  Result := TCofins03.Create;
 end;
 
 class function TCofins03.New(const AQuantidadeTributada, AValorPorUnidadeTributada: Double): ICofins03;
@@ -33,9 +32,10 @@ begin
   Result := TCofins03.Create(AQuantidadeTributada, AValorPorUnidadeTributada);
 end;
 
-class function TCofins03.New: ICofins03;
+constructor TCofins03.Create(const AQuantidadeTributada, AValorPorUnidadeTributada: Double);
 begin
-  Result := TCofins03.Create;
+  FQuantidadeTributada := AQuantidadeTributada;
+  FValorUnidadeTributada := AValorPorUnidadeTributada;
 end;
 
 function TCofins03.ValorCofins: Double;

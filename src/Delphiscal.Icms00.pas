@@ -12,10 +12,10 @@ type
     function BaseIcmsProprio: Double;
     function ValorIcmsProprio: Double;
   public
-    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS: Double;
-      const AValorIpi: Double = 0);
     class function New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS: Double;
-      const AValorIpi: Double = 0): IIcms00;
+                       const AValorIpi: Double = 0): IIcms00;
+    constructor Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS: Double;
+                       const AValorIpi: Double = 0);
     destructor Destroy; override;
   end;
 
@@ -23,16 +23,18 @@ implementation
 
 uses Delphiscal.Utils;
 
-function TIcms00.BaseIcmsProprio: Double;
+class function TIcms00.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
+  AValorIpi: Double): IIcms00;
 begin
-  Result := RoundABNT(FBaseIcmsProprio.CalcularBaseIcmsProprio, 2);
+  Result := TIcms00.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
+                           AValorIpi);
 end;
 
 constructor TIcms00.Create(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto,
   AALiquotaICMS: Double; const AValorIpi: Double = 0);
 begin
   FBaseIcmsProprio := TBaseIcmsProprio.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, 0,
-    AValorIpi);
+                                              AValorIpi);
   FValorIcms := TValorIcms.Create(FBaseIcmsProprio, AALiquotaICMS);
 end;
 
@@ -43,11 +45,9 @@ begin
   inherited;
 end;
 
-class function TIcms00.New(const AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
-  AValorIpi: Double): IIcms00;
+function TIcms00.BaseIcmsProprio: Double;
 begin
-  Result := TIcms00.Create(AValorProduto, AValorFrete, AValorSeguro, ADespesasAcessorias, AValorDesconto, AALiquotaICMS,
-    AValorIpi);
+  Result := RoundABNT(FBaseIcmsProprio.CalcularBaseIcmsProprio, 2);
 end;
 
 function TIcms00.ValorIcmsProprio: Double;

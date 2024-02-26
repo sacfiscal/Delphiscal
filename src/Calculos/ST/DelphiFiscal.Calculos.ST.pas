@@ -3,13 +3,14 @@ unit DelphiFiscal.Calculos.ST;
 interface
 
 uses
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.Controller.Interfaces,
+  DelphiFiscal.Calculos.ST.Interfaces;
 
 type
   TDelphiFiscalST = class(TInterfacedObject, iST)
     private
       [weak]
-      FParent : iCalculo;
+      FParent : iController;
       FAliquotaICMSST : double;
       FPercentualReducaoBaseICMSST : double;
       FPercentualMVA : double;
@@ -21,9 +22,9 @@ type
       function CalcularBaseNormalSTCST: Double;
       function CalcularBaseReduzidaSTCST: Double;
     public
-      constructor create(Parent : iCalculo);
+      constructor create(Parent : iController);
       destructor destroy; override;
-      class function New(Parent : iCalculo) : iST;
+      class function New(Parent : iController) : iST;
       function AliquotaICMSST(aValue : double) : iST; overload;
       function AliquotaICMSST : double; overload;
       function PercentualReducaoBaseICMSST(aValue : double) : iST;
@@ -32,7 +33,7 @@ type
       function BaseICMSSTCST : double;
       function ValorICMSSTProprio : double;
       function ValorICMSST : double;
-      function &End : iCalculo;
+      function &End : iController;
   end;
 
 implementation
@@ -41,12 +42,12 @@ implementation
 
 uses Delphiscal.Utils;
 
-function TDelphiFiscalST.&End: iCalculo;
+function TDelphiFiscalST.&End: iController;
 begin
   Result:= FParent;
 end;
 
-constructor TDelphiFiscalST.create(Parent : iCalculo);
+constructor TDelphiFiscalST.create(Parent : iController);
 begin
   FParent:= Parent;
 end;
@@ -57,7 +58,7 @@ begin
   inherited;
 end;
 
-class function TDelphiFiscalST.New(Parent: iCalculo): iST;
+class function TDelphiFiscalST.New(Parent: iController): iST;
 begin
   Result:= Self.create(Parent);
 end;

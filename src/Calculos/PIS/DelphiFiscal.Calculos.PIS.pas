@@ -3,27 +3,29 @@ unit DelphiFiscal.Calculos.PIS;
 interface
 
 uses
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.Calculos.PIS.Intefaces,
+  DelphiFiscal.Controller.Interfaces;
+
 
 type
   TDelphiFiscalPIS = class(TInterfacedObject, iPIS)
     private
       [weak]
-      FParent : iCalculo;
+      FParent : iController;
       FAliquotaPIS : double;
       FValorIPIPorUnidade : double;
       FQtdeIPITributada : double;
     public
-      constructor create(Parent : iCalculo);
+      constructor create(Parent : iController);
       destructor destroy; override;
-      class function New(Parent : iCalculo) : iPIS;
+      class function New(Parent : iController) : iPIS;
       function AliquotaPIS(aValue : double) : iPIS; overload;
       function AliquotaPIS : double; overload;
       function ValorPISPorUnidade(aValue : double) : iPIS; overload;
       function ValorPISPorUnidade : double; overload;
       function QtdePISTributada(aValue : double) : iPIS; overload;
       function QtdePISTributada : double; overload;
-      function &End : iCalculo;
+      function &End : iController;
   end;
 implementation
 
@@ -31,7 +33,7 @@ implementation
 
 uses Delphiscal.Utils;
 
-function TDelphiFiscalPIS.&End: iCalculo;
+function TDelphiFiscalPIS.&End: iController;
 begin
   Result:= FParent;
 end;
@@ -47,7 +49,7 @@ begin
   Result:= FAliquotaPIS;
 end;
 
-constructor TDelphiFiscalPIS.create(Parent: iCalculo);
+constructor TDelphiFiscalPIS.create(Parent: iController);
 begin
   FParent:= Parent;
 end;
@@ -58,7 +60,7 @@ begin
   inherited;
 end;
 
-class function TDelphiFiscalPIS.New(Parent: iCalculo): iPIS;
+class function TDelphiFiscalPIS.New(Parent: iController): iPIS;
 begin
   Result:= Self.create(Parent);
 end;

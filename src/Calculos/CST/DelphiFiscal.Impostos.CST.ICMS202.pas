@@ -3,22 +3,23 @@ unit DelphiFiscal.Impostos.CST.ICMS202;
 interface
 
 uses
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.CST.Interfaces,
+  DelphiFiscal.Controller.Interfaces;
 
 type
   TICMS202 = class(TInterfacedObject, iICMS202)
     private
       [weak]
-      FParent : iCST;
+      FParent : iController;
     public
-      constructor Create(Parent : iCST);
+      constructor Create(Parent : iController);
       destructor Destroy; override;
-      class function New(Parent : iCST) : iICMS202;
+      class function New(Parent : iController) : iICMS202;
       function ValorBaseIcmsProprio: Double;
       function ValorIcmsProprio: Double;
       function ValorBaseIcmsST: Double;
       function ValorIcmsST: Double;
-      Function &End : iCST;
+      Function &End : iController;
   end;
 
 implementation
@@ -27,7 +28,7 @@ implementation
 
 uses Delphiscal.Utils;
 
-constructor TICMS202.Create(Parent: iCST);
+constructor TICMS202.Create(Parent: iController);
 begin
   FParent:= Parent;
 end;
@@ -38,36 +39,36 @@ begin
   inherited;
 end;
 
-function TICMS202.&End: iCST;
+function TICMS202.&End: iController;
 begin
   Result:= FParent;
 end;
 
-class function TICMS202.New(Parent: iCST): iICMS202;
+class function TICMS202.New(Parent: iController): iICMS202;
 begin
   Result:= Self.Create(Parent);
 end;
 
 function TICMS202.ValorBaseIcmsProprio: Double;
 begin
-  Result:= RoundABNT(FParent.&End.ICMS.BaseICMSProprio, 2);
+  Result:= RoundABNT(FParent.ICMS.BaseICMSProprio, 2);
 end;
 
 function TICMS202.ValorBaseIcmsST: Double;
 begin
-  Result:= RoundABNT(FParent.&End.ST.BaseICMSSTCST, 2);
+  Result:= RoundABNT(FParent.ST.BaseICMSSTCST, 2);
 end;
 
 function TICMS202.ValorIcmsProprio: Double;
 begin
-  Result:= RoundABNT(FParent.&End.ICMS.ValorICMSProprio, 2);
+  Result:= RoundABNT(FParent.ICMS.ValorICMSProprio, 2);
 end;
 
 function TICMS202.ValorIcmsST: Double;
 var
   lValor : double;
 begin
-  lValor:= RoundABNT((ValorBaseIcmsST * (FParent.&End.ST.AliquotaICMSST / 100)), 2);
+  lValor:= RoundABNT((ValorBaseIcmsST * (FParent.ST.AliquotaICMSST / 100)), 2);
   result:= RoundABNT(lValor - ValorIcmsProprio, 2);
 end;
 

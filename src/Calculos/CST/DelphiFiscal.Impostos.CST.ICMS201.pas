@@ -3,24 +3,25 @@ unit DelphiFiscal.Impostos.CST.ICMS201;
 interface
 
 uses
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.CST.Interfaces,
+  DelphiFiscal.Controller.Interfaces;
 
 type
   TICMS201 = class(TInterfacedObject, iICMS201)
     private
       [weak]
-      FParent : iCST;
+      FParent : iController;
     public
-      constructor Create(Parent : iCST);
+      constructor Create(Parent : iController);
       destructor Destroy; override;
-      class function New(Parent : iCST) : iICMS201;
+      class function New(Parent : iController) : iICMS201;
       function BaseCreditoSN: Double;
       function ValorCreditoSN: Double;
       function ValorBaseIcmsProprio: Double;
       function ValorIcmsProprio: Double;
       function ValorBaseIcmsST: Double;
       function ValorIcmsST: Double;
-      Function &End : iCST;
+      Function &End : iController;
   end;
 
 implementation
@@ -31,10 +32,10 @@ uses Delphiscal.Utils;
 
 function TICMS201.BaseCreditoSN: Double;
 begin
-  Result := RoundABNT(FParent.&End.ICMS.BaseICMSProprio, 2);
+  Result := RoundABNT(FParent.ICMS.BaseICMSProprio, 2);
 end;
 
-constructor TICMS201.Create(Parent: iCST);
+constructor TICMS201.Create(Parent: iController);
 begin
   FParent:= Parent;
 end;
@@ -45,41 +46,41 @@ begin
   inherited;
 end;
 
-function TICMS201.&End: iCST;
+function TICMS201.&End: iController;
 begin
   Result:= FParent;
 end;
 
-class function TICMS201.New(Parent: iCST): iICMS201;
+class function TICMS201.New(Parent: iController): iICMS201;
 begin
   Result:= Self.Create(Parent);
 end;
 
 function TICMS201.ValorBaseIcmsProprio: Double;
 begin
-  Result:= RoundABNT(FParent.&End.ICMS.BaseICMSProprio, 2);
+  Result:= RoundABNT(FParent.ICMS.BaseICMSProprio, 2);
 end;
 
 function TICMS201.ValorBaseIcmsST: Double;
 begin
-  Result:= RoundABNT(FParent.&End.ST.BaseICMSSTCST, 2);
+  Result:= RoundABNT(FParent.ST.BaseICMSSTCST, 2);
 end;
 
 function TICMS201.ValorCreditoSN: Double;
 begin
-  Result := RoundABNT(BaseCreditoSN * (FParent.&End.ICMS.PercentualCreditoICMSSN / 100), 2);
+  Result := RoundABNT(BaseCreditoSN * (FParent.ICMS.PercentualCreditoICMSSN / 100), 2);
 end;
 
 function TICMS201.ValorIcmsProprio: Double;
 begin
-  Result:= RoundABNT(FParent.&End.ICMS.ValorICMSProprio, 2);
+  Result:= RoundABNT(FParent.ICMS.ValorICMSProprio, 2);
 end;
 
 function TICMS201.ValorIcmsST: Double;
 var
   lValor : double;
 begin
-  lValor:= RoundABNT((ValorBaseIcmsST * (FParent.&End.ST.AliquotaICMSST / 100)), 2);
+  lValor:= RoundABNT((ValorBaseIcmsST * (FParent.ST.AliquotaICMSST / 100)), 2);
   result:= RoundABNT(lValor - ValorIcmsProprio, 2);
 end;
 

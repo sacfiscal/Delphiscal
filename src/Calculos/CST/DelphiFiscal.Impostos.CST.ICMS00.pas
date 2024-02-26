@@ -3,20 +3,22 @@ unit DelphiFiscal.Impostos.CST.ICMS00;
 interface
 
 uses
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.CST.Interfaces,
+  DelphiFiscal.Controller.Interfaces;
+
 
 type
   TICMS00 = class(TInterfacedObject, iICMS00)
     private
       [weak]
-      FParent : iCST;
+      FParent : iController;
     public
-      constructor Create(Parent : iCST);
+      constructor Create(Parent : iController);
       destructor Destroy; override;
-      class function New(Parent : iCST) : iICMS00;
+      class function New(Parent : iController) : iICMS00;
       function BaseICMSProprio : double;
       function ValorICMSProprio : double;
-      Function &End : iCST;
+      Function &End : iController;
   end;
 
 implementation
@@ -27,10 +29,10 @@ uses Delphiscal.Utils;
 
 function TICMS00.BaseICMSProprio: double;
 begin
-  Result:= FParent.&End.ICMS.BaseICMSNormal;
+  Result:=  FParent.ICMS.BaseICMSNormal;
 end;
 
-constructor TICMS00.Create(Parent: iCST);
+constructor TICMS00.Create(Parent: iController);
 begin
   FParent:= Parent;
 end;
@@ -41,19 +43,19 @@ begin
   inherited;
 end;
 
-function TICMS00.&End: iCST;
+function TICMS00.&End: iController;
 begin
   Result:= FParent;
 end;
 
-class function TICMS00.New(Parent: iCST): iICMS00;
+class function TICMS00.New(Parent: iController): iICMS00;
 begin
   Result:= Self.Create(Parent);
 end;
 
 function TICMS00.ValorICMSProprio : double;
 begin
-  Result:= RoundABNT(FParent.&End.ICMS.ValorICMS, 2);
+  Result:= RoundABNT(FParent.ICMS.ValorICMS, 2);
 end;
 
 end.

@@ -111,7 +111,7 @@
             <Form>FrmMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\src\Calculos\Util\Delphiscal.Utils.pas"/>
+        <DCCReference Include="..\..\src\Util\Delphiscal.Utils.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS00.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS20.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS51.pas"/>
@@ -120,9 +120,9 @@
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS70.pas"/>
         <DCCReference Include="..\..\src\Calculos\ST\DelphiFiscal.Calculos.ST.pas"/>
         <DCCReference Include="..\..\src\Calculos\ICMS\DelphiFiscal.Calculos.ICMS.pas"/>
-        <DCCReference Include="..\..\src\Calculos\DelphiFiscal.Calculos.Interfaces.pas"/>
+        <DCCReference Include="..\..\src\Calculos\DelphiFiscal.Base.Interfaces.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.CST.pas"/>
-        <DCCReference Include="..\..\src\Calculos\DelphiFiscal.Calculos.pas"/>
+        <DCCReference Include="..\..\src\Calculos\DelphiFiscal.Base.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS101.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS201.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.ICMS202.pas"/>
@@ -137,6 +137,14 @@
         <DCCReference Include="..\..\src\Calculos\COFINS\DelphiFiscal.Calculos.COFINS.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.COFINS02.pas"/>
         <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.Impostos.CST.COFINS03.pas"/>
+        <DCCReference Include="..\..\src\Controller\DelphiFiscal.Controller.Interfaces.pas"/>
+        <DCCReference Include="..\..\src\Calculos\ST\DelphiFiscal.Calculos.ST.Interfaces.pas"/>
+        <DCCReference Include="..\..\src\Controller\DelphiFiscal.Controller.pas"/>
+        <DCCReference Include="..\..\src\Calculos\PIS\DelphiFiscal.Calculos.PIS.Intefaces.pas"/>
+        <DCCReference Include="..\..\src\Calculos\COFINS\DelphiFiscal.Calculos.COFINS.Interfaces.pas"/>
+        <DCCReference Include="..\..\src\Calculos\IPI\DelphiFiscal.Calculos.IPI.Interfaces.pas"/>
+        <DCCReference Include="..\..\src\Calculos\ICMS\DelphiFiscal.Calculos.ICMS.interfaces.pas"/>
+        <DCCReference Include="..\..\src\Calculos\CST\DelphiFiscal.CST.Interfaces.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

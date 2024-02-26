@@ -13,7 +13,7 @@ uses
   Vcl.ComCtrls,
   Vcl.Imaging.pngimage,
   Vcl.ExtCtrls,
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.Controller.Interfaces;
 type
   TFrmMain = class(TForm)
     Panel1: TPanel;
@@ -169,7 +169,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
-    FImpostos : iCalculo;
+    FImpostos : iController;
   end;
 var
   FrmMain: TFrmMain;
@@ -177,103 +177,119 @@ implementation
 
 uses
   System.SysUtils,
-  DelphiFiscal.Calculos;
+  DelphiFiscal.Base,
+  DelphiFiscal.Controller;
 
 {$R *.dfm}
 procedure TFrmMain.Button1Click(Sender: TObject);
 begin
+  // Base de Calculos (Obrigatório)
   FImpostos
-   .ValorProduto(strtofloatdef(edValorProduto.Text,0))
-   .ValorFrete(strtofloatdef(edValorFrete.Text,0))
-   .ValorSeguro(strtofloatdef(edValorSeguro.Text,0))
-   .ValorDespesasAcessorias(strtofloatdef(edValorDespesas.Text,0))
-   .ValorDescontos(strtofloatdef(edValorDesconto.Text,0))
+   .Base
+     .Quantidade(1)
+     .ValorProduto(strtofloatdef(edValorProduto.Text,0))
+     .ValorFrete(strtofloatdef(edValorFrete.Text,0))
+     .ValorSeguro(strtofloatdef(edValorSeguro.Text,0))
+     .ValorDespesasAcessorias(strtofloatdef(edValorDespesas.Text,0))
+     .ValorDescontos(strtofloatdef(edValorDesconto.Text,0));
+
+  // Calculo ICMS
+  FImpostos
    .ICMS
      .ValorIPI(strtofloatdef(edValorIpi.Text,0))
      .PercentualReducao(strtofloatdef(edReducao.Text,0))
      .PercentualDiferimento(strtofloatdef(edDiferimento.Text,0))
      .AliquotaICMS(strtofloatdef(edAliqIcms.Text,0))
      .PercentualCreditoICMSSN(strtofloatdef(edPercentualCreditoSN.Text,0))
-     .ContemReducao(strtofloatdef(edReducao.Text,0) > 0)
-   .&End
+     .ContemReducao(strtofloatdef(edReducao.Text,0) > 0);
+
+  // Calculo ST
+  FImpostos
    .ST
      .AliquotaICMSST(strtofloatdef(edAliqST.Text,0))
      .PercentualMVA(strtofloatdef(edMVA.Text,0))
-     .PercentualReducaoBaseICMSST(strtofloatdef(edPercRedST.Text,0))
-   .&End
+     .PercentualReducaoBaseICMSST(strtofloatdef(edPercRedST.Text,0));
+
+  // Calculo IPI
+  FImpostos
    .IPI
      .AliquotaIPI(strtofloatdef(edAliqIpi.Text,0))
      .ValorIPIPorUnidade(strtofloatdef(edValorIpiUn.Text,0))
-     .QtdeIPITributada(strtofloatdef(edQtdeIpiTributada.Text,0))
-   .&End
+     .QtdeIPITributada(strtofloatdef(edQtdeIpiTributada.Text,0));
+
+  // Calculo PIS
+  FImpostos
    .PIS
      .AliquotaPIS(strtofloatdef(edAliqPis.Text,0))
      .ValorPISPorUnidade(strtofloatdef(edValorPisUn.Text,0))
-     .QtdePISTributada(strtofloatdef(edQtdePisUn.Text,0))
-   .&End
+     .QtdePISTributada(strtofloatdef(edQtdePisUn.Text,0));
+
+  // Calculo Cofins
+  FImpostos
    .COFINS
      .AliquotaCOFINS(strtofloatdef(edAliqCofins.Text,0))
      .ValorCOFINSPorUnidade(strtofloatdef(edValorCofinsUn.Text,0))
-     .QtdeCOFINSTributada(strtofloatdef(edQtdeCofinsUn.Text,0))
-   .&End;
+     .QtdeCOFINSTributada(strtofloatdef(edQtdeCofinsUn.Text,0));
 
+
+  // Resultados
   lbVICMS00.Caption:= FImpostos.ICMS.ValorICMS.ToString;
-  lbVBC00.Caption  := FImpostos.ICMS.CST.ICMS00.BaseICMSProprio.ToString;
+  lbVBC00.Caption  := FImpostos.CST.ICMS00.BaseICMSProprio.ToString;
 
-  lbVICMS20.Caption:= FImpostos.ICMS.CST.ICMS20.ValorICMSProprio.ToString;
-  lbVBC20.Caption  := FImpostos.ICMS.CST.ICMS20.BaseICMSProprio.ToString;
-  lbVICMSDESON20.Caption:= FImpostos.ICMS.CST.ICMS20.ValorICMSDesonerado.ToString;
+  lbVICMS20.Caption:= FImpostos.CST.ICMS20.ValorICMSProprio.ToString;
+  lbVBC20.Caption  := FImpostos.CST.ICMS20.BaseICMSProprio.ToString;
+  lbVICMSDESON20.Caption:= FImpostos.CST.ICMS20.ValorICMSDesonerado.ToString;
 
-  lbVBC51.Caption:= FImpostos.ICMS.CST.ICMS51.BaseICMSProprio.ToString;
-  lbVICMS51.Caption:= FImpostos.ICMS.CST.ICMS51.ValorICMSProprio.ToString;
-  lbVICMSOP.Caption:= FImpostos.ICMS.CST.ICMS51.ValorICMSOperacao.ToString;
-  lbVICMSDIF.Caption:= FImpostos.ICMS.CST.ICMS51.ValorICMSDiferido.ToString;
+  lbVBC51.Caption:= FImpostos.CST.ICMS51.BaseICMSProprio.ToString;
+  lbVICMS51.Caption:= FImpostos.CST.ICMS51.ValorICMSProprio.ToString;
+  lbVICMSOP.Caption:= FImpostos.CST.ICMS51.ValorICMSOperacao.ToString;
+  lbVICMSDIF.Caption:= FImpostos.CST.ICMS51.ValorICMSDiferido.ToString;
 
-  lbVBC10.Caption:= FImpostos.ICMS.CST.ICMS10.ValorBaseIcmsProprio.ToString;
-  lbVICMS10.Caption:= FImpostos.ICMS.CST.ICMS10.ValorIcmsProprio.ToString;
-  lbVBCST10.Caption:= FImpostos.ICMS.CST.ICMS10.ValorBaseIcmsST.ToString;
-  lbVICMSST10.Caption:= FImpostos.ICMS.CST.ICMS10.ValorIcmsST.ToString;
-  lbVICMSSTDeson10.Caption:= FImpostos.ICMS.CST.ICMS10.ValorIcmsSTDesonerado.ToString;
+  lbVBC10.Caption:= FImpostos.CST.ICMS10.ValorBaseIcmsProprio.ToString;
+  lbVICMS10.Caption:= FImpostos.CST.ICMS10.ValorIcmsProprio.ToString;
+  lbVBCST10.Caption:= FImpostos.CST.ICMS10.ValorBaseIcmsST.ToString;
+  lbVICMSST10.Caption:= FImpostos.CST.ICMS10.ValorIcmsST.ToString;
+  lbVICMSSTDeson10.Caption:= FImpostos.CST.ICMS10.ValorIcmsSTDesonerado.ToString;
 
-  lbVBCST30.Caption:= FImpostos.ICMS.CST.ICMS30.ValorBaseIcmsST.ToString;
-  lbVICMSST30.Caption:= FImpostos.ICMS.CST.ICMS30.ValorIcmsST.ToString;
-  lbVICMSSTDeson30.Caption:= FImpostos.ICMS.CST.ICMS30.ValorIcmsDesonerado.ToString;
+  lbVBCST30.Caption:= FImpostos.CST.ICMS30.ValorBaseIcmsST.ToString;
+  lbVICMSST30.Caption:= FImpostos.CST.ICMS30.ValorIcmsST.ToString;
+  lbVICMSSTDeson30.Caption:= FImpostos.CST.ICMS30.ValorIcmsDesonerado.ToString;
 
-  lbVBC70.Caption:= FImpostos.ICMS.CST.ICMS70.ValorBaseReduzidaIcmsProprio.ToString;
-  lbVICMS70.Caption:= FImpostos.ICMS.CST.ICMS70.ValorIcmsProprio.ToString;
-  lbVICMSDeson70.Caption:= FImpostos.ICMS.CST.ICMS70.ValorIcmsDesonerado.ToString;
+  lbVBC70.Caption:= FImpostos.CST.ICMS70.ValorBaseReduzidaIcmsProprio.ToString;
+  lbVICMS70.Caption:= FImpostos.CST.ICMS70.ValorIcmsProprio.ToString;
+  lbVICMSDeson70.Caption:= FImpostos.CST.ICMS70.ValorIcmsDesonerado.ToString;
 
-  lbVBCST70.Caption:= FImpostos.ICMS.CST.ICMS70.ValorBaseIcmsST.ToString;
-  lbVICMSST70.Caption:= FImpostos.ICMS.CST.ICMS70.ValorIcmsST.ToString;
-  lbVICMSSTDeson70.Caption:= FImpostos.ICMS.CST.ICMS70.ValorIcmsSTDesonerado.ToString;
+  lbVBCST70.Caption:= FImpostos.CST.ICMS70.ValorBaseIcmsST.ToString;
+  lbVICMSST70.Caption:= FImpostos.CST.ICMS70.ValorIcmsST.ToString;
+  lbVICMSSTDeson70.Caption:= FImpostos.CST.ICMS70.ValorIcmsSTDesonerado.ToString;
 
   lbPCredSN101.Caption:= FImpostos.ICMS.PercentualCreditoICMSSN.ToString;
-  lbVcredSN101.Caption:= FImpostos.ICMS.CST.ICMS101.ValorCreditoSN.ToString;
+  lbVcredSN101.Caption:= FImpostos.CST.ICMS101.ValorCreditoSN.ToString;
 
   lbPCredSN201.Caption:= FImpostos.ICMS.PercentualCreditoICMSSN.ToString;
-  lbVCredSN201.Caption:= FImpostos.ICMS.CST.ICMS201.ValorCreditoSN.ToString;
-  lbVBCST201.Caption  := FImpostos.ICMS.CST.ICMS201.ValorBaseIcmsST.ToString;
-  lbVICMSST201.Caption:= FImpostos.ICMS.CST.ICMS201.ValorIcmsST.ToString;
+  lbVCredSN201.Caption:= FImpostos.CST.ICMS201.ValorCreditoSN.ToString;
+  lbVBCST201.Caption  := FImpostos.CST.ICMS201.ValorBaseIcmsST.ToString;
+  lbVICMSST201.Caption:= FImpostos.CST.ICMS201.ValorIcmsST.ToString;
 
-  lbVBCST202.Caption  := FImpostos.ICMS.CST.ICMS202.ValorBaseIcmsST.ToString;
-  lbVICMSST202.Caption:= FImpostos.ICMS.CST.ICMS202.ValorIcmsST.ToString;
+  lbVBCST202.Caption  := FImpostos.CST.ICMS202.ValorBaseIcmsST.ToString;
+  lbVICMSST202.Caption:= FImpostos.CST.ICMS202.ValorIcmsST.ToString;
 
-  lbvBCIpi50av.Caption:= FImpostos.ICMS.CST.IPI50.BaseIpi.ToString;
-  lbVIPI50av.Caption:= FImpostos.ICMS.CST.IPI50.ValorIpi.ToString;
-  lbVipi50Especifico.Caption:= FImpostos.ICMS.CST.IPI50.ValorIpiEspecifico.ToString;
+  lbvBCIpi50av.Caption:= FImpostos.CST.IPI50.BaseIpi.ToString;
+  lbVIPI50av.Caption:= FImpostos.CST.IPI50.ValorIpi.ToString;
+  lbVipi50Especifico.Caption:= FImpostos.CST.IPI50.ValorIpiEspecifico.ToString;
 
-  lbVBCPIS01_02.Caption:= FImpostos.ICMS.CST.PIS01.BasePis.ToString;
-  lbVPIS01_02.Caption:= FImpostos.ICMS.CST.PIS01.ValorPis.ToString;
-  lbVPIS03.Caption:= FImpostos.ICMS.CST.PIS01.ValorPisEspecifico.ToString;
+  lbVBCPIS01_02.Caption:= FImpostos.CST.PIS01.BasePis.ToString;
+  lbVPIS01_02.Caption:= FImpostos.CST.PIS01.ValorPis.ToString;
+  lbVPIS03.Caption:= FImpostos.CST.PIS01.ValorPisEspecifico.ToString;
 
-  lbVBCCOFINS01_02.Caption:= FImpostos.ICMS.CST.COFINS01.BaseCofins.ToString;
-  lbVCOFINS01_02.Caption := FImpostos.ICMS.CST.COFINS01.ValorCofins.ToString;
-  lbVCOFINS03.Caption:= FImpostos.ICMS.CST.COFINS01.ValorCofinsEspecifico.ToString;
+  lbVBCCOFINS01_02.Caption:= FImpostos.CST.COFINS01.BaseCofins.ToString;
+  lbVCOFINS01_02.Caption := FImpostos.CST.COFINS01.ValorCofins.ToString;
+  lbVCOFINS03.Caption:= FImpostos.CST.COFINS01.ValorCofinsEspecifico.ToString;
 end;
 
 procedure TFrmMain.FormCreate(Sender: TObject);
 begin
-  FImpostos:= TDelphiFiscalCalculos.New;
+  FImpostos:= TController.New;
 end;
 
 end.

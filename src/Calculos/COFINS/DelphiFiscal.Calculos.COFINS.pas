@@ -3,27 +3,28 @@ unit DelphiFiscal.Calculos.COFINS;
 interface
 
 uses
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.Calculos.COFINS.Interfaces,
+  DelphiFiscal.Controller.Interfaces;
 
 type
   TDelphiFiscalCOFINS = class(TInterfacedObject, iCOFINS)
     private
       [weak]
-      FParent : iCalculo;
+      FParent : iController;
       FAliquotaCOFIS : double;
       FValorIPIPorUnidade : double;
       FQtdeIPITributada : double;
     public
-      constructor create(Parent : iCalculo);
+      constructor create(Parent : iController);
       destructor destroy; override;
-      class function New(Parent : iCalculo) : iCOFINS;
+      class function New(Parent : iController) : iCOFINS;
       function AliquotaCOFINS(aValue : double) : iCOFINS; overload;
       function AliquotaCOFINS : double; overload;
       function ValorCOFINSPorUnidade(aValue : double) : iCOFINS; overload;
       function ValorCOFINSPorUnidade : double; overload;
       function QtdeCOFINSTributada(aValue : double) : iCOFINS; overload;
       function QtdeCOFINSTributada : double; overload;
-      function &End : iCalculo;
+      function &End : iController;
   end;
 implementation
 
@@ -31,7 +32,7 @@ implementation
 
 uses Delphiscal.Utils;
 
-function TDelphiFiscalCOFINS.&End: iCalculo;
+function TDelphiFiscalCOFINS.&End: iController;
 begin
   Result:= FParent;
 end;
@@ -47,7 +48,7 @@ begin
   Result:= FAliquotaCOFIS;
 end;
 
-constructor TDelphiFiscalCOFINS.create(Parent: iCalculo);
+constructor TDelphiFiscalCOFINS.create(Parent: iController);
 begin
   FParent:= Parent;
 end;
@@ -58,7 +59,7 @@ begin
   inherited;
 end;
 
-class function TDelphiFiscalCOFINS.New(Parent: iCalculo): iCOFINS;
+class function TDelphiFiscalCOFINS.New(Parent: iController): iCOFINS;
 begin
   Result:= Self.create(Parent);
 end;

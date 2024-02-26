@@ -3,24 +3,25 @@ unit DelphiFiscal.Impostos.CST.ICMS10;
 interface
 
 uses
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.Controller.Interfaces,
+  DelphiFiscal.CST.Interfaces;
 
 type
   TICMS10 = class(TInterfacedObject, iICMS10)
     private
       [weak]
-      FParent : iCST;
-    function BaseICMSProprio: double;
+      FParent : iController;
+      function BaseICMSProprio: double;
     public
-      constructor Create(Parent : iCST);
+      constructor Create(Parent : iController);
       destructor Destroy; override;
-      class function New(Parent : iCST) : iICMS10;
+      class function New(Parent : iController) : iICMS10;
       function ValorBaseIcmsProprio: Double;
       function ValorIcmsProprio: Double;
       function ValorBaseIcmsST: Double;
       function ValorIcmsST: Double;
       function ValorIcmsSTDesonerado: Double;
-      Function &End : iCST;
+      Function &End : iController;
   end;
 
 implementation
@@ -31,10 +32,10 @@ uses Delphiscal.Utils;
 
 function TICMS10.BaseICMSProprio: double;
 begin
-  Result:= FParent.&End.ICMS.BaseICMSNormal;
+  Result:= FParent.ICMS.BaseICMSNormal;
 end;
 
-constructor TICMS10.Create(Parent: iCST);
+constructor TICMS10.Create(Parent: iController);
 begin
   FParent:= Parent;
 end;
@@ -45,39 +46,39 @@ begin
   inherited;
 end;
 
-function TICMS10.&End: iCST;
+function TICMS10.&End: iController;
 begin
   Result:= FParent;
 end;
 
-class function TICMS10.New(Parent: iCST): iICMS10;
+class function TICMS10.New(Parent: iController): iICMS10;
 begin
   Result:= Self.Create(Parent);
 end;
 
 function TICMS10.ValorBaseIcmsProprio: Double;
 begin
-  Result:= RoundABNT(FParent.&End.ICMS.BaseICMSNormal, 2);
+  Result:= RoundABNT(FParent.ICMS.BaseICMSNormal, 2);
 end;
 
 function TICMS10.ValorBaseIcmsST: Double;
 begin
-  Result:= RoundABNT(FParent.&End.ST.BaseICMSST, 2);
+  Result:= RoundABNT(FParent.ST.BaseICMSST, 2);
 end;
 
 function TICMS10.ValorICMSProprio : double;
 begin
-  Result:= RoundABNT(FParent.&End.ICMS.ValorICMS, 2);
+  Result:= RoundABNT(FParent.ICMS.ValorICMS, 2);
 end;
 
 function TICMS10.ValorIcmsST: Double;
 begin
-  Result:= RoundABNT(FParent.&End.ST.ValorICMSSTProprio, 2);
+  Result:= RoundABNT(FParent.ST.ValorICMSSTProprio, 2);
 end;
 
 function TICMS10.ValorIcmsSTDesonerado: Double;
 begin
-  Result := RoundABNT(FParent.&End.ST.ValorICMSST - FParent.&End.ST.ValorICMSSTProprio, 2);
+  Result := RoundABNT(FParent.ST.ValorICMSST - FParent.ST.ValorICMSSTProprio, 2);
 end;
 
 end.

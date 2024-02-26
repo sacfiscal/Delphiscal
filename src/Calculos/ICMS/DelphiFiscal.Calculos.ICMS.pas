@@ -3,14 +3,14 @@ unit DelphiFiscal.Calculos.ICMS;
 interface
 
 uses
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.Controller.Interfaces,
+  DelphiFiscal.Calculos.ICMS.interfaces;
 
-type
+  type
   TDelphiFiscalICMS = class(TInterfacedObject, iICMS)
     private
       [weak]
-      FParent : iCalculo;
-      FCST : iCST;
+      FParent : iController;
 
       FValorIpi: Double;
       FPercentualReducao: Double;
@@ -25,12 +25,10 @@ type
 
       FPercentualCreditoICMSSN : double;
     public
-      constructor create(Parent : iCalculo);
+      constructor create(Parent : iController);
       destructor destroy; override;
-      class function New(Parent : iCalculo) : iICMS;
-      function &End : iCalculo;
+      class function New(Parent : iController) : iICMS;
 
-      function CST : iCST;
       function ValorIPI(aValue : double) : iICMS; overload;
       function ValorIPI : double; overload;
       function PercentualReducao(aValue : double) : iICMS;
@@ -47,6 +45,7 @@ type
       function ContemReducao : boolean; overload;
       function ValorICMS : Double;
       function ValorICMSProprio : double;
+      function &End : iController;
   end;
 
 implementation
@@ -55,17 +54,9 @@ implementation
 
 uses Delphiscal.Utils, DelphiFiscal.CST;
 
-constructor TDelphiFiscalICMS.create(Parent : iCalculo);
+constructor TDelphiFiscalICMS.create(Parent : iController);
 begin
   FParent:= Parent;
-end;
-
-function TDelphiFiscalICMS.CST: iCST;
-begin
-  if not Assigned(FCST) then
-    FCST:= TDelphiFiscalCST.New(FParent);
-
-  Result:= FCST;
 end;
 
 destructor TDelphiFiscalICMS.destroy;
@@ -74,7 +65,7 @@ begin
   inherited;
 end;
 
-class function TDelphiFiscalICMS.New(Parent: iCalculo): iICMS;
+class function TDelphiFiscalICMS.New(Parent: iController): iICMS;
 begin
   Result:= Self.create(Parent);
 end;
@@ -85,7 +76,7 @@ begin
   FAliquotaICMS:= aValue;
 end;
 
-function TDelphiFiscalICMS.&End: iCalculo;
+function TDelphiFiscalICMS.&End: iController;
 begin
   Result:= FParent;
 end;
@@ -108,7 +99,12 @@ end;
 
 function TDelphiFiscalICMS.BaseICMSNormal : double;
 begin
-  Result:= RoundABNT(FParent.ValorProduto + FParent.Valorfrete + FParent.ValorSeguro + FParent.ValorDespesasAcessorias + FValorIpi - FParent.ValorDescontos, 2);
+  Result:= RoundABNT(FParent.Base.ValorProduto +
+                     FParent.Base.Valorfrete +
+                     FParent.Base.ValorSeguro +
+                     FParent.Base.ValorDespesasAcessorias +
+                     FValorIpi -
+                     FParent.Base.ValorDescontos, 2);
 end;
 
 function TDelphiFiscalICMS.BaseICMSProprio : double;
@@ -176,17 +172,6 @@ begin
   FPercentualReducao:= aValue;
 end;
 
-//function TDelphiFiscalICMS.ValorProduto(aValue: double): iICMS;
-//begin
-//  Result:= self;
-//  FValorProduto:= aValue;
-//end;
-//
-//function TDelphiFiscalICMS.ValorSeguro(aValue: double): iICMS;
-//begin
-//  Result:= self;
-//  FValorSeguro:= aValue;
-//end;
 
 end.
 

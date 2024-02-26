@@ -3,27 +3,28 @@ unit DelphiFiscal.Calculos.IPI;
 interface
 
 uses
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.Controller.Interfaces,
+  DelphiFiscal.Calculos.IPI.Interfaces;
 
 type
   TDelphiFiscalIPI = class(TInterfacedObject, iIPI)
     private
       [weak]
-      FParent : iCalculo;
+      FParent : iController;
       FAliquotaIPI : double;
       FValorIPIPorUnidade : double;
       FQtdeIPITributada : double;
     public
-      constructor create(Parent : iCalculo);
+      constructor create(Parent : iController);
       destructor destroy; override;
-      class function New(Parent : iCalculo) : iIPI;
+      class function New(Parent : iController) : iIPI;
       function AliquotaIPI(aValue : double) : iIPI; overload;
       function AliquotaIPI : double; overload;
       function ValorIPIPorUnidade(aValue : double) : iIPI; overload;
       function ValorIPIPorUnidade : double; overload;
       function QtdeIPITributada(aValue : double) : iIPI; overload;
       function QtdeIPITributada : double; overload;
-      function &End : iCalculo;
+      function &End : iController;
   end;
 implementation
 
@@ -31,7 +32,7 @@ implementation
 
 uses Delphiscal.Utils;
 
-function TDelphiFiscalIPI.&End: iCalculo;
+function TDelphiFiscalIPI.&End: iController;
 begin
   Result:= FParent;
 end;
@@ -47,7 +48,7 @@ begin
   Result:= FAliquotaIPI;
 end;
 
-constructor TDelphiFiscalIPI.create(Parent: iCalculo);
+constructor TDelphiFiscalIPI.create(Parent: iController);
 begin
   FParent:= Parent;
 end;
@@ -58,7 +59,7 @@ begin
   inherited;
 end;
 
-class function TDelphiFiscalIPI.New(Parent: iCalculo): iIPI;
+class function TDelphiFiscalIPI.New(Parent: iController): iIPI;
 begin
   Result:= Self.create(Parent);
 end;

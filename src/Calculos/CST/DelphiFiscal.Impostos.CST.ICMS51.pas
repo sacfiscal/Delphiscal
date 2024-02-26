@@ -3,22 +3,24 @@ unit DelphiFiscal.Impostos.CST.ICMS51;
 interface
 
 uses
-  DelphiFiscal.Calculos.Interfaces;
+  DelphiFiscal.CST.Interfaces,
+  DelphiFiscal.Controller.Interfaces;
+
 
 type
   TICMS51 = class(TInterfacedObject, iICMS51)
     private
       [weak]
-      FParent : iCST;
+      FParent : iController;
     public
-      constructor Create(Parent : iCST);
+      constructor Create(Parent : iController);
       destructor Destroy; override;
-      class function New(Parent : iCST) : iICMS51;
+      class function New(Parent : iController) : iICMS51;
       function BaseICMSProprio : double;
       function ValorICMSOperacao : double;
       function ValorICMSDiferido : double;
       function ValorICMSProprio : double;
-      Function &End : iCST;
+      Function &End : iController;
   end;
 
 implementation
@@ -29,10 +31,10 @@ uses Delphiscal.Utils;
 
 function TICMS51.BaseICMSProprio: double;
 begin
-  Result:= FParent.&End.ICMS.BaseICMSProprio;
+  Result:= FParent.ICMS.BaseICMSProprio;
 end;
 
-constructor TICMS51.Create(Parent: iCST);
+constructor TICMS51.Create(Parent: iController);
 begin
   FParent:= Parent;
 end;
@@ -43,24 +45,24 @@ begin
   inherited;
 end;
 
-function TICMS51.&End: iCST;
+function TICMS51.&End: iController;
 begin
   Result:= FParent;
 end;
 
-class function TICMS51.New(Parent: iCST): iICMS51;
+class function TICMS51.New(Parent: iController): iICMS51;
 begin
   Result:= Self.Create(Parent);
 end;
 
 function TICMS51.ValorICMSDiferido: double;
 begin
-  result:= RoundABNT(ValorICMSOperacao * (FParent.&End.ICMS.PercentualDiferimento / 100), 2);
+  result:= RoundABNT(ValorICMSOperacao * (FParent.ICMS.PercentualDiferimento / 100), 2);
 end;
 
 function TICMS51.ValorICMSOperacao: double;
 begin
-  Result:= RoundABNT(FParent.&End.ICMS.BaseICMSProprio * (FParent.&End.ICMS.AliquotaICMS / 100), 2);
+  Result:= RoundABNT(FParent.ICMS.BaseICMSProprio * (FParent.ICMS.AliquotaICMS / 100), 2);
 end;
 
 function TICMS51.ValorICMSProprio : double;

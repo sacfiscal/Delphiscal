@@ -10,6 +10,10 @@ type
     function ValorBaseIcmsST: Double;
     function ValorIcmsST: Double;
     function ValorIcmsSTDesonerado: Double;
+    function ValorBaseFCP : double;
+    function ValorFCP : double;
+    function ValorBaseFCPST : double;
+    function ValorFCPST : double;
   end;
 
 implementation
